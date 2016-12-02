@@ -17,7 +17,7 @@ public class TestService {
             e.printStackTrace();
         }
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-        DoctorService doctorService = beanFactory.getBean("doctorService",DoctorService.class);
+        DoctorService doctorService =  beanFactory.getBean("doctorService",DoctorService.class);
         System.out.print(doctorService.login(username,password));
     }
 }

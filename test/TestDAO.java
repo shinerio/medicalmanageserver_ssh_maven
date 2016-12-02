@@ -14,10 +14,12 @@ import java.util.Set;
  */
 public class TestDAO {
 //用户名不唯一，重复运行请更换用户名
+    //testDao内方法不能再进行测试，事务转移至service层
+    /*
     @Test
     public void insertDoctor(){
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-        DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+        DoctorDao doctorDao =  beanFactory.getBean("doctorDao",DoctorDao.class);
         Doctors doctor = new Doctors("tom","tom123","admin");
         doctorDao.saveDoctor(doctor);
     }
@@ -25,7 +27,7 @@ public class TestDAO {
     @Test
     public void selectDoctor(){
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-        DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+        DoctorDao doctorDao =  beanFactory.getBean("doctorDao",DoctorDao.class);
         Doctors doctor = doctorDao.getDoctorByID(1);
         System.out.println(doctor);
     }
@@ -47,7 +49,7 @@ public class TestDAO {
     @Test
     public void selectPatientByDoctor() throws Exception {
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-        DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+        DoctorDao doctorDao =  beanFactory.getBean("doctorDao",DoctorDao.class);
         Doctors doctor = new Doctors();
         doctor.setId(1);
         Set<Patients> patients = doctorDao.getPatients(doctor);
@@ -60,7 +62,8 @@ public class TestDAO {
 @Test
     public  void getDoctorByUsername(){
     BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-    DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+    DoctorDao doctorDao =  beanFactory.getBean("doctorDao",DoctorDao.class);
         System.out.print(doctorDao.getDoctorByUsername("tom"));
     }
+    */
 }
