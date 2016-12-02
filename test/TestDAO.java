@@ -1,0 +1,66 @@
+import com.shinerio.dao.DoctorDao;
+import com.shinerio.dao.PatientsDao;
+import com.shinerio.domain.Doctors;
+import com.shinerio.domain.Patients;
+import org.junit.Test;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Iterator;
+import java.util.Set;
+
+/**
+ * Created by jstxzhangrui on 2016/11/26.
+ */
+public class TestDAO {
+//用户名不唯一，重复运行请更换用户名
+    @Test
+    public void insertDoctor(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+        Doctors doctor = new Doctors("tom","tom123","admin");
+        doctorDao.saveDoctor(doctor);
+    }
+
+    @Test
+    public void selectDoctor(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+        Doctors doctor = doctorDao.getDoctorByID(1);
+        System.out.println(doctor);
+    }
+    public Doctors getDoctor(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+        Doctors doctor = doctorDao.getDoctorByID(1);
+       return doctor;
+    }
+    @Test
+    public void insertPatient() throws Exception {
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PatientsDao patientsDao = beanFactory.getBean("patientsDao",PatientsDao.class);
+        Doctors doctor = getDoctor();
+        Patients patient = new Patients("JACK","jack123","admin",doctor);
+        patientsDao.savePatient(patient);
+    }
+
+    @Test
+    public void selectPatientByDoctor() throws Exception {
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+        Doctors doctor = new Doctors();
+        doctor.setId(1);
+        Set<Patients> patients = doctorDao.getPatients(doctor);
+       Iterator<Patients> iterator = patients.iterator();
+        while (iterator.hasNext()){
+            Patients patient = iterator.next();
+            System.out.println(patient);
+        }
+    }
+@Test
+    public  void getDoctorByUsername(){
+    BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+    DoctorDao doctorDao = beanFactory.getBean("doctorDao",DoctorDao.class);
+        System.out.print(doctorDao.getDoctorByUsername("tom"));
+    }
+}
