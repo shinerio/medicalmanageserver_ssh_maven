@@ -1,5 +1,5 @@
 import com.shinerio.dao.DoctorDao;
-import com.shinerio.dao.PatientsDao;
+import com.shinerio.dao.PatientDao;
 import com.shinerio.domain.Doctors;
 import com.shinerio.domain.Patients;
 import org.junit.Test;
@@ -40,10 +40,10 @@ public class TestDAO {
     @Test
     public void insertPatient() throws Exception {
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-        PatientsDao patientsDao = beanFactory.getBean("patientsDao",PatientsDao.class);
+        PatientDao patientDao = beanFactory.getBean("patientDao",PatientDao.class);
         Doctors doctor = getDoctor();
         Patients patient = new Patients("JACK","jack123","admin",doctor);
-        patientsDao.savePatient(patient);
+        patientDao.savePatient(patient);
     }
 
     @Test

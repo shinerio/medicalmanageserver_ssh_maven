@@ -46,10 +46,15 @@
           <element id="library" level="project" name="Maven: javax:javaee-api:7.0" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.0" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:6.0.5" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.3.2.RELEASE" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:6.0.5" />
+          <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.0" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
+          <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.5" />
+          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
         </element>
       </element>
       <element id="directory" name="META-INF">

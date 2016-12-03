@@ -29,7 +29,7 @@ public class DoctorServiceImpl implements DoctorService {
     public Doctors login(String username , String password) {
         Doctors doctor = doctorDao.getDoctorByUsername(username);
         if(doctor!=null){
-            if(password.equals(doctor.getPassword())) {
+            if(password!=null&&password.equals(doctor.getPassword())) {
                 return  doctor;
             }
         }

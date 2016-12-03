@@ -71,6 +71,6 @@ public class Patients {
 
     @Override
     public String toString() {
-        return "编号:"+id+" 用户名："+username;
+        return "病人编号:"+id+" 用户名："+username;
     }
 }

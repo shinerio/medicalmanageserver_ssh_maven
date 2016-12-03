@@ -6,9 +6,14 @@
 
 <struts>
     <package name="doctor" namespace="/doctor" extends="struts-default">
-        <action name="login" class="com.shinerio.action.DoctorsAction" method="isLogin">
+        <action name="login" class="com.shinerio.action.DoctorAction" method="isLogin">
             <result name="success" type="redirect">/dynamicData.jsp</result>
             <result name="error">/error.jsp</result>
+        </action>
+    </package>
+
+    <package name="patient" namespace="/patient" extends="struts-default">
+        <action name="login" class="com.shinerio.action.PatientAction" method="login">
         </action>
     </package>
 </struts>

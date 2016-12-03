@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component("doctorAction")
 @Scope("prototype")
-public class DoctorsAction extends ActionSupport implements ServletRequestAware {
+public class DoctorAction extends ActionSupport implements ServletRequestAware {
     private String username;
     private HttpServletRequest request;
     public void setServletRequest(javax.servlet.http.HttpServletRequest httpServletRequest) {
