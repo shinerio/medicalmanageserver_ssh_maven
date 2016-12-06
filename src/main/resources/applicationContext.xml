@@ -17,10 +17,10 @@
     <!-- 数据源对象 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/medicalmanage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">
+        <property name="url" value="jdbc:mysql://10.103.238.28:3306/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">
         </property>
         <property name="username" value="root"></property>
-        <property name="password" value="admin"></property>
+        <property name="password" value="bigdata"></property>
     </bean>
 
     <!-- session工厂，维护会话对象 -->
