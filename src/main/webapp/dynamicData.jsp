@@ -14,7 +14,7 @@
     <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
     <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">
     <link href="css/plugins/ionRangeSlider/normalize.css" rel="stylesheet">
-    <link href="css/plugins/toastr/toastr.css" rel="stylesheet">
+    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <style type="text/css">.jqstooltip {
         position: absolute;
         left: 0px;
@@ -77,11 +77,11 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">信息查询</span><img src="img/lock.png" width="20px" height="20px" class="lock">
-                        <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
+                    <a href="javascript:void(0)" id="doctorinformation"><i class="fa fa-files-o"></i> <span class="nav-label">信息查询</span><img src="img/lock.png" width="20px" height="20px" class="lock">
+                    </a>
+                    <%--<ul class="nav nav-second-level collapse">
 
-                    </ul>
+                    </ul>--%>
                 </li>
                 <li>
                     <a href="javascript:void(0)" id="hisquery"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span><img src="img/lock.png" width="20px" height="20px" class="lock">
@@ -119,9 +119,7 @@
 
 
                     <li style="height: 60px;width:72px;display: inline-block">
-                        <a href="login.jsp">
-                            <i class="fa fa-sign-out"></i> 登录
-                        </a>
+                        <a href="login.jsp"><i class="fa fa-sign-out"></i> <span id="login">登录</span></a>
                     </li>
 
                 </ul>
@@ -330,7 +328,17 @@
         show_echarts1();
         show_echarts2();
     }
-    
+
+    $("#hisquery").click(function(){
+        if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
+            toastr.warning('登录后才可以查看，请登录！');
+        }
+    });
+    $("#doctorinformation").click(function(){
+        if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
+            toastr.warning('登录后才可以查看，请登录！');
+        }
+    });
     function isAuthorized() {
         if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
             //alert("未认证");
@@ -340,6 +348,8 @@
             // alert("已认证");
             $(".lock").attr('src','/img/unlock.png');
             $("#hisquery").attr('href','HistoryQuery.html');
+            $("#doctorinformation").attr('href','doctorInformation.html');
+            $("#login").html("注销")
         }
     }
 
@@ -527,7 +537,7 @@
      $("#container1").resize(function(){ $(myChart1).resize(); })
      $("#container2").resize(function(){ $(myChart2).resize(); })
 </script>
-<script src="css/plugins/ionRangeSlider/toastr.js"></script>
+<script src="js/toastr.js"></script>
 <script>
     function new_table()
     {   show_table();
@@ -614,13 +624,19 @@
         CommandDataWS.socket.onopen = function () {
             clearTimeout(t2);
 
-            $("#button_evaluate").click(function () {
-                duration = $("#range_01").val();
-//                $("#status").html("等待确认!");
-                toastr.success('等待病人确认......');
-                message_send = "evaluate_request";
-                CommandDataWS.sendMessage();      //发送确认字符
-            });
+                $("#button_evaluate").click(function () {
+                    if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
+                        alert("进来了!")
+                         toastr.warning('请登录后再进行评估！');
+                    }else {
+                        duration = $("#range_01").val();
+                        // $("#status").html("等待确认!");
+                        toastr.success('等待病人确认......');
+                        message_send = "evaluate_request";
+                        CommandDataWS.sendMessage();      //发送确认字符
+                    }
+                });
+
 
         };
 
