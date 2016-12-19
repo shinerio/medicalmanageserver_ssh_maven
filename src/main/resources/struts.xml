@@ -10,6 +10,10 @@
             <result name="success" type="redirect">/dynamicData.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
+        <action name="checkDoctorInfo" class="com.shinerio.action.DoctorAction" method="getDoctorInfo">
+           <result name="success" type="dispatcher">/doctorInformation.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
     </package>
 
     <package name="patient" namespace="/patient" extends="struts-default">
