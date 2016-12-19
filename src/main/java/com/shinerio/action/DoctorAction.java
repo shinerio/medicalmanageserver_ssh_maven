@@ -1,6 +1,7 @@
 package com.shinerio.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.shinerio.domain.Doctor_info;
 import com.shinerio.domain.Doctors;
 import com.shinerio.service.DoctorService;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import javax.faces.flow.ReturnNode;
 import javax.servlet.http.HttpServletRequest;
 
 @Component("doctorAction")
@@ -19,7 +22,6 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
     public void setServletRequest(javax.servlet.http.HttpServletRequest httpServletRequest) {
         this.request = httpServletRequest;
     }
-
     private String password;
     @Autowired
     private DoctorService doctorService;
@@ -54,6 +56,19 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
             this.request.getSession().setAttribute("doctor",doctor);
             return SUCCESS;
         } else {
+            return "error";
+        }
+    }
+
+    public String getDoctorInfo(){
+        Doctors doctor = (Doctors) this.request.getSession().getAttribute("doctor");
+        Doctor_info doctor_info = null;
+        if(doctor!=null)
+            doctor_info= doctorService.getDoctorInfo(doctor.getId());
+        if(doctor_info!=null){
+            this.request.setAttribute("doctor_info",doctor_info);
+            return SUCCESS;
+        }else{
             return "error";
         }
     }

@@ -1,5 +1,6 @@
 package com.shinerio.dao;
 
+import com.shinerio.domain.Doctor_info;
 import com.shinerio.domain.Doctors;
 import com.shinerio.domain.Patients;
 import org.hibernate.Hibernate;
@@ -70,9 +71,25 @@ public class DoctorDao {
         try {
             Doctors instance = (Doctors) session.get(
                     "com.shinerio.domain.Doctors", doctor.getId());
-            Hibernate.initialize(instance.getPatientSet());  //这句很重要，否则会出现延迟加载异常
-            return instance.getPatientSet();
+            if(instance!=null) {
+                Hibernate.initialize(instance.getPatientSet());  //这句很重要，否则会出现延迟加载异常
+                return instance.getPatientSet();
+            }
+            return null;
         } catch (RuntimeException re) {
+            throw re;
+        }
+    }
+
+    public Doctor_info getDoctorInfoById(int id){
+        Session session = getCurrentSession();
+        try{
+            Doctors instance = (Doctors) session.get(
+                    "com.shinerio.domain.Doctors",id);
+            if(instance!=null)
+            return instance.getDoctor_info();
+            return null;
+        }catch (Exception re){
             throw re;
         }
     }

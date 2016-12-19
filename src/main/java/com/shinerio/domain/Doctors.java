@@ -14,7 +14,16 @@ public class Doctors {
     private String realname;
     private String username;
     private String password;
+    private Doctor_info doctor_info;
 
+    @OneToOne(mappedBy = "doctor")
+    public Doctor_info getDoctor_info() {
+        return doctor_info;
+    }
+
+    public void setDoctor_info(Doctor_info doctor_info) {
+        this.doctor_info = doctor_info;
+    }
 
     private Set<Patients> patientSet = new HashSet<Patients>();
 
@@ -26,7 +35,6 @@ public class Doctors {
         this.username = username;
         this.password = password;
     }
-
     @OneToMany(mappedBy = "doctor")
     public Set<Patients> getPatientSet() {
         return patientSet;

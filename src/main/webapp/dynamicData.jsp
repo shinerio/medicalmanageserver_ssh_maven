@@ -19,10 +19,10 @@
         position: absolute;
         left: 0px;
         top: 0px;
-        visibility: hidden;
+        visibility: hidden;X
         background: rgb(0, 0, 0) transparent;
         background-color: rgba(0, 0, 0, 0.6);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+        filter: progid:DXImagXeTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
         color: white;
         font: 10px arial, san serif;
@@ -348,7 +348,7 @@
             // alert("已认证");
             $(".lock").attr('src','/img/unlock.png');
             $("#hisquery").attr('href','HistoryQuery.html');
-            $("#doctorinformation").attr('href','doctorInformation.html');
+            $("#doctorinformation").attr('href','doctor/checkDoctorInfo');
             $("#login").html("注销")
         }
     }

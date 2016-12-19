@@ -1,6 +1,7 @@
 package com.shinerio.service.impl;
 
 import com.shinerio.dao.DoctorDao;
+import com.shinerio.domain.Doctor_info;
 import com.shinerio.domain.Doctors;
 import com.shinerio.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,11 @@ public class DoctorServiceImpl implements DoctorService {
     }
     public void deleteDoctor(Doctors doctor) {
 
+    }
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)   //设置只读
+    @Override
+    public Doctor_info getDoctorInfo(int id) {
+        Doctor_info doctor_info = doctorDao.getDoctorInfoById(id);
+       return doctor_info;
     }
 }

@@ -41,6 +41,7 @@
             <list>
                 <value>com.shinerio.domain.Patients</value>
                 <value>com.shinerio.domain.Doctors</value>
+                <value>com.shinerio.domain.Doctor_info</value>
             </list>
         </property>
     </bean>
