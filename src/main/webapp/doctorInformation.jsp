@@ -69,7 +69,7 @@
                     </ul>-->
                 </li>
                 <li >
-                    <a href="HistoryQuery.html"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span><img src="img/unlock.png" width="20px" height="20px" class="lock"></a>
+                    <a href="HistoryQuery.html"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span><img src="../img/unlock.png" width="20px" height="20px" class="lock"></a>
                     <!--<ul class="nav nav-second-level collapse">-->
                     <!--<li><a href="javascript:void(0)">Basic form</a></li>-->
                     <!--<li><a href="javascript:void(0)">Advanced Plugins</a></li>-->
@@ -237,7 +237,9 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                <textarea class="form-control mess" name="comment" value="${requestScope.doctor_info.workExperience}" placeholder="工作经历"></textarea>
+                                <textarea class="form-control mess" name="comment"  placeholder="工作经历">
+                                    ${requestScope.doctor_info.workExperience}
+                                </textarea>
                             </div>
                         </div>
                     </div>
