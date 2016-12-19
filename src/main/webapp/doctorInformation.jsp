@@ -58,18 +58,18 @@
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">病人列表</span>
                         <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="dynamicData.jsp">李华</a></li>
+                        <li><a href="../dynamicData.jsp">李华</a></li>
                     </ul>
                 </li>
                 <li class="active">
-                    <a href="doctorInformation.html"><i class="fa fa-files-o"></i> <span
-                            class="nav-label">医生信息</span><img src="../img/unlock.png" width="20px" height="20px" class="lock"></a>
+                    <a href="javascript:void(0)"><i class="fa fa-files-o"></i> <span
+                            class="nav-label">医生信息</span></a>
                     <!--<ul class="nav nav-second-level collapse">
 
                     </ul>-->
                 </li>
                 <li >
-                    <a href="HistoryQuery.html"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span><img src="../img/unlock.png" width="20px" height="20px" class="lock"></a>
+                    <a href="../HistoryQuery.jsp"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span></a>
                     <!--<ul class="nav nav-second-level collapse">-->
                     <!--<li><a href="javascript:void(0)">Basic form</a></li>-->
                     <!--<li><a href="javascript:void(0)">Advanced Plugins</a></li>-->
@@ -243,7 +243,7 @@
                     </div>
 
                     <!-- Success message -->
-                    <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+                    <div class="alert alert-success" role="alert" id="success_message"><i class="glyphicon glyphicon-thumbs-up"></i>可以联系我，我会以最快速度回复您！</div>
 
                     <!-- Button -->
                     <div class="form-group">
