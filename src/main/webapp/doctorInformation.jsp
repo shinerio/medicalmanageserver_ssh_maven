@@ -38,7 +38,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-<img alt="image" class="img-circle" src="img/profile_small.jpg">
+<img alt="image" class="img-circle" src="../img/profile_small.jpg">
 </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)">
 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${sessionScope.doctor.realname}</strong>
@@ -63,7 +63,7 @@
                 </li>
                 <li class="active">
                     <a href="doctorInformation.html"><i class="fa fa-files-o"></i> <span
-                            class="nav-label">医生信息</span><img src="img/unlock.png" width="20px" height="20px" class="lock"></a>
+                            class="nav-label">医生信息</span><img src="../img/unlock.png" width="20px" height="20px" class="lock"></a>
                     <!--<ul class="nav nav-second-level collapse">
 
                     </ul>-->
@@ -237,9 +237,7 @@
                         <div class="col-md-4 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                <textarea class="form-control mess" name="comment"  placeholder="工作经历">
-                                    ${requestScope.doctor_info.workExperience}
-                                </textarea>
+                                <textarea class="form-control mess" name="comment"  placeholder="工作经历">${requestScope.doctor_info.workExperience}</textarea>
                             </div>
                         </div>
                     </div>
