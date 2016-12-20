@@ -59,7 +59,7 @@
                     </ul>
                 </li>
                 <li class>
-                    <a href="doctorInformation.jsp"><i class="fa fa-files-o"></i> <span
+                    <a href="doctor/checkDoctorInfo"><i class="fa fa-files-o"></i> <span
                             class="nav-label">信息查询</span></a>
                     <!--<ul class="nav nav-second-level collapse">
 
