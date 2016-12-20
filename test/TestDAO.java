@@ -2,6 +2,7 @@ import com.shinerio.dao.DoctorDao;
 import com.shinerio.dao.PatientDao;
 import com.shinerio.domain.Doctors;
 import com.shinerio.domain.Patients;
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

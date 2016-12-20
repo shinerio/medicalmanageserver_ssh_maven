@@ -59,7 +59,10 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
             return "error";
         }
     }
-
+    public String logOut(){
+        this.request.getSession().removeAttribute("doctor");
+        return SUCCESS;
+    }
     public String getDoctorInfo(){
         Doctors doctor = (Doctors) this.request.getSession().getAttribute("doctor");
         Doctor_info doctor_info = null;

@@ -78,7 +78,7 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
         Patients patient = patientService.login(username,password);
         if(patient!=null){
             JsonConfig jsonConfig = new JsonConfig();
-            jsonConfig.setExcludes(new String[]{"patientSet","password","username"});  //配置过滤字段防止死循环
+            jsonConfig.setExcludes(new String[]{"patientSet","doctor_info","password","username"});  //配置过滤字段防止死循环
             JSONObject jsonDoctor = JSONObject.fromObject(patient,jsonConfig);
             try {
                 PrintWriter writer = response.getWriter();

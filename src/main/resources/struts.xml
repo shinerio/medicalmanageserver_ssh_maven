@@ -14,10 +14,22 @@
            <result name="success" type="dispatcher">/doctorInformation.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
+        <action name="logOut" class="com.shinerio.action.DoctorAction" method="logOut">
+            <result name="success" type="redirect">/dynamicData.jsp</result>
+        </action>
     </package>
 
     <package name="patient" namespace="/patient" extends="struts-default">
         <action name="login" class="com.shinerio.action.PatientAction" method="login">
+        </action>
+    </package>
+
+    <package name="superAdmin" namespace="/superadmin" extends="struts-default">
+        <action name="login" class="com.shinerio.action.SuperAdminAction" method="login">
+            <result name="success" type="redirect">/superManage.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="list" class="com.shinerio.action.SuperAdminAction" method="listDoctor">
         </action>
     </package>
 </struts>

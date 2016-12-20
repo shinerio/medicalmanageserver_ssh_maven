@@ -28,4 +28,4 @@ CREATE TABLE `PATIENTS` (
   PRIMARY KEY (`id`),
   KEY `petient_ref_doctor` (`doctor_id`),
   CONSTRAINT `petient_ref_doctor` FOREIGN KEY (`doctor_id`) REFERENCES `DOCTORS` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

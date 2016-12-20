@@ -25,7 +25,7 @@
             <select name="cid" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
               <option value="">请选择科室</option>
               <option value="">骨科</option>
-              <option value="">神经科</option>
+              <option value="">神经内科</option>
             </select>
           </li>
         </if>
@@ -35,6 +35,7 @@
       </ul>
     </div>
     <table class="table table-hover text-center">
+        <thead>
       <tr>
         <th width="100" style="text-align:left; padding-left:20px;">医生编号</th>
         <th width="10%">姓名</th>
@@ -45,6 +46,8 @@
         <th width="10%">更新时间</th>
         <th width="310">操作</th>
       </tr>
+        </thead>
+        <tbody id="doctorBody">
         <tr>
           <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
            1001</td>
@@ -56,6 +59,7 @@
           <td>2016-07-01</td>
           <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span>详情</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
+        </tbody>
       <tr>
         <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>全选 </td>
         <td colspan="7" style="text-align:left;padding-left:20px;"><a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect()"> 删除</a></td>
