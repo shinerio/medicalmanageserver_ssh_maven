@@ -56,7 +56,8 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
             this.request.getSession().setAttribute("doctor",doctor);
             return SUCCESS;
         } else {
-            return "error";
+            this.request.setAttribute("error_message","用户名或密码错误");
+            return INPUT;
         }
     }
     public String logOut(){

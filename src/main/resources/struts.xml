@@ -8,7 +8,7 @@
     <package name="doctor" namespace="/doctor" extends="struts-default">
         <action name="login" class="com.shinerio.action.DoctorAction" method="isLogin">
             <result name="success" type="redirect">/dynamicData.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="input">/login.jsp</result>
         </action>
         <action name="checkDoctorInfo" class="com.shinerio.action.DoctorAction" method="getDoctorInfo">
            <result name="success" type="dispatcher">/doctorInformation.jsp</result>

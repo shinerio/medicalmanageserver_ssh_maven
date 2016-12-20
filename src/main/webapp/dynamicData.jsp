@@ -346,7 +346,7 @@
         }else {
             // alert("已认证");
             $(".lock").attr('src','/img/unlock.png');
-            $("#hisquery").attr('href','HistoryQuery.html');
+            $("#hisquery").attr('href','HistoryQuery.jsp');
             $("#doctorinformation").attr('href','doctor/checkDoctorInfo');
             $("#login").html("注销")
             $("#loginLink").attr('href','doctor/logOut');

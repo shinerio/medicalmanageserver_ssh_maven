@@ -11,8 +11,8 @@
 <script src="js/jquery.js"></script>
 <script src="js/pintuer.js"></script>
   <style type="text/css">
-    input[readonly]{
-      background-color: #efefef;
+    .input[readonly]{        /*只读时的颜色控制*/
+      background-color: #ffffff;
     }
   </style>
 </head>
@@ -167,12 +167,6 @@
     $("#photo").html('<input type="text" id="url1" name="img" class="input tips" style="width:25%; float:left;"  value=""  data-toggle="hover" data-place="right" data-image="" /> <input type="button" class="button bg-blue margin-left" id="image1" value="+ 浏览上传"  style="float:left;"> <div class="tipss">图片尺寸：500*500</div>')
     return false;
   });
-
-  $("#submit").click(function(){
-    var data = $("form").serialize();
-    return false;
-  });
-
 
 </script>
 </body></html>
