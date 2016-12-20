@@ -4,9 +4,7 @@ html, body {
   height: 100%;
 }
 
-#wrapper {
-  padding: 12px;
-}
+
 
 select {
   -webkit-appearance: menulist-button;
