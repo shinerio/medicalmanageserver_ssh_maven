@@ -368,7 +368,8 @@
         var start_time = $("#start_time").val();
         var stop_time = $("#stop_time").val();
         if(start_time!=""&&stop_time!=""&&(new Date(start_time)<new Date(stop_time))){
-             alert("输入了正确的时间！")
+             //alert("输入了正确的时间！")
+            setdata();
         }
         else if(new Date(start_time)>=new Date(stop_time)){
             toastr.warning('结束时间应该大于开始时间！');
@@ -520,16 +521,7 @@
     function getEvaluateTime(s) {    //取得评估时间，用于搜索重演
         //alert(s.innerHTML)
     }
-    function getAllTime() {
-        var time_start = document.getElementById("time_start").value;
-        var time_last = document.getElementById("time_last").value;
-        if (time_start == "" || time_last == "") {
-            toastr.warning('请选择查询日期！');
-        }
-        else {
-            setdata();
-        }
-    }
+
 
     function show_echarts1() {        <!--图1的echarts展示-->
         dom1 = document.getElementById("container1");
