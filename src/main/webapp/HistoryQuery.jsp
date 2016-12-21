@@ -241,16 +241,16 @@
                                                     <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button">选择时间:</button>
                                                     </span>
-                                                        <input name="act_start_time" type="text" class="form-control" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>
+                                                        <input name="act_start_time" type="text" class="form-control" id="start_time" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>
 
                                                     </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 -->
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                     <div class="input-group input-group-sm">
 
-                                                        <input name="act_stop_time" type="text" class="form-control" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>
+                                                        <input name="act_stop_time" type="text" class="form-control" id="stop_time" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>
                                                         <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button">确认</button>
+                                                        <button class="btn btn-default" type="button" onclick="getTime()">确认</button>
                                                     </span>
                                                      </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 --><br>
@@ -361,9 +361,24 @@
 <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript" src="js/jquery-ui-timepicker-zh-CN.js"></script>
 
-
+<%--日历选择触发动作--%>
 <script type="text/javascript">
     $( "input[name='act_start_time'],input[name='act_stop_time']" ).datetimepicker();
+    function getTime() {
+        var start_time = $("#start_time").val();
+        var stop_time = $("#stop_time").val();
+        if(start_time!=""&&stop_time!=""&&(new Date(start_time)<new Date(stop_time))){
+             alert("输入了正确的时间！")
+        }
+        else if(new Date(start_time)>=new Date(stop_time)){
+            toastr.warning('结束时间应该大于开始时间！');
+        }
+        else{
+            toastr.warning('请选择时间！');
+        }
+
+    }
+
 </script>
 
 <script>
@@ -532,7 +547,7 @@
 
         option = {
             title: {
-                text: '手套标量折线图实时显示',
+                text: '手套标量折线图历史显示',
                 left: "10%",
                 textStyle: {
                     fontSize: 25
