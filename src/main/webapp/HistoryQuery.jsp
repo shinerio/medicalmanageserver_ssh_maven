@@ -488,33 +488,9 @@
             step: 1,
             postfix: "分钟"
         });
+        show_table();
         show_echarts1();
         show_echarts2();
-        show_table();
-    }
-
-    function show_table() {
-        $.ajax({
-            type : "POST",            //请求方式
-            url : "patient/listHistoryData",        //请求地址
-            data:  "patient_id=",  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
-            dataType : "json",    //返回数据类型
-            success : function(data) {  //data为成功后返回数据
-                var mybody = document.getElementById("mydatabody");
-                for(var i =0;i<data.length;i++){
-                    var row = mybody.insertRow();
-                    var startTime = row.insertCell()
-                    var length = row.insertCell();
-                    var success_ratio = row.insertCell();
-                    startTime.className="cellNormal";
-                    length.className="cellNormal";
-                    success_ratio.className="cellNormal";
-                    startTime.innerHTML=data[i].start_time;
-                    length.innerHTML=data[i].end_time-data[i].start_time;
-                    success_ratio.innerHTML=data[i].success_ratio;
-                }
-            }
-        });
     }
 
     function getEvaluateTime(s) {    //取得评估时间，用于搜索重演
@@ -698,10 +674,38 @@ $("#container2").resize(function () {
 })
 </script>
 <script>
+
     var data1 = {
-        categories: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子", "呵呵", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子", "呵呵"],
-        data: [5, 20, 36, 10, 10, 20, 30, 20, 36, 10, 10, 20, 30]
+        categories: [],
+        data: []
     };
+
+    function show_table() {
+        $.ajax({
+            type : "POST",            //请求方式
+            url : "patient/listHistoryData",        //请求地址
+            data:  "patient_id=",  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            dataType : "json",    //返回数据类型
+            success : function(data) {  //data为成功后返回数据
+                var mybody = document.getElementById("mydatabody");
+                for(var i =0;i<data.length;i++){
+                    var row = mybody.insertRow();
+                    var startTime = row.insertCell()
+                    var length = row.insertCell();
+                    var success_ratio = row.insertCell();
+                    startTime.className="cellNormal";
+                    length.className="cellNormal";
+                    success_ratio.className="cellNormal";
+                    startTime.innerHTML=data[i].start_time;
+                    length.innerHTML=data[i].end_time-data[i].start_time;
+                    success_ratio.innerHTML=data[i].success_ratio;
+                    data1.categories.push(data[i].start_time);
+                    data1.data.push(data[i].success_ratio);
+                }
+                setdata();
+            }
+        });
+    }
 
     function setdata() {
         myChart2.setOption({
@@ -710,7 +714,7 @@ $("#container2").resize(function () {
             },
             series: [{
                 // 根据名字对应到相应的系列
-                name: '销量',
+                name: '正确率',
                 data: data1.data
             }]
         });
