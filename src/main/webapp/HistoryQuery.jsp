@@ -1,25 +1,34 @@
-<%--
+<%--<!--<%&#45;&#45;
   Created by IntelliJ IDEA.
   User: yuanbaby
   Date: 2016/12/19
   Time: 17:25
   To change this template use File | Settings | File Templates.
---%>
+&#45;&#45;%>-->--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>历史信息查询</title>
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
-    <link href="../css/plugins/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">
-    <link href="../css/plugins/ionRangeSlider/normalize.css" rel="stylesheet">
-    <link href="../css/plugins/toastr/toastr.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style_time.css" media="screen" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/normalize.css" rel="stylesheet">
+    <link href="css/plugins/toastr/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style_time.css" media="screen" type="text/css"/>
+
+    <!--日历-->
+    <link type="text/css" rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <style>
+        #date ul li{
+            display: inline-block;
+        }
+    </style>
 </head>
 <body class="pace-done" onload="showUser()">
 <div class="pace  pace-inactive">
@@ -102,18 +111,18 @@
             </nav>
         </div>
         <div class="wrapper wrapper-content">
-            <div class="row" style="height: 370px">
-                <div class="col-lg-12 col-md-12 col-sm-12">           <!--第一行区域-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">           <!--第一行区域-->
                     <div class="row">             <!--显示图-->
-                        <div class="ibox float-e-margins col-lg-12 col-md-12 col-sm-12">
+                        <div class="ibox float-e-margins col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                            <div class="col-lg-6 col-md-6 col-sm-6" style="height: 80%">     <!--图1-->
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="height: 40%">     <!--图1-->
                                 <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class=" col-lg-12">
-                                            <div class="col-lg-9">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                                 <div class="row">
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                         <div class="ibox float-e-margins">
                                                             <div class="ibox-title">
                                                                 <span class="label label-success">姓名</span>
@@ -123,7 +132,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                         <div class="ibox float-e-margins">
                                                             <div class="ibox-title">
                                                                 <span class="label label-info ">年龄</span>
@@ -133,7 +142,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-4">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                         <div class="ibox float-e-margins">
                                                             <div class="ibox-title">
                                                                 <span class="label label-primary ">性别</span>
@@ -145,26 +154,26 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-12">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                         <div class="ibox float-e-margins">
                                                             <div class="ibox-title">
                                                                 <span class="label label-success">病症</span>
                                                             </div>
-                                                            <div class="ibox-content" style="height: 60%">
+                                                            <div class="ibox-content" style="height: 30%">
                                                                 <h1 class="no-margins">中风后上肢功能障碍</h1>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                                                 <img src="img/a1.jpg">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6" style="height: 70%">     <!--图1-->
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="height: 40%">     <!--图1-->
                                 <div class="ibox-title">   <!--表格标题-->
                                     <h5>历史成功率</h5>
                                     <div class="ibox-tools">
@@ -175,28 +184,37 @@
                                 </div>
 
 
-                                <div class="ibox-content col-lg-12 col-md-12 col-sm-12">
-                                    <div style="padding:0;margin:0;">
-                                        <form class="bs-example bs-example-form" role="form">
-                                            <div class="col-lg-1 col-md-1 col-sm-1"><h5>开始时间:</h5></div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <div class="ibox-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <!--<div style="padding:0;margin:0;">
+                                        <form class="bs-example bs-example-form" role="form" id="date">
+                                            <ul>
+                                            <li><div >
                                                 <div class="input-group input-group-sm">
-
-                                                    <input type="date" class="form-control" id="time_start">
-                                                </div><!-- /input-group -->
-                                            </div><!-- /.col-lg-3 -->
-                                            <div class="col-lg-1 col-md-1 col-sm-1"> <h5>截止时间:</h5></div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3">
-                                                <div class="input-group input-group-sm">
-
-                                                    <input type="date" class="form-control" id="time_last">
                                                         <span class="input-group-btn">
-                                                               <button class="btn btn-default" type="button" onclick="getAllTime()">确认</button>
-                                                            </span>
-                                                </div><!-- /input-group -->
-                                            </div><!-- /.col-lg-3 -->
+                                                            <button class="btn btn-default btn-group-lg btn-group-sm btn-group-xs" type="button">开始时间:</button>
+                                                        </span>
+                                                    <input type="datetime-local" class="form-control" id="time_start" />
+                                                </div>&lt;!&ndash; /input-group &ndash;&gt;
+                                            </div>
+                                            </li>
+                                            &lt;!&ndash;<li><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                            </div>
+                                            </li>&ndash;&gt;
+                                            <li><div >
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-btn">
+                                                            <button class="btn btn-default btn-group-lg btn-group-sm btn-group-xs" type="button">截止时间:</button>
+                                                    </span>
+                                                    <input type="datetime-local" class="form-control" id="time_last">
+                                                        <span class="input-group-btn">
+                                                               <button class="btn btn-default btn-group-lg btn-group-sm btn-group-xs" type="button" onclick="getAllTime()">确认</button>
+                                                        </span>
+                                                </div>&lt;!&ndash; /input-group &ndash;&gt;
+                                            </div>&lt;!&ndash; /.col-lg-3 &ndash;&gt;
+                                            </li>
+                                            </ul>
                                         </form>
-                                        <!--<div class="col-lg-10">
+                                        &lt;!&ndash;<div class="col-lg-10">
                                             <form>
                                                 <select class='custom-date' name='select'>
                                                     <option value='7'>7 天</option>
@@ -213,9 +231,46 @@
                                                 </div>
                                             </form>
 
-                                        </div>-->
+                                        </div>&ndash;&gt;
+                                    </div>-->
+                                    <div>
+                                        <form class="bs-example bs-example-form" role="form">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="input-group input-group-sm">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button">选择时间:</button>
+                                                    </span>
+                                                        <input name="act_start_time" type="text" class="form-control" id="start_time" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>
+
+                                                    </div><!-- /input-group -->
+                                                </div><!-- /.col-lg-6 -->
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                    <div class="input-group input-group-sm">
+
+                                                        <input name="act_stop_time" type="text" class="form-control" id="stop_time" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>
+                                                        <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" onclick="getTime()">确认</button>
+                                                    </span>
+                                                     </div><!-- /input-group -->
+                                                </div><!-- /.col-lg-6 --><br>
+                                            </div><!-- /.row -->
+                                        </form>
+
+
+                                    <!--<ul class="doc-set">
+                                        <li>
+                                            <div class="doc-dt">
+                                                <p>活动时间</p>
+                                            </div>
+                                            <div class="doc-dd">
+                                                <input name="act_start_time" type="text" class="text-box" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>
+                                                <input name="act_stop_time" type="text" class="text-box" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>
+                                            </div>
+                                        </li>
+                                    </ul>-->
                                     </div>
-                                    <div id="container2" style="margin: 10px 10px;height: 100%"></div>
+                                    <div id="container2" style="margin: 10px 10px;height: 80%"></div>
                                 </div>
                             </div>
 
@@ -224,9 +279,9 @@
                 </div>
 
             </div>
-            <div class="row" style="height: 370px">
-                <div style="height:100%">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row">
+                <div style="height:40%">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">   <!--表格标题-->
                                 <h5>历史评估记录</h5>
@@ -236,17 +291,18 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="ibox-content col-lg-12 col-md-12 col-sm-12">
+                            <div class="ibox-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
-                                    <div class="col-lg-10 col-md-10 col-sm-10" style="margin-left: 8%;height: 100%;overflow-y: scroll">
+                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+                                         style="margin-left: 8%;height: 100%;overflow-y: scroll">
                                         <table class="table table-bordered table-striped table-hover table">
                                             <thead>
                                             <tr class="success">
-                                                <th class="col-lg-1 col-md-1 col-sm-1">评估时间</th>
-                                                <th class="col-lg-1 col-md-1 col-sm-1">评估时长</th>
-                                                <th class="col-lg-1 col-md-1 col-sm-1">成功率</th>
+                                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时间</th>
+                                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时长</th>
+                                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">成功率</th>
                                             </tr>
                                             </thead>
                                             <tbody id="mydatabody">
@@ -254,7 +310,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">     <!--图1-->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">     <!--图1-->
                                     <div id="container1" style="margin: 10px 10px;height: 100%"></div>
                                 </div>
                             </div>
@@ -263,42 +319,68 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="pull-right">
-                <!--10GB of <strong>250GB</strong> Free.-->
-            </div>
-            <div>
-                <strong>Copyright</strong>
-            </div>
-        </div>
+        <!-- <div class="footer">
+             <div class="pull-right">
+                 &lt;!&ndash;10GB of <strong>250GB</strong> Free.&ndash;&gt;
+             </div>
+             <div>
+                 <strong>Copyright</strong>
+             </div>
+         </div>-->
     </div>
 
 </div>
-<script src='../js/jquery.js'></script>
-<script src="../js/jquery-2.0.3.js"></script>
-<script src="../js/jquery-2.0.3.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="../js/plugins/flot/jquery.flot.js"></script>
-<script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="../js/plugins/flot/jquery.flot.spline.js"></script>
-<script src="../js/plugins/flot/jquery.flot.resize.js"></script>
-<script src="../js/plugins/flot/jquery.flot.pie.js"></script>
-<script src="../js/plugins/flot/jquery.flot.symbol.js"></script>
-<script src="../js/plugins/flot/curvedLines.js"></script>
-<script src="../js/plugins/peity/jquery.peity.min.js"></script>
-<script src="../js/demo/peity-demo.js"></script>
-<script src="../js/inspinia.js"></script>
-<script src="../js/plugins/pace/pace.min.js"></script>
-<script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="../js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-<script src="../js/plugins/sparkline/jquery.sparkline.min.js"></script>
-<script src="../js/plugins/chartJs/Chart.min.js"></script>
-<script src="../js/ion.rangeSlider.js"></script>
-<script src="../js/ion.rangeSlider.min.js"></script>
-<script src="../js/index.js"></script>
-<script src="../js/toastr.min.js"></script>
+<script src='js/jquery.js'></script>
+<script src="js/jquery-2.0.3.js"></script>
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="js/plugins/flot/jquery.flot.js"></script>
+<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="js/plugins/flot/jquery.flot.spline.js"></script>
+<script src="js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="js/plugins/flot/jquery.flot.symbol.js"></script>
+<script src="js/plugins/flot/curvedLines.js"></script>
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+<script src="js/demo/peity-demo.js"></script>
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
+<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="js/plugins/chartJs/Chart.min.js"></script>
+<script src="js/ion.rangeSlider.js"></script>
+<script src="js/ion.rangeSlider.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/toastr.min.js"></script>
+<!--日历ui-->
+<script type="text/javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.ui.datepicker-zh-CN.js"></script>
+<script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="js/jquery-ui-timepicker-zh-CN.js"></script>
+
+<%--日历选择触发动作--%>
+<script type="text/javascript">
+    $( "input[name='act_start_time'],input[name='act_stop_time']" ).datetimepicker();
+    function getTime() {
+        var start_time = $("#start_time").val();
+        var stop_time = $("#stop_time").val();
+        if(start_time!=""&&stop_time!=""&&(new Date(start_time)<new Date(stop_time))){
+             alert("输入了正确的时间！")
+        }
+        else if(new Date(start_time)>=new Date(stop_time)){
+            toastr.warning('结束时间应该大于开始时间！');
+        }
+        else{
+            toastr.warning('请选择时间！');
+        }
+
+    }
+
+</script>
+
 <script>
     $(document).ready(function () {
 
@@ -395,7 +477,7 @@
     var dom2;
     var myChart1;
     var dom1;
-    var date ;
+    var date;
     function showUser() {
         $("#range_01").ionRangeSlider({
             hide_min_max: false,
@@ -441,7 +523,7 @@
     function getAllTime() {
         var time_start = document.getElementById("time_start").value;
         var time_last = document.getElementById("time_last").value;
-        if(time_start==""||time_last==""){
+        if (time_start == "" || time_last == "") {
             toastr.warning('请选择查询日期！');
         }
         else {
@@ -477,19 +559,19 @@
 
         option = {
             title: {
-                text: '手套标量折线图实时显示',
+                text: '手套标量折线图历史显示',
                 left: "10%",
                 textStyle: {
                     fontSize: 25
                 }
             },
-            grid:{
-                show:true
+            grid: {
+                show: true
             },
             visualMap: [{
                 pieces: [
-                    {gt: 80,color:'red'},            // (1500, Infinity]
-                    {gt: 0, lte: 20,color:'green'} // (900, 1500]
+                    {gt: 80, color: 'red'},            // (1500, Infinity]
+                    {gt: 0, lte: 20, color: 'green'} // (900, 1500]
 
                 ]
             }],
@@ -518,7 +600,7 @@
                 splitLine: {
                     show: false
                 },
-                splitArea : {show : true}//保留网格区域
+                splitArea: {show: true}//保留网格区域
             },
             series: [{
                 name: '模拟数据',
@@ -561,10 +643,10 @@
         myChart2 = echarts.init(dom2);
         option = {
             color: ['#3398DB'],
-            tooltip : {
+            tooltip: {
                 trigger: 'axis',
-                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                 }
             },
             grid: {
@@ -572,27 +654,27 @@
                 right: '4%',
                 bottom: '3%',
                 containLabel: true,
-                show:true
+                show: true
 
             },
-            xAxis : [
+            xAxis: [
                 {
-                    type : 'category',
+                    type: 'category',
                     data: [],
                     axisTick: {
                         alignWithLabel: true
                     }
                 }
             ],
-            yAxis : [
+            yAxis: [
                 {
-                    type : 'value'
+                    type: 'value'
                 }
             ],
-            series : [
+            series: [
                 {
-                    name:'直接访问',
-                    type:'bar',
+                    name: '直接访问',
+                    type: 'bar',
                     barWidth: '60%',
                     data: []
                 }
@@ -608,13 +690,17 @@
 
 </script>
 <script>    /*echarts自适应屏幕*/
-$("#container1").resize(function(){ $(myChart1).resize(); });
-$("#container2").resize(function(){ $(myChart2).resize(); })
+$("#container1").resize(function () {
+    $(myChart1).resize();
+});
+$("#container2").resize(function () {
+    $(myChart2).resize();
+})
 </script>
 <script>
-    var data1= {
-        categories: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","呵呵","羊毛衫","雪纺衫","裤子","高跟鞋","袜子","呵呵"],
-        data: [5, 20, 36, 10, 10, 20,30, 20, 36, 10, 10, 20,30]
+    var data1 = {
+        categories: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子", "呵呵", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子", "呵呵"],
+        data: [5, 20, 36, 10, 10, 20, 30, 20, 36, 10, 10, 20, 30]
     };
 
     function setdata() {
