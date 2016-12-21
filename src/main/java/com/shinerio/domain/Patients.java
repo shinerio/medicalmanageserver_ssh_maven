@@ -1,6 +1,10 @@
 package com.shinerio.domain;
 
+import org.springframework.beans.factory.support.ManagedList;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jstxzhangrui on 2016/11/26.
@@ -14,6 +18,7 @@ public class Patients {
     private String realname;
     private String password;
     private Doctors doctor;
+    private List<Evaluation_info> evaluation_info = new ArrayList<>();
 
     public Patients() {
     }
@@ -24,6 +29,17 @@ public class Patients {
         this.doctor = doctor;
         this.password = password;
     }
+
+    @OneToMany(mappedBy = "patient")
+    @OrderBy("id desc")
+    public List<Evaluation_info> getEvaluation_info() {
+        return evaluation_info;
+    }
+
+    public void setEvaluation_info(List<Evaluation_info> evaluation_info) {
+        this.evaluation_info = evaluation_info;
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,7 @@
 package com.shinerio.service.impl;
 
 import com.shinerio.dao.PatientDao;
+import com.shinerio.domain.Evaluation_info;
 import com.shinerio.domain.Patients;
 import com.shinerio.service.PatientService;
 import org.hibernate.Hibernate;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by jstxzhangrui on 2016/12/3.
@@ -33,6 +36,12 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public boolean deletePatient(Patients patient) {
         return false;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)   //设置只读
+    @Override
+    public List<Evaluation_info> getEvaluation_infoById(int id) {
+        return patientDao.getEvaluation_infoById(id);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)   //设置只读

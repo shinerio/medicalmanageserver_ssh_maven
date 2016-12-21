@@ -412,15 +412,27 @@
     }
 
     function show_table() {
-        for (var i = 0; i < 23; i++) {
-            var mytr = mydatabody.insertRow();
-            var node = mytr.insertCell();
-            var atd = mytr.insertCell();
-            var btd = mytr.insertCell();
-            atd.className = "cellNormal";
-            btd.className = "cellNormal";
-            node.innerHTML = '<a onclick="getEvaluateTime(this)">'+new Date().toLocaleString()+'</a>';
-        }
+        $.ajax({
+            type : "POST",            //请求方式
+            url : "patient/listHistoryData",        //请求地址
+            data:  "patient_id=",  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            dataType : "json",    //返回数据类型
+            success : function(data) {  //data为成功后返回数据
+                var mybody = document.getElementById("mydatabody");
+                for(var i =0;i<data.length;i++){
+                    var row = mybody.insertRow();
+                    var startTime = row.insertCell()
+                    var length = row.insertCell();
+                    var success_ratio = row.insertCell();
+                    startTime.className="cellNormal";
+                    length.className="cellNormal";
+                    success_ratio.className="cellNormal";
+                    startTime.innerHTML=data[i].start_time;
+                    length.innerHTML=data[i].end_time-data[i].start_time;
+                    success_ratio.innerHTML=data[i].success_ratio;
+                }
+            }
+        });
     }
 
     function getEvaluateTime(s) {    //取得评估时间，用于搜索重演

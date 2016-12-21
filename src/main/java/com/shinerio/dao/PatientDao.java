@@ -1,5 +1,7 @@
 package com.shinerio.dao;
 
+import com.shinerio.domain.Doctors;
+import com.shinerio.domain.Evaluation_info;
 import com.shinerio.domain.Patients;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -30,7 +32,6 @@ public class PatientDao {
     public Session getCurrentSession(){
         return sessionFactory.getCurrentSession();
     }
-    @Transactional(readOnly = true,propagation = Propagation.REQUIRED)
     public Patients getPatientByID(int id){
         Session session = getCurrentSession();
         try {
@@ -41,7 +42,6 @@ public class PatientDao {
             throw re;
         }
     }
-    @Transactional(propagation = Propagation.REQUIRED)
     public void  savePatient(Patients patient){
         Session session = getCurrentSession();
         try {
@@ -51,7 +51,6 @@ public class PatientDao {
         }
     }
 
-    @Transactional(readOnly = true,propagation = Propagation.REQUIRED)
     public Patients getPatientByUsername(String username){
         Session session = getCurrentSession();
         String hql = "select s from Patients s where s.username = :username";
@@ -63,6 +62,20 @@ public class PatientDao {
             if(list.size()>0){return list.get(0);}
             return null;
         } catch (RuntimeException re) {
+            throw re;
+        }
+    }
+
+    public List<Evaluation_info> getEvaluation_infoById(int id) {
+        Session session = getCurrentSession();
+        try {
+            Patients instance = (Patients) session.get(
+                    "com.shinerio.domain.Patients", id);
+            if (instance != null){
+                Hibernate.initialize(instance.getEvaluation_info());  //这句很重要，否则会出现延迟加载异常
+                return instance.getEvaluation_info();}
+            return null;
+        } catch (Exception re) {
             throw re;
         }
     }

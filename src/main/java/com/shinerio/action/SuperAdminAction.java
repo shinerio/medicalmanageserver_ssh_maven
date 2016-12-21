@@ -75,7 +75,10 @@ public class SuperAdminAction extends ActionSupport implements ServletRequestAwa
         if(!"".equals(request.getParameter("realname"))){
             map.put("realname","%"+request.getParameter("realname")+"%");
         }
-       ArrayList<Object[]> result =  superAdminService.doctorList(0,10,map);
+        if(!"".equals(request.getParameter("username"))){
+            map.put("username",request.getParameter("username"));
+        }
+        ArrayList<Object[]> result =  superAdminService.doctorList(0,10,map);
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.setExcludes(new String[]{"patientSet","doctor","doctor_info","password","id"});
         JSONArray doctors = JSONArray.fromObject(result,jsonConfig);

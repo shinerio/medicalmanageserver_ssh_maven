@@ -22,6 +22,8 @@
     <package name="patient" namespace="/patient" extends="struts-default">
         <action name="login" class="com.shinerio.action.PatientAction" method="login">
         </action>
+        <action name="listHistoryData" class="com.shinerio.action.PatientAction" method="listHistoryData">
+        </action>
     </package>
 
     <package name="superAdmin" namespace="/superadmin" extends="struts-default">

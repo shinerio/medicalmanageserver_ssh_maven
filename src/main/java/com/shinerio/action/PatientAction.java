@@ -3,6 +3,7 @@ package com.shinerio.action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.shinerio.domain.Patients;
 import com.shinerio.service.PatientService;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.WebConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Created by jstxzhangrui on 2016/12/3.
@@ -78,7 +80,7 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
         Patients patient = patientService.login(username,password);
         if(patient!=null){
             JsonConfig jsonConfig = new JsonConfig();
-            jsonConfig.setExcludes(new String[]{"patientSet","doctor_info","password","username"});  //配置过滤字段防止死循环
+            jsonConfig.setExcludes(new String[]{"patientSet","doctor_info","password","username","evaluation_info"});  //配置过滤字段防止死循环
             JSONObject jsonDoctor = JSONObject.fromObject(patient,jsonConfig);
             try {
                 PrintWriter writer = response.getWriter();
@@ -91,5 +93,19 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
         }
     }
 
+    public void listHistoryData(){
+        List list = patientService.getEvaluation_infoById(1);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"patient"});
+        JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
+        try {
+            PrintWriter writer = response.getWriter();
+            writer.write(jsonArray.toString());
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

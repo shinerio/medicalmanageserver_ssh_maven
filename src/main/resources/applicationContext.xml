@@ -16,21 +16,21 @@
 
     <!-- 数据源对象 -->
     <!-- 机房数据库 -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://10.103.238.28:3306/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">
-        </property>
-        <property name="username" value="root"></property>
-        <property name="password" value="bigdata"></property>
-    </bean>
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">-->
+        <!--<property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />-->
+        <!--<property name="url" value="jdbc:mysql://10.103.238.28:3306/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">-->
+        <!--</property>-->
+        <!--<property name="username" value="root"></property>-->
+        <!--<property name="password" value="bigdata"></property>-->
+    <!--</bean>-->
     <!-- 本机数据库 -->
-    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost/medicalmanage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">
         </property>
         <property name="username" value="root"></property>
         <property name="password" value="admin"></property>
-    </bean>-->
+    </bean>
 
     <!-- session工厂，维护会话对象 -->
     <bean id="sessionFactory"
@@ -52,6 +52,7 @@
                 <value>com.shinerio.domain.Doctors</value>
                 <value>com.shinerio.domain.Doctor_info</value>
                 <value>com.shinerio.domain.SuperAdmin</value>
+                <value>com.shinerio.domain.Evaluation_info</value>
             </list>
         </property>
     </bean>

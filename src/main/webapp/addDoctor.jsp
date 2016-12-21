@@ -16,7 +16,7 @@
     }
   </style>
 </head>
-<body>
+<body onload="initData()">
 <div class="panel admin-panel">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>医生详情</strong></div>
   <div class="body-content">
@@ -26,7 +26,7 @@
           <label>医生编号：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" value="1001" name="number" data-validate="required:请输入编号" />
+          <input type="text" id="username" class="input w50" value="" name="number" data-validate="required:请输入编号" />
         </div>
       </div>
       <div class="form-group">
@@ -34,7 +34,7 @@
           <label>姓名：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" value="汤姆Tom" name="name" data-validate="required:请输入姓名" />
+          <input type="text" id="realname" class="input w50" value="" name="name" data-validate="required:请输入姓名" />
           <div class="tips"></div>
         </div>
       </div>
@@ -43,7 +43,7 @@
           <label>年龄：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" value="33" name="age" data-validate="required:请输入年龄" />
+          <input type="text" id="age" class="input w50" value="" name="age" data-validate="required:请输入年龄" />
           <div class="tips"></div>
         </div>
       </div>
@@ -62,9 +62,9 @@
             <label>科室：</label>
           </div>
           <div class="field">
-            <select name="sectionOffice" class="input w50">
+            <select id="department" name="sectionOffice" class="input w50">
               <option value="">请选择科室</option>
-              <option value="">神经科</option>
+              <option value="">神经内科</option>
               <option value="">骨科</option>
             </select>
             <div class="tips"></div>
@@ -75,7 +75,7 @@
             <label>主治方向：</label>
           </div>
           <div class="field">
-            <input type="text" class="input w50" value="神经外科" name="direction" data-validate="required:请输入主治方向" />
+            <input id="major" type="text" class="input w50" value="" name="direction" data-validate="required:请输入主治方向" />
           </div>
         </div>
         <div class="form-group">
@@ -83,7 +83,7 @@
             <label>联系电话：</label>
           </div>
           <div class="field">
-            <input type="text" class="input w50" value="1234567890" name="tel" data-validate="required:请输入电话" />
+            <input id="phoneNum" type="text" class="input w50" value="" name="tel" data-validate="required:请输入电话" />
           </div>
         </div>
         <div class="form-group">
@@ -91,15 +91,7 @@
             <label>邮箱：</label>
           </div>
           <div class="field">
-            <input type="text" class="input w50" value="1223456@hp.com" name="mail" data-validate="required:请输入邮箱" />
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="label">
-            <label>办公地址：</label>
-          </div>
-          <div class="field">
-            <input type="text" class="input w50" value="北京市人民医院神经外科808" name="place" data-validate="required:请输入地址" />
+            <input type="text" id="emailaddress" class="input w50" value="" name="mail" data-validate="required:请输入邮箱" />
           </div>
         </div>
         <div class="form-group">
@@ -107,7 +99,7 @@
             <label>参加工作时长：</label>
           </div>
           <div class="field">
-            <input type="text" class="input w50" value="10年" name="work" data-validate="required:请输入工作时长" />
+            <input id="workingtime" type="text" class="input w50" value="" name="work" data-validate="required:请输入工作时长" />
           </div>
         </div>
 
@@ -131,14 +123,7 @@
           <label>工作经历：</label>
         </div>
         <div class="field">
-          <textarea name="content" class="input" style="height:450px; border:1px solid #ddd;">
-            1、参与XX医院针灸门诊夏季进行的“冬病夏治”，穴位敷贴治咳嗽、哮喘的治疗实践和临床病例观察。
-
-            2、参与XX医院针灸门诊冬季进行的“保健灸”疗法，对脾肾虚寒、手足寒冷等症状治疗实践并进行临床病例观察。
-
-            3、参与XX医院针灸门诊进行的“针灸治疗面瘫”的病例收集和临床疗效观察。
-
-            4、作为技术指导参与XX医院肝病病房进行的“腕踝针对减轻TACE术后反应”的临床疗效观察。
+          <textarea name="content" id="workexperience" class="input" style="height:450px; border:1px solid #ddd;">
           </textarea>
           <div class="tips"></div>
         </div>
@@ -168,5 +153,24 @@
     return false;
   });
 
+  function initData(){
+    $.ajax({
+      type : "POST",            //请求方式
+      url : "superadmin/list",        //请求地址
+      data: "realname="+"${requestScope.realname}",  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+      dataType : "json",    //返回数据类型
+      success : function(data) {  //data为成功后返回数据
+        document.getElementById("username").value = data[0][0].username;
+        document.getElementById("realname").value = data[0][0].realname;
+        document.getElementById("age").value = data[0][1].age;
+        document.getElementById("major").value = data[0][1].major;
+        document.getElementById("department").value = data[0][1].department;
+        document.getElementById("phoneNum").value = data[0][1].phoneNum;
+        document.getElementById("emailaddress").value = data[0][1].emailAddress;
+        document.getElementById("workingtime").value = data[0][1].workingHours;
+        document.getElementById("workexperience").value = data[0][1].workExperience;
+      }
+    });
+  }
 </script>
 </body></html>

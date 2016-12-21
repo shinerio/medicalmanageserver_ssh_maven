@@ -11,10 +11,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by jstxzhangrui on 2016/11/30.
@@ -30,14 +27,14 @@ public class TestService {
     }
 
     @Test
-        public void patientLogin(){
+    public void patientLogin(){
         String username = "jack123";
         String password = "admin";
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
         PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
         Patients patient = patientService.login(username,password);
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"doctor","doctor_info","password","username"});
+        jsonConfig.setExcludes(new String[]{"doctor","doctor_info","password","username","evaluation_info"});
         JSONObject jsonDoctor = JSONObject.fromObject(patient,jsonConfig);
         System.out.print(jsonDoctor);
     }
@@ -62,5 +59,14 @@ public class TestService {
         JSONArray doctors = JSONArray.fromObject(result,jsonConfig);
         System.out.print(doctors);
     }
-
+    @Test
+    public void getEvaluation_info(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
+        List list = patientService.getEvaluation_infoById(1);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"patient"});
+        JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
+        System.out.print(jsonArray);
+    }
 }
