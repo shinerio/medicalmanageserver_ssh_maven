@@ -24,7 +24,7 @@
         <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li> <a class="button border-main icon-plus-square-o" href="addDoctor.jsp"> 添加医生</a> </li>
+                <li> <a class="button border-main icon-plus-square-o" href="addPatient.jsp"> 添加病人</a> </li>
                 <li>搜索：</li>
 
                 <if condition="$iscid eq 1">
@@ -37,19 +37,19 @@
                     </li>
                 </if>
                 <li>
-                    <input type="text" id="realname" placeholder="请输入医生姓名" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
+                    <input type="text" id="realname" placeholder="请输入病人姓名" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
                     <a href="javascript:void(0)" class="button border-main icon-search" onclick="selectDoctor()"> 搜索</a></li>
             </ul>
         </div>
         <table class="table table-hover text-center">
             <thead>
             <tr>
-                <th width="100" style="text-align:left; padding-left:20px;">医生编号</th>
+                <th width="100" style="text-align:left; padding-left:20px;">病人编号</th>
                 <th width="10%">姓名</th>
-                <th>照片</th>
-                <th>主治方向</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>症状</th>
                 <th>电话</th>
-                <th>邮箱</th>
                 <th width="10%">更新时间</th>
                 <th width="310">操作</th>
             </tr>
@@ -89,7 +89,7 @@
                             " <td><font color='#00CC99'>"+data[i][1].phoneNum+"</font></td> " +
                             "<td>"+data[i][1].emailAddress+"</td>" +
                             " <td>2016-07-01</td>"+
-                            "<td><div class='button-group'> <a class='button border-main' href='addDoctor.jsp'><span class='icon-edit'></span>详情</a> <a class='button border-red' href='javascript:void(0)' onclick='return del(1,1,1)'><span class='icon-trash-o'></span> 删除</a> </div></td>"
+                            "<td><div class='button-group'> <a class='button border-main' href='addPatient.jsp'><span class='icon-edit'></span>详情</a> <a class='button border-red' href='javascript:void(0)' onclick='return del(1,1,1)'><span class='icon-trash-o'></span> 删除</a> </div></td>"
                 }
             }
         });

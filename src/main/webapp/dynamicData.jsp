@@ -61,7 +61,7 @@
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="javascript:void(0)">个人信息</a></li>
                             <li><a href="javascript:void(0)">联系方式</a></li>
-                            <li class="divider"></li
+                            <li class="divider"></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -118,7 +118,7 @@
 
 
                     <li style="height: 60px;width:72px;display: inline-block">
-                        <a id="loginLink" href="login.jsp"><i class="fa fa-sign-out"></i> <span id="login">登录</span></a>
+                        <a id="loginLink" href="../login.jsp"><i class="fa fa-sign-out"></i> <span id="login">登录</span></a>
                     </li>
 
                 </ul>

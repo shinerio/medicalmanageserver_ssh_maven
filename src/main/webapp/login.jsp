@@ -26,7 +26,7 @@
             <div id="login_false">${requestScope.error_message}</div>
             <button type="submit" class="btn btn-primary block full-width m-b btn-lg" id="logining">登录</button>
         </form>
-        <p class="m-t"> <small>写上版权相关内容</small> </p>
+        <p class="m-t"> <small>写上版权相关内容</small><span></span> </p>
     </div>
 </div>
 <script src="../js/jquery-2.0.3.js"></script>
