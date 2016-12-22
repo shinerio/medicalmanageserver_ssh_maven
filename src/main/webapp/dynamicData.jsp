@@ -416,7 +416,7 @@
             visualMap: [{
                 pieces: [
                     {gt: 80,color:'red'},            // (1500, Infinity]
-                    {gt: 0, lte: 20,color:'green'} // (900, 1500]
+                    {gt: 0, lte: 80,color:'#1AB394'} // (900, 1500]
 
                 ]
             }],
@@ -454,14 +454,15 @@
                 showSymbol: false,
                 hoverAnimation: false,
                 /*data: data,*/
-                itemStyle: {
+                /*itemStyle: {
                     normal: {
                         color: '#1AB394',
                         lineStyle: {
                             color: '#1AB394'
                         }
                     }
-                }
+                }*/
+
             }]
         };
         app.timeTicket = setInterval(function () {
@@ -626,7 +627,6 @@
 
                 $("#button_evaluate").click(function () {
                     if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
-                        alert("进来了!")
                          toastr.warning('请登录后再进行评估！');
                     }else {
                         duration = $("#range_01").val();
