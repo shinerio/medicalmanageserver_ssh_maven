@@ -239,10 +239,10 @@
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                     <div class="input-group input-group-sm">
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button" onClick="jeDate({dateCell:'#start_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})">开始:</button>
+                                                        <button class="btn btn-default" type="button">开始:</button>
                                                     </span>
                                                         <%--<input name="act_start_time" type="text" class="form-control" id="start_time" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>--%>
-                                                        <input class="datainp form-control" id="start_time" type="text" placeholder="开始时间"  readonly>
+                                                        <input class="datainp form-control" id="start_time" onClick="jeDate({dateCell:'#start_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" type="text" placeholder="开始时间"  readonly>
                                                     </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 -->
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -250,9 +250,9 @@
 
                                                         <%--<input name="act_stop_time" type="text" class="form-control" id="stop_time" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>--%>
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button" onClick="jeDate({dateCell:'#stop_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})">截止:</button>
+                                                        <button class="btn btn-default" type="button" >截止:</button>
                                                     </span>
-                                                    <input class="datainp form-control" id="stop_time" type="text" placeholder="截止时间"  readonly>
+                                                    <input class="datainp form-control" id="stop_time" onClick="jeDate({dateCell:'#stop_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" type="text" placeholder="截止时间"  readonly>
                                                     <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button" onclick="getTime()">确认</button>
                                                     </span>
