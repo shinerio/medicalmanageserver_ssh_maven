@@ -57,7 +57,7 @@ public class SuperAdminDao {
             hql+=" and a.realname like:realname";
         }
         if(map.get("username")!=null){
-            hql+=" and a.username = :realname";
+            hql+=" and a.username = :username";
         }
         ArrayList<Object[]> list = (ArrayList<Object[]>) session.createQuery(hql).setProperties(map).setFirstResult(startNum).setMaxResults(length).list();
         return list;

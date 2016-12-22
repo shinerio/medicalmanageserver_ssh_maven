@@ -69,13 +69,13 @@ public class SuperAdminAction extends ActionSupport implements ServletRequestAwa
 
     public void listDoctor(){
         HashMap<String,Object> map = new HashMap<>();
-        if(!"".equals(request.getParameter("department"))   ){
+        if(!("".equals(request.getParameter("department"))|| request.getParameter("department")==null)  ){
             map.put("department",request.getParameter("department"));
         }
-        if(!"".equals(request.getParameter("realname"))){
+        if(!("".equals(request.getParameter("realname"))||request.getParameter("realname")==null)){
             map.put("realname","%"+request.getParameter("realname")+"%");
         }
-        if(!"".equals(request.getParameter("username"))){
+        if(!("".equals(request.getParameter("username"))||request.getParameter("username")==null)){
             map.put("username",request.getParameter("username"));
         }
         ArrayList<Object[]> result =  superAdminService.doctorList(0,10,map);

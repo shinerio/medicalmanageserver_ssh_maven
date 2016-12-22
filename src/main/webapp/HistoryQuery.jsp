@@ -368,7 +368,7 @@
         var start_time = $("#start_time").val();
         var stop_time = $("#stop_time").val();
         if(start_time!=""&&stop_time!=""&&(new Date(start_time)<new Date(stop_time))){
-             alert("输入了正确的时间！")
+            show_table(new Date(start_time).getTime(),new Date(stop_time).getTime());
         }
         else if(new Date(start_time)>=new Date(stop_time)){
             toastr.warning('结束时间应该大于开始时间！');
@@ -488,7 +488,7 @@
             step: 1,
             postfix: "分钟"
         });
-        show_table();
+        show_table("","");
         show_echarts1();
         show_echarts2();
     }
@@ -679,15 +679,32 @@ $("#container2").resize(function () {
         categories: [],
         data: []
     };
-
-    function show_table() {
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "H+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+    function show_table(var1,var2) {
         $.ajax({
             type : "POST",            //请求方式
             url : "patient/listHistoryData",        //请求地址
-            data:  "patient_id=1",  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            data:  "patient_id=1&&start_time="+var1+"&&end_time="+var2,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
             dataType : "json",    //返回数据类型
             success : function(data) {  //data为成功后返回数据
                 var mybody = document.getElementById("mydatabody");
+                mybody.innerHTML="";
+                data1.categories.splice(0,data1.categories.length);
+                data1.data.splice(0,data1.data.length);
                 for(var i =0;i<data.length;i++){
                     var row = mybody.insertRow();
                     var startTime = row.insertCell()
@@ -696,10 +713,10 @@ $("#container2").resize(function () {
                     startTime.className="cellNormal";
                     length.className="cellNormal";
                     success_ratio.className="cellNormal";
-                    startTime.innerHTML=data[i].start_time;
-                    length.innerHTML=data[i].end_time-data[i].start_time;
+                    startTime.innerHTML=new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
+                    length.innerHTML=((data[i].end_time-data[i].start_time)/1000/60).toFixed(2)+"分钟";
                     success_ratio.innerHTML=data[i].success_ratio;
-                    data1.categories.push(data[i].start_time);
+                    data1.categories.push(new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss"));
                     data1.data.push(data[i].success_ratio);
                 }
                 setdata();

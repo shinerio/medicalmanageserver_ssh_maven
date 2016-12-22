@@ -17,6 +17,9 @@
         <action name="logOut" class="com.shinerio.action.DoctorAction" method="logOut">
             <result name="success" type="redirect">/dynamicData.jsp</result>
         </action>
+        <action  name="addDoctor" class="com.shinerio.action.DoctorAction" method="addDoctor">
+            <result  name="success" type="redirect">/addDoctor.jsp</result>
+        </action>
     </package>
 
     <package name="patient" namespace="/patient" extends="struts-default">

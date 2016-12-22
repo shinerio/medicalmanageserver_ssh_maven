@@ -37,7 +37,7 @@ public class DoctorServiceImpl implements DoctorService {
         return null;
     }
     public void addDoctor(Doctors doctor) {
-
+        doctorDao.saveDoctor(doctor);
     }
     public void deleteDoctor(Doctors doctor) {
 

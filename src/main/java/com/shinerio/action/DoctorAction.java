@@ -23,6 +23,47 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
         this.request = httpServletRequest;
     }
     private String password;
+    private String realname;
+    private int age;
+    private String department;
+    private String major;
+    private int phoneNum;
+    private String emailaddress;
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setPhoneNum(int phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public void setWorkingtime(int workingtime) {
+        this.workingtime = workingtime;
+    }
+
+    public void setWorkexperience(String workexperience) {
+        this.workexperience = workexperience;
+    }
+
+    public void setEmailaddress(String emailaddress) {
+        this.emailaddress = emailaddress;
+    }
+
+    private int workingtime;
+    private String workexperience;
     @Autowired
     private DoctorService doctorService;
 
@@ -75,5 +116,12 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
         }else{
             return "error";
         }
+    }
+
+    public String addDoctor(){
+        Doctor_info doctor_info = new Doctor_info(age,major,workingtime,emailaddress,phoneNum,"",department,workexperience);
+        Doctors doctors = new Doctors(doctor_info,"admin",username,realname);
+        doctorService.addDoctor(doctors);
+        return SUCCESS;
     }
 }

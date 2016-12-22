@@ -25,6 +25,17 @@ public class Doctor_info {
     private String department;
     private String workExperience;
 
+    public Doctor_info(int age, String major,int workingHours, String emailAddress, long phoneNum, String address, String department, String workExperience) {
+        this.age = age;
+        this.major = major;
+        this.workingHours = workingHours;
+        this.emailAddress = emailAddress;
+        this.phoneNum = phoneNum;
+        this.address = address;
+        this.department = department;
+        this.workExperience = workExperience;
+    }
+
     public int getId() {
         return id;
     }

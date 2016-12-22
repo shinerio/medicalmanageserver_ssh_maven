@@ -16,6 +16,13 @@ public class Doctors {
     private String password;
     private Doctor_info doctor_info;
 
+    public Doctors( Doctor_info doctor_info, String password, String username, String realname) {
+        this.doctor_info = doctor_info;
+        this.password = password;
+        this.username = username;
+        this.realname = realname;
+    }
+
     @OneToOne(mappedBy = "doctor")
     public Doctor_info getDoctor_info() {
         return doctor_info;

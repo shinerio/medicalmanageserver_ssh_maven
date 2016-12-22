@@ -103,8 +103,8 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
         List<Evaluation_info>  list = patientService.getEvaluation_infoById(patient_id);
         List<Evaluation_info> result = new ArrayList();
         if(!("".equals(str_start_time)||str_end_time==null)) {
-            int start_time = Integer.parseInt(str_start_time);
-            int end_time = Integer.parseInt(str_end_time);
+            long start_time = Long.parseLong(str_start_time);
+            long end_time = Long.parseLong(str_end_time);
             for (Evaluation_info e : list) {
                 if (e.getStart_time() >= start_time && e.getStart_time() <= end_time)
                     result.add(e);
