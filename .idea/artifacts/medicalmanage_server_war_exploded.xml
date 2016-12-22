@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" build-on-make="true" name="medicalmanage-server:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/medicalmanage_server_war_exploded</output-path>
+  <artifact type="exploded-war" name="medicalmanage-server:war exploded">
+    <output-path>$PROJECT_DIR$/target/shinerio</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -43,6 +43,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.3.4.RELEASE" />
+          <element id="library" level="project" name="Maven: javax:javaee-api:7.0" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.0" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.2.RELEASE" />
@@ -55,6 +56,9 @@
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.5" />
           <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
         </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/shinerio/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="medicalmanage-server/web/Web" />
     </root>

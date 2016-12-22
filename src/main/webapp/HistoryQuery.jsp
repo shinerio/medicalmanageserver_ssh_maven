@@ -239,17 +239,21 @@
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                     <div class="input-group input-group-sm">
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button">选择时间:</button>
+                                                        <button class="btn btn-default" type="button">开始:</button>
                                                     </span>
-                                                        <input name="act_start_time" type="text" class="form-control" id="start_time" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>
-
+                                                        <%--<input name="act_start_time" type="text" class="form-control" id="start_time" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>--%>
+                                                        <input class="datainp form-control" id="start_time" onClick="jeDate({dateCell:'#start_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" type="text" placeholder="开始时间"  readonly>
                                                     </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 -->
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                                     <div class="input-group input-group-sm">
 
-                                                        <input name="act_stop_time" type="text" class="form-control" id="stop_time" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>
-                                                        <span class="input-group-btn">
+                                                        <%--<input name="act_stop_time" type="text" class="form-control" id="stop_time" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>--%>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" >截止:</button>
+                                                    </span>
+                                                    <input class="datainp form-control" id="stop_time" onClick="jeDate({dateCell:'#stop_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" type="text" placeholder="截止时间"  readonly>
+                                                    <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button" onclick="getTime()">确认</button>
                                                     </span>
                                                      </div><!-- /input-group -->
@@ -360,6 +364,26 @@
 <script type="text/javascript" src="js/jquery.ui.datepicker-zh-CN.js"></script>
 <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript" src="js/jquery-ui-timepicker-zh-CN.js"></script>
+
+<script type="text/javascript" src="jedate/jedate.js"></script>
+<script type="text/javascript">
+    //jeDate.skin('gray');
+    jeDate({
+        dateCell:"#indate",//isinitVal:true,
+        format:"YYYY-MM",
+        isTime:false, //isClear:false,
+        minDate:"2015-10-19 00:00:00",
+        maxDate:"2016-11-8 00:00:00"
+    });
+    jeDate({
+        dateCell:"#dateinfo",
+        format:"YYYY年MM月DD日 hh:mm:ss",
+        isinitVal:true,
+        isTime:true, //isClear:false,
+        minDate:"2014-09-19 00:00:00",
+        okfun:function(val){alert(val)}
+    })
+</script>
 
 <%--日历选择触发动作--%>
 <script type="text/javascript">
