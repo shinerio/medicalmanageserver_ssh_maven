@@ -35,6 +35,7 @@ public class Doctor_info {
         this.department = department;
         this.workExperience = workExperience;
     }
+    public Doctor_info(){}
 
     public int getId() {
         return id;

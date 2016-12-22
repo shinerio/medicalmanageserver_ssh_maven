@@ -365,6 +365,7 @@
 <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript" src="js/jquery-ui-timepicker-zh-CN.js"></script>
 
+<%--日期选择插件(好看的那个版本)--%>
 <script type="text/javascript" src="jedate/jedate.js"></script>
 <script type="text/javascript">
     //jeDate.skin('gray');
