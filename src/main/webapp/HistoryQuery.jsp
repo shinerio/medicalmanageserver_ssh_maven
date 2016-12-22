@@ -368,8 +368,7 @@
         var start_time = $("#start_time").val();
         var stop_time = $("#stop_time").val();
         if(start_time!=""&&stop_time!=""&&(new Date(start_time)<new Date(stop_time))){
-             //alert("输入了正确的时间！")
-            setdata();
+             alert("输入了正确的时间！")
         }
         else if(new Date(start_time)>=new Date(stop_time)){
             toastr.warning('结束时间应该大于开始时间！');
@@ -497,7 +496,16 @@
     function getEvaluateTime(s) {    //取得评估时间，用于搜索重演
         //alert(s.innerHTML)
     }
-
+    function getAllTime() {
+        var time_start = document.getElementById("time_start").value;
+        var time_last = document.getElementById("time_last").value;
+        if (time_start == "" || time_last == "") {
+            toastr.warning('请选择查询日期！');
+        }
+        else {
+            setdata();
+        }
+    }
 
     function show_echarts1() {        <!--图1的echarts展示-->
         dom1 = document.getElementById("container1");
@@ -676,7 +684,7 @@ $("#container2").resize(function () {
         $.ajax({
             type : "POST",            //请求方式
             url : "patient/listHistoryData",        //请求地址
-            data:  "patient_id=1",
+            data:  "patient_id=1",  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
             dataType : "json",    //返回数据类型
             success : function(data) {  //data为成功后返回数据
                 var mybody = document.getElementById("mydatabody");
@@ -712,6 +720,154 @@ $("#container2").resize(function () {
         });
     }
 </script>
+
 <script src="css/plugins/ionRangeSlider/toastr.js"></script>
+<script>
+    "use strict";
+    var number;
+
+    var GloveDataWS = {};
+    var CommandDataWS = {};
+    var message_send = "";
+    var t1;
+    var t2;
+    var duration;
+
+    GloveDataWS.socket = null;
+    GloveDataWS.connect = (function (host) {
+        if ('WebSocket' in window) {
+            GloveDataWS.socket = new WebSocket(host);
+        } else if ('MozWebSocket' in window) {
+            GloveDataWS.socket = new MozWebSocket(host);
+        } else {
+            Console.log('Error: WebSocket is not supported by this browser.');
+            return;
+        }
+
+        GloveDataWS.socket.onopen = function () {
+            clearTimeout(t1);
+            GloveDataWS.sendMessage();
+        };
+
+        GloveDataWS.socket.onclose = function () {
+            /* alert('Info: WebSocket closed.点击确定重新连接！');*/
+            t1 = window.setTimeout(GloveDataWS.initialize(), 1000);
+        };
+
+        GloveDataWS.socket.onmessage = function (message) {
+            number = parseInt(message.data);
+            myChart2.setOption({
+                series: [{
+                    data: [{value: number, name: '手套标量'}]
+                }]
+            });
+        };
+    });
+
+    GloveDataWS.initialize = function () {
+        // if (window.location.protocol == 'http:') {
+        //     GloveDataWS.connect('ws://' + window.location.host + '/examples/websocket/chat');
+        // } else {
+        //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
+        // }
+        GloveDataWS.connect('ws://localhost/GloveData');
+    };
+
+    GloveDataWS.sendMessage = (function () {
+
+        GloveDataWS.socket.send("start");
+    });
+
+    CommandDataWS.socket = null;
+    CommandDataWS.connect = (function (host) {
+        if ('WebSocket' in window) {
+            CommandDataWS.socket = new WebSocket(host);
+        } else if ('MozWebSocket' in window) {
+            CommandDataWS.socket = new MozWebSocket(host);
+        } else {
+            Console.log2('Error: WebSocket is not supported by this browser.');
+            return;
+        }
+
+        CommandDataWS.socket.onopen = function () {
+            clearTimeout(t2);
+
+            $("#button_evaluate").click(function () {
+                duration = $("#range_01").val();
+//                $("#status").html("等待确认!");
+                toastr.success('等待病人确认......');
+                message_send = "evaluate_request";
+                CommandDataWS.sendMessage();      //发送确认字符
+            });
+
+        };
+
+        CommandDataWS.socket.onclose = function () {
+            t2 = window.setTimeout(CommandDataWS.initialize(), 1000);
+        };
+
+        CommandDataWS.socket.onmessage = function (message) {
+
+            switch (message.data) {
+                case "evaluate_request_refused":
+                    toastr.warning('病人拒绝评估！');
+                    break;
+                case "evaluate_request_accepted":
+                    message_send = duration;
+                    CommandDataWS.sendMessage();      //发送时长
+                    message_send = "evaluate_start";
+                    CommandDataWS.sendMessage();      //发送aceept字符
+//                    $("#status").html("开始评估!");
+                    toastr.success('病人开始评估......');
+                    break;
+                case "evaluate_stop":
+//                    $("#status").html("评估结束!");
+                    toastr.success('评估结束！');
+                    break;
+            }
+
+        };
+    });
+
+    CommandDataWS.initialize = function () {
+        // if (window.location.protocol == 'http:') {
+        //     GloveDataWS.connect('ws://' + window.location.host + '/examples/websocket/chat');
+        // } else {
+        //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
+        // }
+        CommandDataWS.connect('ws://localhost/CommandData');
+    };
+
+    CommandDataWS.sendMessage = (function () {
+        if (message_send != '') {
+            CommandDataWS.socket.send(message_send);
+
+        }
+    });
+
+
+    GloveDataWS.initialize();
+    CommandDataWS.initialize();
+
+    /*function evaluate() {
+     var duration = $("#range_01").val();
+     CommandDataWS.sendMessage();
+     }*/
+
+    /*var ws = new WebSocket("ws://localhost:8181/test");
+     ws.onopen = function (e) {
+     console.log('Connection to server opened');
+     };
+
+     ws.onmessage = function (message) {
+     number = parseInt(message.data.split("+")[1]);
+     myChart2.setOption({
+     series: [{
+     data: [{value: number, name: '手套标量'}]
+     }]
+     });
+     };*/
+</script>
+
 </body>
 </html>
