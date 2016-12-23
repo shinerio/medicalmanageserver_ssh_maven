@@ -189,6 +189,9 @@
         document.getElementById("realname").value = data[0].realname;
         document.getElementById("age").value = data[0].age;
         document.getElementById("major").value = data[0].major;
+        document.getElementById("password").value = data[0].password;
+        document.getElementById("houseaddress").value = data[0].houseaddress;
+        document.getElementById("officeaddress").value = data[0].officeaddress;
         $("#department").val(data[0].department.name);
         document.getElementById("phoneNum").value = data[0].telenum;
         document.getElementById("emailaddress").value = data[0].emailaddress;

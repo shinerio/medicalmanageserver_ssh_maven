@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by jstxzhangrui on 2016/12/19.
  */
-@Component("superAdminAction")
+@Component("adminAction")
 @Scope("prototype")
 public class AdministratorAction extends ActionSupport implements ServletRequestAware,ServletResponseAware {
     @Autowired

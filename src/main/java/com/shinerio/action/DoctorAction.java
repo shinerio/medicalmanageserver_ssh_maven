@@ -19,6 +19,8 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
     public void setServletRequest(javax.servlet.http.HttpServletRequest httpServletRequest) {
         this.request = httpServletRequest;
     }
+    private String houseaddress;
+    private String officeaddress;
     private String password;
     private String realname;
     private int age;
@@ -110,8 +112,8 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
         Doctor doctor = doctorService.getDoctor(username);
         if(doctor==null){   //没有，可以新建
             Department department_temp = doctorService.getDepartment(department);
-            Doctor temp = new Doctor(username,1,"offiveaddress",major,workingtime,"houseaddress",workexperience,emailaddress,telenum,
-                    age,department_temp,realname,"admin");
+            Doctor temp = new Doctor(username,1,officeaddress,major,workingtime,houseaddress,workexperience,emailaddress,telenum,
+                    age,department_temp,realname,password);
             doctorService.addDoctor(temp);
             return SUCCESS;
         }else {
