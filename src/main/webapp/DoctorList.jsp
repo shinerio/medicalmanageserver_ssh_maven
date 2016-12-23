@@ -73,7 +73,7 @@
     function first_page() {   /*回到首页*/
         pages=1;
         $("#page").val(pages);
-        /*selectDoctor();*/
+        selectDoctor();
     }
     function last_page() {     /*上一页*/
          if(pages>1){
