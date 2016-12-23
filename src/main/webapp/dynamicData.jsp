@@ -603,7 +603,7 @@
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        GloveDataWS.connect('ws://localhost/GloveData');
+        GloveDataWS.connect('ws://10.103.26.221/GloveData');
     };
 
     GloveDataWS.sendMessage = (function () {
@@ -673,7 +673,7 @@
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        CommandDataWS.connect('ws://localhost/CommandData');
+        CommandDataWS.connect('ws://10.103.26.221/CommandData');
     };
 
     CommandDataWS.sendMessage = (function () {

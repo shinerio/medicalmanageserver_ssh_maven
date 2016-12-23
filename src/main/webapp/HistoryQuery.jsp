@@ -811,7 +811,7 @@ $("#container2").resize(function () {
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        GloveDataWS.connect('ws://localhost/GloveData');
+        GloveDataWS.connect('ws://10.103.26.221/GloveData');
     };
 
     GloveDataWS.sendMessage = (function () {
@@ -866,7 +866,7 @@ $("#container2").resize(function () {
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        EvaluateReappear.connect('ws://localhost/CommandData');
+        EvaluateReappear.connect('ws://10.103.26.221/CommandData');
     };
 
     EvaluateReappear.sendMessage = (function () {
