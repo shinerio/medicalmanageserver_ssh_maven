@@ -535,8 +535,12 @@
 
 </script>
 <script> /*echarts自适应屏幕*/
-     $("#container1").resize(function(){ $(myChart1).resize(); })
-     $("#container2").resize(function(){ $(myChart2).resize(); })
+
+
+$("#container1").resize(function(){ $(myChart1).resize(); });
+$("#container2").resize(function(){ $(myChart2).resize(); })
+
+
 </script>
 <script src="js/toastr.js"></script>
 <script>

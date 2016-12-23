@@ -275,7 +275,7 @@
                                         </li>
                                     </ul>-->
                                     </div>
-                                    <div id="container2" style="margin: 10px 10px;height: 80%"></div>
+                                    <div id="container2" style="margin: 10px 10px;height: 76%"></div>
                                 </div>
                             </div>
 
@@ -565,7 +565,7 @@
             visualMap: [{
                 pieces: [
                     {gt: 80, color: 'red'},            // (1500, Infinity]
-                    {gt: 0, lte: 20, color: 'green'} // (900, 1500]
+                    {gt: 0, lte: 80, color: '#1AB394'} // (900, 1500]
 
                 ]
             }],
@@ -602,14 +602,14 @@
                 showSymbol: false,
                 hoverAnimation: false,
                 /*data: data,*/
-                itemStyle: {
+                /*itemStyle: {
                     normal: {
                         color: '#1AB394',
                         lineStyle: {
                             color: '#1AB394'
                         }
                     }
-                }
+                }*/
             }]
         };
         app.timeTicket = setInterval(function () {
@@ -692,12 +692,12 @@
 
 </script>
 <script>    /*echarts自适应屏幕*/
-$("#container1").resize(function () {
-    $(myChart1).resize();
-});
-$("#container2").resize(function () {
-    $(myChart2).resize();
-})
+
+
+    $("#container1").resize(function(){ $(myChart1).resize(); });
+    $("#container2").resize(function(){ $(myChart2).resize(); })
+
+
 </script>
 <script>
 
