@@ -15,6 +15,7 @@
     <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/table.css" rel="stylesheet">
     <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
     <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">
     <link href="css/plugins/ionRangeSlider/normalize.css" rel="stylesheet">
@@ -274,7 +275,7 @@
                                         </li>
                                     </ul>-->
                                     </div>
-                                    <div id="container2" style="margin: 10px 10px;height: 80%"></div>
+                                    <div id="container2" style="margin: 10px 10px;height: 76%"></div>
                                 </div>
                             </div>
 
@@ -300,11 +301,15 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
                                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
-                                         style="margin-left: 8%;height: 100%;overflow-y: scroll">
+                                         style="margin-left: 2%;height: 100%;overflow-y: scroll">
                                         <table class="table table-bordered table-striped table-hover table">
                                             <thead>
                                             <tr class="success">
+<<<<<<< HEAD
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">编号</th>
+=======
+                                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估编号</th>
+>>>>>>> d5351a7295072f4fe148d71c15cbb801c2d095e2
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时间</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时长</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">成功率</th>
@@ -366,6 +371,7 @@
 <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript" src="js/jquery-ui-timepicker-zh-CN.js"></script>
 
+<%--日期选择插件(好看的那个版本)--%>
 <script type="text/javascript" src="jedate/jedate.js"></script>
 <script type="text/javascript">
     //jeDate.skin('gray');
@@ -393,7 +399,7 @@
         var start_time = $("#start_time").val();
         var stop_time = $("#stop_time").val();
         if(start_time!=""&&stop_time!=""&&(new Date(start_time)<new Date(stop_time))){
-            show_table(new Date(start_time).getTime(),new Date(stop_time).getTime());
+            show_table(new Date(start_time).getTime(),new Date(stop_time).getTime());  //new Date().getTime()得到毫秒数
         }
         else if(new Date(start_time)>=new Date(stop_time)){
             toastr.warning('结束时间应该大于开始时间！');
@@ -521,16 +527,7 @@
     function getEvaluateTime(s) {    //取得评估时间，用于搜索重演
         //alert(s.innerHTML)
     }
-    function getAllTime() {
-        var time_start = document.getElementById("time_start").value;
-        var time_last = document.getElementById("time_last").value;
-        if (time_start == "" || time_last == "") {
-            toastr.warning('请选择查询日期！');
-        }
-        else {
-            setdata();
-        }
-    }
+
 
     function show_echarts1() {        <!--图1的echarts展示-->
         dom1 = document.getElementById("container1");
@@ -572,7 +569,7 @@
             visualMap: [{
                 pieces: [
                     {gt: 80, color: 'red'},            // (1500, Infinity]
-                    {gt: 0, lte: 20, color: 'green'} // (900, 1500]
+                    {gt: 0, lte: 80, color: '#1AB394'} // (900, 1500]
 
                 ]
             }],
@@ -609,14 +606,14 @@
                 showSymbol: false,
                 hoverAnimation: false,
                 /*data: data,*/
-                itemStyle: {
+                /*itemStyle: {
                     normal: {
                         color: '#1AB394',
                         lineStyle: {
                             color: '#1AB394'
                         }
                     }
-                }
+                }*/
             }]
         };
         app.timeTicket = setInterval(function () {
@@ -648,7 +645,8 @@
                 trigger: 'axis',
                 axisPointer: {            // 坐标轴指示器，坐标轴触发有效
                     type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
+                },
+                formatter: '{a}:{c}%'   /*提示框浮层显示*/
             },
             grid: {
                 left: '3%',
@@ -677,7 +675,14 @@
                     name: '直接访问',
                     type: 'bar',
                     barWidth: '60%',
-                    data: []
+                    data: [],
+                    label: {                 /*柱状图显示值标签*/
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+
+                    }
                 }
             ]
         };
@@ -691,12 +696,12 @@
 
 </script>
 <script>    /*echarts自适应屏幕*/
-$("#container1").resize(function () {
-    $(myChart1).resize();
-});
-$("#container2").resize(function () {
-    $(myChart2).resize();
-})
+
+
+    $("#container1").resize(function(){ $(myChart1).resize(); });
+    $("#container2").resize(function(){ $(myChart2).resize(); })
+
+
 </script>
 <script>
 
@@ -731,7 +736,9 @@ $("#container2").resize(function () {
                 data1.categories.splice(0,data1.categories.length);
                 data1.data.splice(0,data1.data.length);
                 for(var i =0;i<data.length;i++){
+
                     var row = mybody.insertRow();
+<<<<<<< HEAD
                     var  num = row.insertCell();
                     var startTime = row.insertCell();
                     var length = row.insertCell();
@@ -741,6 +748,19 @@ $("#container2").resize(function () {
                     length.className="cellNormal";
                     success_ratio.className="cellNormal";
                     num.innerHTML=data[i].id;
+=======
+                    var evaluate_id = row.insertCell();
+                    var startTime = row.insertCell();
+                    var length = row.insertCell();
+                    var success_ratio = row.insertCell();
+
+                    evaluate_id.className="cellNormal";
+                    startTime.className="cellNormal";
+                    length.className="cellNormal";
+                    success_ratio.className="cellNormal";
+
+                    evaluate_id.innerHTML='<button type="button" class="btn btn-link"><a id="button_evaluate_playback">2</a></button>';
+>>>>>>> d5351a7295072f4fe148d71c15cbb801c2d095e2
                     startTime.innerHTML=new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
                     length.innerHTML=((data[i].end_time-data[i].start_time)/1000/60).toFixed(2)+"分钟";
                     success_ratio.innerHTML=data[i].success_ratio;
@@ -772,11 +792,11 @@ $("#container2").resize(function () {
     var number;
 
     var GloveDataWS = {};
-    var CommandDataWS = {};
+    var EvaluateReappear = {};  //评估再现websocket
     var message_send = "";
     var t1;
     var t2;
-    var duration;
+    var evaluate_id;
 
     GloveDataWS.socket = null;
     GloveDataWS.connect = (function (host) {
@@ -815,7 +835,7 @@ $("#container2").resize(function () {
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        GloveDataWS.connect('ws://localhost/GloveData');
+        GloveDataWS.connect('ws://10.103.26.221/GloveData');
     };
 
     GloveDataWS.sendMessage = (function () {
@@ -823,80 +843,70 @@ $("#container2").resize(function () {
         GloveDataWS.socket.send("start");
     });
 
-    CommandDataWS.socket = null;
-    CommandDataWS.connect = (function (host) {
+    EvaluateReappear.socket = null;
+    EvaluateReappear.connect = (function (host) {
         if ('WebSocket' in window) {
-            CommandDataWS.socket = new WebSocket(host);
+            EvaluateReappear.socket = new WebSocket(host);
         } else if ('MozWebSocket' in window) {
-            CommandDataWS.socket = new MozWebSocket(host);
+            EvaluateReappear.socket = new MozWebSocket(host);
         } else {
             Console.log2('Error: WebSocket is not supported by this browser.');
             return;
         }
 
-        CommandDataWS.socket.onopen = function () {
+        EvaluateReappear.socket.onopen = function () {
             clearTimeout(t2);
 
-            $("#button_evaluate").click(function () {
-                duration = $("#range_01").val();
-//                $("#status").html("等待确认!");
-                toastr.success('等待病人确认......');
-                message_send = "evaluate_request";
-                CommandDataWS.sendMessage();      //发送确认字符
+            $("#button_evaluate_playback").click(function () {
+                evaluate_id = $("#button_evaluate_playback").val();  //取得评估再现的id编号
+
+                toastr.success('正在开始评估再现......');
+                message_send = "evaluate_playback";
+                EvaluateReappear.sendMessage();      //发送确认字符
             });
 
         };
 
-        CommandDataWS.socket.onclose = function () {
-            t2 = window.setTimeout(CommandDataWS.initialize(), 1000);
+        EvaluateReappear.socket.onclose = function () {
+            t2 = window.setTimeout(EvaluateReappear.initialize(), 1000);
         };
 
-        CommandDataWS.socket.onmessage = function (message) {
+        EvaluateReappear.socket.onmessage = function (message) {
 
             switch (message.data) {
-                case "evaluate_request_refused":
-                    toastr.warning('病人拒绝评估！');
-                    break;
-                case "evaluate_request_accepted":
-                    message_send = duration;
-                    CommandDataWS.sendMessage();      //发送时长
-                    message_send = "evaluate_start";
-                    CommandDataWS.sendMessage();      //发送aceept字符
-//                    $("#status").html("开始评估!");
-                    toastr.success('病人开始评估......');
-                    break;
-                case "evaluate_stop":
-//                    $("#status").html("评估结束!");
-                    toastr.success('评估结束！');
+                case "evaluate_playback_ack":
+                    message_send = evaluate_id;
+                    EvaluateReappear.sendMessage();      //发送需要评估历史的id编号
+                    toastr.success('评估再现开始......');
                     break;
             }
 
         };
     });
 
-    CommandDataWS.initialize = function () {
+    EvaluateReappear.initialize = function () {
         // if (window.location.protocol == 'http:') {
         //     GloveDataWS.connect('ws://' + window.location.host + '/examples/websocket/chat');
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        CommandDataWS.connect('ws://localhost/CommandData');
+        EvaluateReappear.connect('ws://10.103.26.221/CommandData');
     };
 
-    CommandDataWS.sendMessage = (function () {
+    EvaluateReappear.sendMessage = (function () {
         if (message_send != '') {
-            CommandDataWS.socket.send(message_send);
+            EvaluateReappear.socket.send(message_send);
 
         }
     });
 
 
     GloveDataWS.initialize();
-    CommandDataWS.initialize();
+    EvaluateReappear.initialize();
 
     /*function evaluate() {
-     var duration = $("#range_01").val();
-     CommandDataWS.sendMessage();
+     var evaluate_id = $("#range_01").val();
+     EvaluateReappear.sendMessage();
      }*/
 
     /*var ws = new WebSocket("ws://localhost:8181/test");

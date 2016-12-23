@@ -31,6 +31,14 @@
       </div>
       <div class="form-group">
         <div class="label">
+          <label>登录密码：</label>
+        </div>
+        <div class="field">
+          <input type="text" id="password" class="input w50" value="" name="password" data-validate="required:请输入登录密码" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
           <label>姓名：</label>
         </div>
         <div class="field">
@@ -47,15 +55,6 @@
           <div class="tips"></div>
         </div>
       </div>
-      <div class="form-group">
-        <div class="label">
-          <label>照片：</label>
-        </div>
-        <div class="field" id="photo">
-          <img src="images/y.jpg " width="71px" height="99px">
-        </div>
-      </div>
-
       <if condition="$iscid eq 1">
         <div class="form-group">
           <div class="label">
@@ -92,6 +91,22 @@
           </div>
           <div class="field">
             <input type="text" id="emailaddress" class="input w50" value="" name="emailaddress" data-validate="required:请输入邮箱" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>办公地址：</label>
+          </div>
+          <div class="field">
+            <input type="text" id="officeaddress" class="input w50" value="" name="officeaddress" data-validate="required:请输入办公地址" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>家庭地址：</label>
+          </div>
+          <div class="field">
+            <input type="text" id="houseaddress" class="input w50" value="" name="houseaddress" data-validate="required:请输入家庭地址" />
           </div>
         </div>
         <div class="form-group">
