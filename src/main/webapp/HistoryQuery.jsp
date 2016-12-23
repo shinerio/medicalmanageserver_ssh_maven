@@ -641,7 +641,8 @@
                 trigger: 'axis',
                 axisPointer: {            // 坐标轴指示器，坐标轴触发有效
                     type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                }
+                },
+                formatter: '{a}:{c}%'   /*提示框浮层显示*/
             },
             grid: {
                 left: '3%',
@@ -670,7 +671,14 @@
                     name: '直接访问',
                     type: 'bar',
                     barWidth: '60%',
-                    data: []
+                    data: [],
+                    label: {                 /*柱状图显示值标签*/
+                        normal: {
+                            show: true,
+                            position: 'top'
+                        }
+
+                    }
                 }
             ]
         };
