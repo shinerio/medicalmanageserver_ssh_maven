@@ -1,15 +1,13 @@
 package com.shinerio.dao;
 
-import com.shinerio.domain.Doctor_info;
-import com.shinerio.domain.Doctors;
-import com.shinerio.domain.Patients;
+import com.shinerio.domain.Doctor;
+import com.shinerio.domain.Patient;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Query;
 import java.util.List;
 import java.util.Set;
 
@@ -33,7 +31,7 @@ public class DoctorDao {
         return sessionFactory.getCurrentSession();
     }
 
-    public void saveDoctor(Doctors doctor){
+    public void saveDoctor(Doctor doctor){
         Session session = getCurrentSession();
         try {
             session.save(doctor);
@@ -42,23 +40,23 @@ public class DoctorDao {
         }
     }
 
-    public Doctors getDoctorByID(int id){
+    public Doctor getDoctorByID(int id){
         Session session = getCurrentSession();
         try {
-            Doctors instance = (Doctors) session.get(
-                    "com.shinerio.domain.Doctors", id);
+            Doctor instance = (Doctor) session.get(
+                    "com.shinerio.domain.Doctor", id);
             return instance;
         } catch (RuntimeException re) {
             throw re;
         }
     }
-    public Doctors getDoctorByUsername(String username){
+    public Doctor getDoctorByUsername(String username){
         Session session = getCurrentSession();
-        String hql = "select s from Doctors s where s.username = :username";
-        Doctors doctor = new Doctors();
+        String hql = "select s from Doctor s where s.username = :username";
+        Doctor doctor = new Doctor();
         doctor.setUsername(username);
         try {
-            List<Doctors> list =
+            List<Doctor> list =
                     session.createQuery(hql).setProperties(doctor).list();
             if(list.size()>0){return list.get(0);}
             return null;
@@ -66,30 +64,17 @@ public class DoctorDao {
             throw re;
         }
     }
-    public Set<Patients> getPatients(Doctors doctor){
+    public List<Patient> getPatients(Doctor doctor){
         Session session = getCurrentSession();
         try {
-            Doctors instance = (Doctors) session.get(
-                    "com.shinerio.domain.Doctors", doctor.getId());
+            Doctor instance = (Doctor) session.get(
+                    "com.shinerio.domain.Doctor", doctor.getId());
             if(instance!=null) {
-                Hibernate.initialize(instance.getPatientSet());  //这句很重要，否则会出现延迟加载异常
-                return instance.getPatientSet();
+                Hibernate.initialize(instance.getPatientList());  //这句很重要，否则会出现延迟加载异常
+                return instance.getPatientList();
             }
             return null;
         } catch (RuntimeException re) {
-            throw re;
-        }
-    }
-
-    public Doctor_info getDoctorInfoById(int id){
-        Session session = getCurrentSession();
-        try{
-            Doctors instance = (Doctors) session.get(
-                    "com.shinerio.domain.Doctors",id);
-            if(instance!=null)
-            return instance.getDoctor_info();
-            return null;
-        }catch (Exception re){
             throw re;
         }
     }

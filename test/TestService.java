@@ -1,9 +1,7 @@
-import com.shinerio.domain.Doctors;
-import com.shinerio.domain.Patients;
-import com.shinerio.domain.SuperAdmin;
+import com.shinerio.domain.Patient;
 import com.shinerio.service.DoctorService;
 import com.shinerio.service.PatientService;
-import com.shinerio.service.SuperAdminService;
+import com.shinerio.service.AdministratorService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -19,7 +17,7 @@ import java.util.*;
 public class TestService {
     @Test
     public void doctorLogin(){
-        String username = "tom123";
+        String username = "1001";
         String password = "admin";
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
         DoctorService doctorService =  beanFactory.getBean("doctorService",DoctorService.class);
@@ -28,36 +26,23 @@ public class TestService {
 
     @Test
     public void patientLogin(){
-        String username = "jack123";
+        String username = "1001";
         String password = "admin";
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
         PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
-        Patients patient = patientService.login(username,password);
+        Patient patient = patientService.login(username,password);
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"doctor","doctor_info","password","username","evaluation_info"});
+        jsonConfig.setExcludes(new String[]{"doctor","password","username","evaluation_infoList"});
         JSONObject jsonDoctor = JSONObject.fromObject(patient,jsonConfig);
         System.out.print(jsonDoctor);
     }
 @Test
-    public void superAdminLogin(){
-        String username = "superadmin";
+    public void administratorLogin(){
+        String username = "admin";
         String password = "admin";
         BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-        SuperAdminService superAdminService =  beanFactory.getBean("superAdminService",SuperAdminService.class);
-        System.out.print(superAdminService.login(username,password));
-    }
-@Test
-    public void getDoctotList(){
-        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
-        SuperAdminService superAdminService =  beanFactory.getBean("superAdminService",SuperAdminService.class);
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("department","神经内科");
-        map.put("realname","%t%");
-        ArrayList result = superAdminService.doctorList(0,1,map);
-        JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"patientSet","doctor","doctor_info","password","id"});
-        JSONArray doctors = JSONArray.fromObject(result,jsonConfig);
-        System.out.print(doctors);
+        AdministratorService administratorService =  beanFactory.getBean("administratorService",AdministratorService.class);
+        System.out.print(administratorService.login(username,password));
     }
     @Test
     public void getEvaluation_info(){
@@ -65,8 +50,17 @@ public class TestService {
         PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
         List list = patientService.getEvaluation_infoById(1);
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"patient"});
+        jsonConfig.setExcludes(new String[]{"patient","rawdata"});
         JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
+        System.out.print(jsonArray);
+    }
+@Test
+    public void listDoctor(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        AdministratorService administratorService =  beanFactory.getBean("administratorService",AdministratorService.class);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"patientList","doctorList"});
+        JSONArray jsonArray = JSONArray.fromObject(administratorService.doctorList(0,1,new HashMap<>()),jsonConfig);
         System.out.print(jsonArray);
     }
 }

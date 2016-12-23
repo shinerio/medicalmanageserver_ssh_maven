@@ -1,17 +1,13 @@
 package com.shinerio.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.shinerio.domain.Doctor_info;
-import com.shinerio.domain.Doctors;
+import com.shinerio.domain.Doctor;
 import com.shinerio.service.DoctorService;
 import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.util.ServletContextAware;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.faces.flow.ReturnNode;
 import javax.servlet.http.HttpServletRequest;
 
 @Component("doctorAction")
@@ -27,7 +23,7 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
     private int age;
     private String department;
     private String major;
-    private int phoneNum;
+    private long telenum;
     private String emailaddress;
 
     public void setRealname(String realname) {
@@ -42,8 +38,8 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
         this.department = department;
     }
 
-    public void setPhoneNum(int phoneNum) {
-        this.phoneNum = phoneNum;
+    public void setTelenum(int telenum) {
+        this.telenum = telenum;
     }
 
     public void setMajor(String major) {
@@ -92,7 +88,7 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
     }
 
     public String isLogin() {
-        Doctors doctor = doctorService.login(username, password);
+        Doctor doctor = doctorService.login(username, password);
         if (doctor!=null) {
             this.request.getSession().setAttribute("doctor",doctor);
             return SUCCESS;
@@ -105,23 +101,14 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
         this.request.getSession().removeAttribute("doctor");
         return SUCCESS;
     }
-    public String getDoctorInfo(){
-        Doctors doctor = (Doctors) this.request.getSession().getAttribute("doctor");
-        Doctor_info doctor_info = null;
-        if(doctor!=null)
-            doctor_info= doctorService.getDoctorInfo(doctor.getId());
-        if(doctor_info!=null){
-            this.request.setAttribute("doctor_info",doctor_info);
-            return SUCCESS;
-        }else{
-            return "error";
-        }
-    }
 
     public String addDoctor(){
-        Doctor_info doctor_info = new Doctor_info(age,major,workingtime,emailaddress,phoneNum,"",department,workexperience);
-        Doctors doctors = new Doctors(doctor_info,"admin",username,realname);
-        doctorService.addDoctor(doctors);
-        return SUCCESS;
+        Doctor doctor = doctorService.getDoctor(username);
+        if(doctor==null){   //没有，可以新建
+
+            return SUCCESS;
+        }else {
+            return "error";
+        }
     }
 }

@@ -1,13 +1,13 @@
 package com.shinerio.service.impl;
 
 import com.shinerio.dao.DoctorDao;
-import com.shinerio.domain.Doctor_info;
-import com.shinerio.domain.Doctors;
+import com.shinerio.domain.Doctor;
 import com.shinerio.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.w3c.dom.css.DocumentCSS;
 
 
 /**
@@ -27,8 +27,8 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)   //设置只读
-    public Doctors login(String username , String password) {
-        Doctors doctor = doctorDao.getDoctorByUsername(username);
+    public Doctor login(String username , String password) {
+        Doctor doctor = doctorDao.getDoctorByUsername(username);
         if(doctor!=null){
             if(password!=null&&password.equals(doctor.getPassword())) {
                 return  doctor;
@@ -36,16 +36,19 @@ public class DoctorServiceImpl implements DoctorService {
         }
         return null;
     }
-    public void addDoctor(Doctors doctor) {
-        doctorDao.saveDoctor(doctor);
-    }
-    public void deleteDoctor(Doctors doctor) {
+
+    @Override
+    public void addDoctor(Doctor doctor) {
 
     }
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)   //设置只读
+
     @Override
-    public Doctor_info getDoctorInfo(int id) {
-        Doctor_info doctor_info = doctorDao.getDoctorInfoById(id);
-       return doctor_info;
+    public void deleteDoctor(Doctor doctor) {
+
+    }
+
+    @Override
+    public Doctor getDoctor(String username) {
+        return doctorDao.getDoctorByUsername(username);
     }
 }

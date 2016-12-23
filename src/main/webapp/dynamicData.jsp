@@ -118,7 +118,7 @@
 
 
                     <li style="height: 60px;width:72px;display: inline-block">
-                        <a id="loginLink" href="../login.jsp"><i class="fa fa-sign-out"></i> <span id="login">登录</span></a>
+                        <a id="loginLink" href="../doctorLogin.jsp"><i class="fa fa-sign-out"></i> <span id="login">登录</span></a>
                     </li>
 
                 </ul>
@@ -346,8 +346,8 @@
         }else {
             // alert("已认证");
             $(".lock").attr('src','/img/unlock.png');
-            $("#hisquery").attr('href','HistoryQuery.jsp');
-            $("#doctorinformation").attr('href','doctor/checkDoctorInfo');
+            $("#hisquery").attr('href','historyQuery.jsp');
+            $("#doctorinformation").attr('href','doctorInformation.jsp');
             $("#login").html("注销")
             $("#loginLink").attr('href','doctor/logOut');
         }

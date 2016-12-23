@@ -24,7 +24,7 @@
         <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
         <div class="padding border-bottom">
             <ul class="search" style="padding-left:10px;">
-                <li> <a class="button border-main icon-plus-square-o" href="addDoctor.jsp?username=none"> 添加医生</a> </li>
+                <li> <a class="button border-main icon-plus-square-o" href="addDoctor.jsp"> 添加医生</a> </li>
                 <li>搜索：</li>
 
                 <if condition="$iscid eq 1">
@@ -55,9 +55,6 @@
             </tr>
             </thead>
             <tbody id="doctorBody">
-            <tr>
-
-            </tr>
             </tbody>
             <tr>
                 <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>全选 </td>
@@ -74,7 +71,7 @@
     function selectDoctor(){
         $.ajax({
             type : "POST",            //请求方式
-            url : "superadmin/list",        //请求地址
+            url : "admin/list",        //请求地址
             data: "department="+$("#department").val()+"&&realname="+$("#realname").val(),  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
             dataType : "json",    //返回数据类型
             success : function(data) {  //data为成功后返回数据
@@ -82,14 +79,14 @@
                 doctorBody.innerHTML="";
                 for(var i=0;i<data.length;i++) {
                     var row = doctorBody.insertRow();
-                    row.innerHTML = "<td style='text-align:left; padding-left:20px;'><input type='checkbox' name='id[]' value='' />" + data[i][0].username + "</td> " +
-                            "<td>" + data[i][0].realname + "</td>" +
+                    row.innerHTML = "<td style='text-align:left; padding-left:20px;'><input type='checkbox' name='id[]' value='' />" + data[i].username + "</td> " +
+                            "<td>" + data[i].realname + "</td>" +
                             "<td width='10%'><img src='images/11.jpg' alt'' width='70' height='50' /></td>" +
-                            " <td>" + data[i][1].major + "</td>" +
-                            " <td><font color='#00CC99'>" + data[i][1].phoneNum + "</font></td> " +
-                            "<td>" + data[i][1].emailAddress + "</td>" +
+                            " <td>" + data[i].major + "</td>" +
+                            " <td><font color='#00CC99'>" + data[i].telenum + "</font></td> " +
+                            "<td>" + data[i].emailaddress + "</td>" +
                             " <td>2016-07-01</td>" +
-                            "<td><div class='button-group'> <a class='button border-main' href='addDoctor.jsp?username=" + data[i][0].username + "'><span class='icon-edit'></span>详情</a> <a class='button border-red' href='javascript:void(0)' onclick='return del(1,1,1)'><span class='icon-trash-o'></span> 删除</a> </div></td>"
+                            "<td><div class='button-group'> <a class='button border-main' href='addDoctor.jsp?username=" + data[i].username + "'><span class='icon-edit'></span>详情</a> <a class='button border-red' href='javascript:void(0)' onclick='return del(1,1,1)'><span class='icon-trash-o'></span> 删除</a> </div></td>"
                 }
             }
         });

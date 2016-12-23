@@ -1,14 +1,13 @@
 package com.shinerio.service;
 
-import com.shinerio.domain.Doctor_info;
-import com.shinerio.domain.Doctors;
+import com.shinerio.domain.Doctor;
 
 /**
  * Created by jstxzhangrui on 2016/11/30.
  */
 public interface DoctorService {
-    public Doctors login(String username, String password);
-    public void addDoctor(Doctors doctor);
-    public void deleteDoctor(Doctors doctor);
-    public Doctor_info getDoctorInfo(int id);
+    public Doctor login(String username, String password);
+    public void addDoctor(Doctor doctor);
+    public void deleteDoctor(Doctor doctor);
+    public Doctor getDoctor(String username);
 }

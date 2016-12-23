@@ -1,7 +1,7 @@
 package com.shinerio.service;
 
 import com.shinerio.domain.Evaluation_info;
-import com.shinerio.domain.Patients;
+import com.shinerio.domain.Patient;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import java.util.List;
  * Created by jstxzhangrui on 2016/12/3.
  */
 public interface PatientService {
-    public boolean regist(Patients patient);
-    public boolean deletePatient(Patients patient);
-    public Patients login(String username,String passwords);
+    public boolean regist(Patient patient);
+    public boolean deletePatient(Patient patient);
+    public Patient login(String username,String password);
     public List<Evaluation_info> getEvaluation_infoById(int id);
 }

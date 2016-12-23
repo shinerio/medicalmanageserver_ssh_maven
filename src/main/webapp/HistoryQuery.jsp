@@ -53,7 +53,7 @@
                             <li><a href="javascript:void(0)">个人信息</a></li>
                             <li><a href="javascript:void(0)">联系方式</a></li>
                             <li class="divider"></li>
-                            <li><a href="login.jsp">退出登录</a></li>
+                            <li><a href="doctorLogin.jsp">退出登录</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -102,7 +102,7 @@
 
 
                     <li>
-                        <a href="login.jsp">
+                        <a href="doctorLogin.jsp">
                             <i class="fa fa-sign-out"></i> 注销
                         </a>
                     </li>
@@ -304,6 +304,7 @@
                                         <table class="table table-bordered table-striped table-hover table">
                                             <thead>
                                             <tr class="success">
+                                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">编号</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时间</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时长</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">成功率</th>
@@ -731,12 +732,15 @@ $("#container2").resize(function () {
                 data1.data.splice(0,data1.data.length);
                 for(var i =0;i<data.length;i++){
                     var row = mybody.insertRow();
-                    var startTime = row.insertCell()
+                    var  num = row.insertCell();
+                    var startTime = row.insertCell();
                     var length = row.insertCell();
                     var success_ratio = row.insertCell();
+                    num.className = "cellNormal";
                     startTime.className="cellNormal";
                     length.className="cellNormal";
                     success_ratio.className="cellNormal";
+                    num.innerHTML=data[i].id;
                     startTime.innerHTML=new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
                     length.innerHTML=((data[i].end_time-data[i].start_time)/1000/60).toFixed(2)+"分钟";
                     success_ratio.innerHTML=data[i].success_ratio;

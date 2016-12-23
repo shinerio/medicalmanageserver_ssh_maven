@@ -1,15 +1,12 @@
 package com.shinerio.dao;
 
-import com.shinerio.domain.Doctors;
 import com.shinerio.domain.Evaluation_info;
-import com.shinerio.domain.Patients;
+import com.shinerio.domain.Patient;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,17 +29,17 @@ public class PatientDao {
     public Session getCurrentSession(){
         return sessionFactory.getCurrentSession();
     }
-    public Patients getPatientByID(int id){
+    public Patient getPatientByID(int id){
         Session session = getCurrentSession();
         try {
-            Patients instance = (Patients) session.get(
-                    "com.shinerio.domain.Patients", id);
+            Patient instance = (Patient) session.get(
+                    "com.shinerio.domain.Patient", id);
             return instance;
         } catch (RuntimeException re) {
             throw re;
         }
     }
-    public void  savePatient(Patients patient){
+    public void  savePatient(Patient patient){
         Session session = getCurrentSession();
         try {
             session.save(patient);
@@ -51,13 +48,13 @@ public class PatientDao {
         }
     }
 
-    public Patients getPatientByUsername(String username){
+    public Patient getPatientByUsername(String username){
         Session session = getCurrentSession();
-        String hql = "select s from Patients s where s.username = :username";
-        Patients patient = new Patients();
+        String hql = "select s from Patient s where s.username = :username";
+        Patient patient = new Patient();
         patient.setUsername(username);
         try {
-            List<Patients> list =
+            List<Patient> list =
                     session.createQuery(hql).setProperties(patient).list();
             if(list.size()>0){return list.get(0);}
             return null;
@@ -69,11 +66,11 @@ public class PatientDao {
     public List<Evaluation_info> getEvaluation_infoById(int id) {
         Session session = getCurrentSession();
         try {
-            Patients instance = (Patients) session.get(
-                    "com.shinerio.domain.Patients", id);
+            Patient instance = (Patient) session.get(
+                    "com.shinerio.domain.Patient", id);
             if (instance != null){
-                Hibernate.initialize(instance.getEvaluation_info());  //这句很重要，否则会出现延迟加载异常
-                return instance.getEvaluation_info();}
+                Hibernate.initialize(instance.getEvaluation_infoList());  //这句很重要，否则会出现延迟加载异常
+                return instance.getEvaluation_infoList();}
             return null;
         } catch (Exception re) {
             throw re;

@@ -2,7 +2,7 @@ package com.shinerio.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.shinerio.domain.Evaluation_info;
-import com.shinerio.domain.Patients;
+import com.shinerio.domain.Patient;
 import com.shinerio.service.PatientService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -10,14 +10,11 @@ import net.sf.json.JsonConfig;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.support.ReplaceOverride;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.WebConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -80,7 +77,7 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
         此方法位客户端病患登录，采用json传输数据
      */
     public void login(){
-        Patients patient = patientService.login(username,password);
+        Patient patient = patientService.login(username,password);
         if(patient!=null){
             JsonConfig jsonConfig = new JsonConfig();
             jsonConfig.setExcludes(new String[]{"patientSet","doctor_info","password","username","evaluation_info"});  //配置过滤字段防止死循环
@@ -113,7 +110,7 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
             result = list;
         }
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"patient"});
+        jsonConfig.setExcludes(new String[]{"patient","rawdataList"});
         JSONArray jsonArray = JSONArray.fromObject(result,jsonConfig);
         try {
             PrintWriter writer = response.getWriter();

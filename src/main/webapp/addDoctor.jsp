@@ -83,7 +83,7 @@
             <label>联系电话：</label>
           </div>
           <div class="field">
-            <input id="phoneNum" type="text" class="input w50" value="" name="phoneNum" data-validate="required:请输入电话" />
+            <input id="telenum" type="text" class="input w50" value="" name="phoneNum" data-validate="required:请输入电话" />
           </div>
         </div>
         <div class="form-group">
@@ -159,21 +159,27 @@
   }
   function initData(){
     var username = getQueryString("username");
+    if(username!=null&&""!=username){
+      doSelect();
+    }
+  }
+  function doSelect(){
+    var username = getQueryString("username");
     $.ajax({
       type : "POST",            //请求方式
-      url : "superadmin/list",        //请求地址
+      url : "admin/list",        //请求地址
       data: "username="+username,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
       dataType : "json",    //返回数据类型
       success : function(data) {  //data为成功后返回数据
-        document.getElementById("username").value = data[0][0].username;
-        document.getElementById("realname").value = data[0][0].realname;
-        document.getElementById("age").value = data[0][1].age;
-        document.getElementById("major").value = data[0][1].major;
-        $("#department").val(data[0][1].department);
-        document.getElementById("phoneNum").value = data[0][1].phoneNum;
-        document.getElementById("emailaddress").value = data[0][1].emailAddress;
-        document.getElementById("workingtime").value = data[0][1].workingHours;
-        document.getElementById("workexperience").value = data[0][1].workExperience;
+        document.getElementById("username").value = data[0].username;
+        document.getElementById("realname").value = data[0].realname;
+        document.getElementById("age").value = data[0].age;
+        document.getElementById("major").value = data[0].major;
+        $("#department").val(data[0].department.name);
+        document.getElementById("phoneNum").value = data[0].telenum;
+        document.getElementById("emailaddress").value = data[0].emailaddress;
+        document.getElementById("workingtime").value = data[0].workingtime;
+        document.getElementById("workexperience").value = data[0].workexperience;
       }
     });
   }

@@ -1,21 +1,10 @@
-import com.shinerio.dao.DoctorDao;
-import com.shinerio.dao.PatientDao;
-import com.shinerio.domain.Doctors;
-import com.shinerio.domain.Patients;
-import org.hibernate.SessionFactory;
-import org.junit.Test;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Iterator;
-import java.util.Set;
-
 /**
  * Created by jstxzhangrui on 2016/11/26.
  */
 public class TestDAO {
 //用户名不唯一，重复运行请更换用户名
     //testDao内方法不能再进行测试，事务转移至service层
+    //项目代码已重新组织，下面代码或存在逻辑语法错误
     /*
     @Test
     public void insertDoctor(){

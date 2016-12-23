@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HistoryQuery</title>
+    <title>doctorInformation</title>
     <link rel="stylesheet" type="text/css" href="css/table.css">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -70,11 +70,10 @@
                     <a href="javascript:void(0)"><i class="fa fa-files-o"></i> <span
                             class="nav-label">医生信息</span></a>
                     <!--<ul class="nav nav-second-level collapse">
-
                     </ul>-->
                 </li>
                 <li >
-                    <a href="../HistoryQuery.jsp"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span></a>
+                    <a href="../historyQuery.jsp"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span></a>
                     <!--<ul class="nav nav-second-level collapse">-->
                     <!--<li><a href="javascript:void(0)">Basic form</a></li>-->
                     <!--<li><a href="javascript:void(0)">Advanced Plugins</a></li>-->
@@ -135,7 +134,7 @@
                         <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input  placeholder="年龄" class="form-control mess" value="${requestScope.doctor_info.age}" type="text">
+                                <input  placeholder="年龄" class="form-control mess" value="${sessionScope.doctor.age}" type="text">
                             </div>
                         </div>
                     </div>
@@ -145,7 +144,7 @@
                         <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input  placeholder="主治方向" class="form-control mess" value="${requestScope.doctor_info.major}" type="text">
+                                <input  placeholder="主治方向" class="form-control mess" value="${sessionScope.doctor.major}" type="text">
                             </div>
                         </div>
                     </div>
@@ -155,7 +154,7 @@
                         <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input  placeholder="参加工作时长" class="form-control mess" value="${requestScope.doctor_info.workingHours}" type="text">
+                                <input  placeholder="参加工作时长" class="form-control mess" value="${sessionScope.doctor.workingtime}年" type="text">
                             </div>
                         </div>
                     </div>
@@ -167,7 +166,7 @@
                         <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                <input  placeholder="邮箱" class="form-control mess" value="${requestScope.doctor_info.emailAddress}" type="text">
+                                <input  placeholder="邮箱" class="form-control mess" value="${sessionScope.doctor.emailaddress}" type="text">
                             </div>
                         </div>
                     </div>
@@ -180,7 +179,7 @@
                         <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                <input  placeholder="电话" class="form-control mess" value="${requestScope.doctor_info.phoneNum}" type="text">
+                                <input  placeholder="电话" class="form-control mess" value="${sessionScope.doctor.telenum}" type="text">
                             </div>
                         </div>
                     </div>
@@ -192,7 +191,7 @@
                         <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                <input  placeholder="地址" class="form-control mess" value="${requestScope.doctor_info.address}" type="text">
+                                <input  placeholder="地址" class="form-control mess" value="${sessionScope.doctor.houseaddress}" type="text">
                             </div>
                         </div>
                     </div>
@@ -205,7 +204,7 @@
                         <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5 selectContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                <input  placeholder="科室" class="form-control mess" value="${requestScope.doctor_info.department}" type="text">
+                                <input  placeholder="科室" class="form-control mess" value="${sessionScope.doctor.department.name}" type="text">
                                 <!--<select name="state" class="form-control selectpicker" >
                                     <option value=" " >请选择科室</option>
                                     <option>骨科</option>
@@ -242,7 +241,7 @@
                         <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                                <textarea class="form-control mess" name="comment"  placeholder="工作经历">${requestScope.doctor_info.workExperience}</textarea>
+                                <textarea class="form-control mess" name="comment"  placeholder="工作经历">${sessionScope.doctor.workexperience}</textarea>
                             </div>
                         </div>
                     </div>

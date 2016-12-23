@@ -26,7 +26,7 @@
     <!-- 本机数据库 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost/medicalmanage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">
+        <property name="url" value="jdbc:mysql://localhost/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">
         </property>
         <property name="username" value="root"></property>
         <property name="password" value="admin"></property>
@@ -48,11 +48,12 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>com.shinerio.domain.Patients</value>
-                <value>com.shinerio.domain.Doctors</value>
-                <value>com.shinerio.domain.Doctor_info</value>
-                <value>com.shinerio.domain.SuperAdmin</value>
+                <value>com.shinerio.domain.Patient</value>
+                <value>com.shinerio.domain.Doctor</value>
+                <value>com.shinerio.domain.Administrator</value>
                 <value>com.shinerio.domain.Evaluation_info</value>
+                <value>com.shinerio.domain.Department</value>
+                <value>com.shinerio.domain.Rawdata</value>
             </list>
         </property>
     </bean>

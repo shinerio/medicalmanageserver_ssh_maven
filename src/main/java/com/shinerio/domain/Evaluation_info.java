@@ -1,6 +1,8 @@
 package com.shinerio.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jstxzhangrui on 2016/12/21.
@@ -12,14 +14,24 @@ public class Evaluation_info {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
-    @JoinColumn(name="uid")
-    private Patients patient;
+    @JoinColumn(name="patient_id")
+    private Patient patient;
     @Column(name="start_time")
     private long start_time;
     @Column(name="end_time")
     private long end_time;
     @Column(name="success_ratio")
-    private int success_ratio;
+    private float success_ratio;
+    @OneToMany(mappedBy = "evaluation_info")
+    private List<Rawdata> rawdataList = new ArrayList<>();
+
+    public List<Rawdata> getRawdataList() {
+        return rawdataList;
+    }
+
+    public void setRawdataList(List<Rawdata> rawdataList) {
+        this.rawdataList = rawdataList;
+    }
 
     public int getId() {
         return id;
@@ -45,19 +57,19 @@ public class Evaluation_info {
         this.start_time = start_time;
     }
 
-    public Patients getPatient() {
+    public Patient getPatient() {
         return patient;
     }
 
-    public void setPatient(Patients patient) {
+    public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
-    public int getSuccess_ratio() {
+    public float getSuccess_ratio() {
         return success_ratio;
     }
 
-    public void setSuccess_ratio(int success_ratio) {
+    public void setSuccess_ratio(float success_ratio) {
         this.success_ratio = success_ratio;
     }
 }
