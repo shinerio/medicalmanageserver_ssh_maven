@@ -61,8 +61,8 @@
                 <td colspan="7" style="text-align:left;padding-left:20px;"><a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect()"> 删除</a></td>
             </tr>--%>
             <tr>
-                <td colspan="8"><div class="pagelist"><span class="current" onclick="first_page()">首页</span> <a href="javascript:void(0)" onclick="last_page()">上一页</a> <%--<span class="current">1</span><a href="">2</a><a href="">3</a>--%><a href="javascript:void(0)" onclick="next_page()">下一页</a>
-                    <input type="text" id="page" placeholder="" name="keywords" class="input" style="width:35px; line-height:17px;display:inline-block" value="1"/>
+                <td colspan="8"><div class="pagelist"><a href="javascript:void(0)" onclick="first_page()">首页</a> <a href="javascript:void(0)" onclick="last_page()">上一页</a> <%--<span class="current">1</span><a href="">2</a><a href="">3</a>--%><a href="javascript:void(0)" onclick="next_page()">下一页</a>
+                    <input type="text" id="page" placeholder="" name="keywords" class="input" style="width:40px; line-height:17px;display:inline-block" value="1"/>
                 </div></td>
             </tr>
         </table>
