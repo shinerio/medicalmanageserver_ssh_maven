@@ -1,5 +1,6 @@
 package com.shinerio.service;
 
+import com.shinerio.domain.Department;
 import com.shinerio.domain.Doctor;
 
 /**
@@ -10,4 +11,5 @@ public interface DoctorService {
     public void addDoctor(Doctor doctor);
     public void deleteDoctor(Doctor doctor);
     public Doctor getDoctor(String username);
+    public Department getDepartment(String username);
 }

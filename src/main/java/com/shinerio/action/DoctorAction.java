@@ -1,6 +1,7 @@
 package com.shinerio.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.shinerio.domain.Department;
 import com.shinerio.domain.Doctor;
 import com.shinerio.service.DoctorService;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -34,6 +35,10 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
         this.age = age;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+
     public void setDepartment(String department) {
         this.department = department;
     }
@@ -62,7 +67,6 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
     private String workexperience;
     @Autowired
     private DoctorService doctorService;
-
     public String getUsername() {
         return username;
     }
@@ -105,10 +109,13 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
     public String addDoctor(){
         Doctor doctor = doctorService.getDoctor(username);
         if(doctor==null){   //没有，可以新建
-
+            Department department_temp = doctorService.getDepartment(department);
+            Doctor temp = new Doctor(username,1,"offiveaddress",major,workingtime,"houseaddress",workexperience,emailaddress,telenum,
+                    age,department_temp,realname,"admin");
+            doctorService.addDoctor(temp);
             return SUCCESS;
         }else {
-            return "error";
+            return INPUT;
         }
     }
 }

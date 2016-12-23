@@ -1,15 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-cn">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="renderer" content="webkit">
-<title></title>
-<link rel="stylesheet" href="css/pintuer.css">
-<link rel="stylesheet" href="css/admin.css">
-<script src="js/jquery.js"></script>
-<script src="js/pintuer.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="renderer" content="webkit">
+  <title></title>
+  <link rel="stylesheet" href="css/pintuer.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/pintuer.js"></script>
   <style type="text/css">
     .input[readonly]{        /*只读时的颜色控制*/
       background-color: #ffffff;
@@ -52,17 +52,17 @@
           <label>照片：</label>
         </div>
         <div class="field" id="photo">
-              <img src="images/y.jpg " width="71px" height="99px">
+          <img src="images/y.jpg " width="71px" height="99px">
         </div>
-      </div>     
-      
+      </div>
+
       <if condition="$iscid eq 1">
         <div class="form-group">
           <div class="label">
             <label>科室：</label>
           </div>
           <div class="field">
-            <select id="department" name="sectionOffice" class="input w50">
+            <select id="department" name="department" class="input w50">
               <option value="">请选择科室</option>
               <option value="神经内科">神经内科</option>
               <option value="骨科">骨科</option>
@@ -83,7 +83,7 @@
             <label>联系电话：</label>
           </div>
           <div class="field">
-            <input id="telenum" type="text" class="input w50" value="" name="phoneNum" data-validate="required:请输入电话" />
+            <input id="phoneNum" type="text" class="input w50" value="" name="telenum" data-validate="required:请输入电话" />
           </div>
         </div>
         <div class="form-group">
@@ -91,7 +91,7 @@
             <label>邮箱：</label>
           </div>
           <div class="field">
-            <input type="text" id="emailaddress" class="input w50" value="" name="emailAddress" data-validate="required:请输入邮箱" />
+            <input type="text" id="emailaddress" class="input w50" value="" name="emailaddress" data-validate="required:请输入邮箱" />
           </div>
         </div>
         <div class="form-group">
@@ -110,11 +110,11 @@
           <div class="label">
             <label>其他属性：</label>
           </div>
-          <div class="field" style="padding-top:8px;"> 
+          <div class="field" style="padding-top:8px;">
             首页 <input id="ishome"  type="checkbox" />
             推荐 <input id="isvouch"  type="checkbox" />
-            置顶 <input id="istop"  type="checkbox" /> 
-         
+            置顶 <input id="istop"  type="checkbox" />
+
           </div>
         </div>-->
       </if>
@@ -128,7 +128,7 @@
           <div class="tips"></div>
         </div>
       </div>
-     
+
       <div class="clear"></div>
       <div class="form-group">
         <div class="label">
@@ -146,24 +146,23 @@
   $(document).ready(function(){
     $(".input").attr("readOnly","readonly");
   });
-
   $("#revamp").click(function(){
     $(".input").removeAttr("readOnly");
     $("#photo").html('<input type="text" id="url1" name="img" class="input tips" style="width:25%; float:left;"  value=""  data-toggle="hover" data-place="right" data-image="" /> <input type="button" class="button bg-blue margin-left" id="image1" value="+ 浏览上传"  style="float:left;"> <div class="tipss">图片尺寸：500*500</div>')
     return false;
   });
   function getQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
-    if (r != null) return unescape(r[2]); return null;
+    if(r!=null)return  unescape(r[2]); return null;
   }
   function initData(){
     var username = getQueryString("username");
-    if(username!=null&&""!=username){
-      doSelect();
+    if(username!=null&&username!=""){
+      selectDoctor();
     }
   }
-  function doSelect(){
+  function selectDoctor(){
     var username = getQueryString("username");
     $.ajax({
       type : "POST",            //请求方式

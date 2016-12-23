@@ -166,4 +166,20 @@ public class Doctor {
         this.emailaddress = emailaddress;
     }
 
+    public Doctor(String username, int gender, String officeaddress, String major, int workingtime, String houseaddress, String workexperience, String emailaddress, long telenum, int age, Department department, String realname, String password) {
+        this.username = username;
+        this.gender = gender;
+        this.officeaddress = officeaddress;
+        this.major = major;
+        this.workingtime = workingtime;
+        this.houseaddress = houseaddress;
+        this.workexperience = workexperience;
+        this.emailaddress = emailaddress;
+        this.telenum = telenum;
+        this.age = age;
+        this.department = department;
+        this.realname = realname;
+        this.password = password;
+
+    }
 }
