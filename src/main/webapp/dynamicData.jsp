@@ -416,7 +416,7 @@
             visualMap: [{
                 pieces: [
                     {gt: 80,color:'red'},            // (1500, Infinity]
-                    {gt: 0, lte: 20,color:'green'} // (900, 1500]
+                    {gt: 0, lte: 80,color:'#1AB394'} // (900, 1500]
 
                 ]
             }],
@@ -454,14 +454,15 @@
                 showSymbol: false,
                 hoverAnimation: false,
                 /*data: data,*/
-                itemStyle: {
+                /*itemStyle: {
                     normal: {
                         color: '#1AB394',
                         lineStyle: {
                             color: '#1AB394'
                         }
                     }
-                }
+                }*/
+
             }]
         };
         app.timeTicket = setInterval(function () {
@@ -534,8 +535,12 @@
 
 </script>
 <script> /*echarts自适应屏幕*/
-     $("#container1").resize(function(){ $(myChart1).resize(); })
-     $("#container2").resize(function(){ $(myChart2).resize(); })
+
+
+$("#container1").resize(function(){ $(myChart1).resize(); });
+$("#container2").resize(function(){ $(myChart2).resize(); })
+
+
 </script>
 <script src="js/toastr.js"></script>
 <script>
@@ -602,7 +607,7 @@
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        GloveDataWS.connect('ws://localhost/GloveData');
+        GloveDataWS.connect('ws://10.103.26.221/GloveData');
     };
 
     GloveDataWS.sendMessage = (function () {
@@ -626,7 +631,6 @@
 
                 $("#button_evaluate").click(function () {
                     if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
-                        alert("进来了!")
                          toastr.warning('请登录后再进行评估！');
                     }else {
                         duration = $("#range_01").val();
@@ -673,7 +677,7 @@
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        CommandDataWS.connect('ws://localhost/CommandData');
+        CommandDataWS.connect('ws://10.103.26.221/CommandData');
     };
 
     CommandDataWS.sendMessage = (function () {

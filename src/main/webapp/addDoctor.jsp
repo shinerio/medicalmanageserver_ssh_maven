@@ -31,6 +31,14 @@
       </div>
       <div class="form-group">
         <div class="label">
+          <label>登录密码：</label>
+        </div>
+        <div class="field">
+          <input type="text" id="" class="input w50" value="" name="" data-validate="required:请输入登录密码" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
           <label>姓名：</label>
         </div>
         <div class="field">
@@ -92,6 +100,22 @@
           </div>
           <div class="field">
             <input type="text" id="emailaddress" class="input w50" value="" name="emailAddress" data-validate="required:请输入邮箱" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>办公地址：</label>
+          </div>
+          <div class="field">
+            <input type="text" id="" class="input w50" value="" name="" data-validate="required:请输入办公地址" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>家庭地址：</label>
+          </div>
+          <div class="field">
+            <input type="text" id="" class="input w50" value="" name="" data-validate="required:请输入家庭地址" />
           </div>
         </div>
         <div class="form-group">
