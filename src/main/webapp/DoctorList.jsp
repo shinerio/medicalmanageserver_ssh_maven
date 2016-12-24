@@ -56,23 +56,48 @@
             </thead>
             <tbody id="doctorBody">
             </tbody>
-            <tr>
+            <%--<tr>
                 <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>全选 </td>
                 <td colspan="7" style="text-align:left;padding-left:20px;"><a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect()"> 删除</a></td>
-            </tr>
+            </tr>--%>
             <tr>
-                <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+                <td colspan="8"><div class="pagelist"><a href="javascript:void(0)" onclick="first_page()">首页</a> <a href="javascript:void(0)" onclick="last_page()">上一页</a> <%--<span class="current">1</span><a href="">2</a><a href="">3</a>--%><a href="javascript:void(0)" onclick="next_page()">下一页</a>
+                    <input type="text" id="page" placeholder="" name="keywords" class="input" style="width:40px; line-height:17px;display:inline-block" value="1"/>
+                </div></td>
             </tr>
         </table>
     </div>
 </form>
+<script>
+    var pages = 1;
+    function first_page() {   /*回到首页*/
+        pages=1;
+        $("#page").val(pages);
+        selectDoctor();
+    }
+    function last_page() {     /*上一页*/
+         if(pages>1){
+             pages--;
+             $("#page").val(pages);
+             selectDoctor();
+         }else {
+             return false;
+         }
+    }
+    function next_page() {   /*下一页*/
+         pages++;
+        $("#page").val(pages);
+        selectDoctor();
+    }
+</script>
 <script type="text/javascript">
     //页面ajax加载数据
     function selectDoctor(){
+
         $.ajax({
             type : "POST",            //请求方式
             url : "admin/list",        //请求地址
-            data: "department="+$("#department").val()+"&&realname="+$("#realname").val(),  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            data: "department="+$("#department").val()+"&&realname="+$("#realname").val()+"&&pages="+pages,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
             dataType : "json",    //返回数据类型
             success : function(data) {  //data为成功后返回数据
                 var doctorBody = document.getElementById("doctorBody");
@@ -86,7 +111,7 @@
                             " <td><font color='#00CC99'>" + data[i].telenum + "</font></td> " +
                             "<td>" + data[i].emailaddress + "</td>" +
                             " <td>2016-07-01</td>" +
-                            "<td><div class='button-group'> <a class='button border-main' href='addDoctor.jsp?username=" + data[i].username + "'><span class='icon-edit'></span>详情</a> <a class='button border-red' href='javascript:void(0)' onclick='return del(1,1,1)'><span class='icon-trash-o'></span> 删除</a> </div></td>"
+                            "<td><div class='button-group'> <a class='button border-main' href='addDoctor.jsp?username=" + data[i].username + "'><span class='icon-edit'></span>详情</a> <!--<a class='button border-red' href='javascript:void(0)' onclick='return del(1,1,1)'><span class='icon-trash-o'></span> 删除</a>--> </div></td>"
                 }
             }
         });

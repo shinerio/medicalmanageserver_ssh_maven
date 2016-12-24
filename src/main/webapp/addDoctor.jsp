@@ -175,6 +175,8 @@
     var username = getQueryString("username");
     if(username!=null&&username!=""){
       selectDoctor();
+    }else {
+      $(".input").removeAttr("readOnly");
     }
   }
   function selectDoctor(){
