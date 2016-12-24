@@ -8,7 +8,7 @@ import java.util.List;
  * Created by jstxzhangrui on 2016/12/22.
  */
 @Entity
-@Table(name="DEPARTMENT")
+@Table(name="department")
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

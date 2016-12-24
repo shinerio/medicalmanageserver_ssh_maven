@@ -305,11 +305,7 @@
                                         <table class="table table-bordered table-striped table-hover table">
                                             <thead>
                                             <tr class="success">
-<<<<<<< HEAD
-                                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">编号</th>
-=======
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估编号</th>
->>>>>>> d5351a7295072f4fe148d71c15cbb801c2d095e2
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时间</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时长</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">成功率</th>
@@ -737,8 +733,7 @@
                 data1.data.splice(0,data1.data.length);
                 for(var i =0;i<data.length;i++){
 
-                    var row = mybody.insertRow();
-<<<<<<< HEAD
+                    var row = mybody.insertRow()
                     var  num = row.insertCell();
                     var startTime = row.insertCell();
                     var length = row.insertCell();
@@ -747,20 +742,7 @@
                     startTime.className="cellNormal";
                     length.className="cellNormal";
                     success_ratio.className="cellNormal";
-                    num.innerHTML=data[i].id;
-=======
-                    var evaluate_id = row.insertCell();
-                    var startTime = row.insertCell();
-                    var length = row.insertCell();
-                    var success_ratio = row.insertCell();
-
-                    evaluate_id.className="cellNormal";
-                    startTime.className="cellNormal";
-                    length.className="cellNormal";
-                    success_ratio.className="cellNormal";
-
-                    evaluate_id.innerHTML='<button type="button" class="btn btn-link"><a id="button_evaluate_playback">2</a></button>';
->>>>>>> d5351a7295072f4fe148d71c15cbb801c2d095e2
+                    num.innerHTML="<p>"+data[i].id+"</p>";
                     startTime.innerHTML=new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
                     length.innerHTML=((data[i].end_time-data[i].start_time)/1000/60).toFixed(2)+"分钟";
                     success_ratio.innerHTML=data[i].success_ratio;

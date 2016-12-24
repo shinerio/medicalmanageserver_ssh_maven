@@ -32,7 +32,7 @@ public class TestService {
         PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
         Patient patient = patientService.login(username,password);
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"doctor","password","username","evaluation_infoList"});
+        jsonConfig.setExcludes(new String[]{"doctor","department","password","username","evaluation_infoList"});
         JSONObject jsonDoctor = JSONObject.fromObject(patient,jsonConfig);
         System.out.print(jsonDoctor);
     }

@@ -29,6 +29,22 @@ public class DoctorAction extends ActionSupport implements ServletRequestAware {
     private long telenum;
     private String emailaddress;
 
+    public String getOfficeaddress() {
+        return officeaddress;
+    }
+
+    public void setOfficeaddress(String officeaddress) {
+        this.officeaddress = officeaddress;
+    }
+
+    public String getHouseaddress() {
+        return houseaddress;
+    }
+
+    public void setHouseaddress(String houseaddress) {
+        this.houseaddress = houseaddress;
+    }
+
     public void setRealname(String realname) {
         this.realname = realname;
     }
