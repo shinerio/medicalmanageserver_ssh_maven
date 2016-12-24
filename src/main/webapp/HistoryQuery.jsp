@@ -129,7 +129,7 @@
                                                                 <span class="label label-success">姓名</span>
                                                             </div>
                                                             <div class="ibox-content">
-                                                                <h1 class="no-margins">张三</h1>
+                                                                <h1 id="realname" class="no-margins"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -139,7 +139,7 @@
                                                                 <span class="label label-info ">年龄</span>
                                                             </div>
                                                             <div class="ibox-content">
-                                                                <h1 class="no-margins">59</h1>
+                                                                <h1 id="age" class="no-margins"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -149,7 +149,7 @@
                                                                 <span class="label label-primary ">性别</span>
                                                             </div>
                                                             <div class="ibox-content">
-                                                                <h1 class="no-margins">男</h1>
+                                                                <h1 id="gender" class="no-margins"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -161,7 +161,7 @@
                                                                 <span class="label label-success">病症</span>
                                                             </div>
                                                             <div class="ibox-content" style="height: 30%">
-                                                                <h1 class="no-margins">中风后上肢功能障碍</h1>
+                                                                <h1 id="disease" class="no-margins"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -475,15 +475,15 @@
             postfix: "分钟"
         });
         show_table("", "");
-        show_echarts1();
         show_echarts2();
+        show_echarts1();
     }
 
     function getEvaluateTime(s) {    //取得评估时间，用于搜索重演
         //alert(s.innerHTML)
     }
 
-
+    var controlChart; //控制折线图显示
     function show_echarts1() {        <!--图1的echarts展示-->
         dom1 = document.getElementById("container1");
         myChart1 = echarts.init(dom1);
@@ -491,12 +491,15 @@
         option = null;
         function pushData() {
             now = new Date();
-            var value = Math.random() * 100;
+            var value = linerData.pop();
+            if(value==null){
+                value = 0;
+            }
             return {
                 name: now.toString(),    //鼠标指上去显示当前时间
                 value: [
                     now,
-                    linerData.pop()
+                    value
                 ]
             }
         }
@@ -572,7 +575,6 @@
             }]
         };
         app.timeTicket = setInterval(function () {
-
             for (var i = 0; i < 1; i++) {
                 data.shift();
                 data.push(pushData());
@@ -584,14 +586,13 @@
                 }]
             });
         }, 100);
+        controlChart = app.timeTicket;
         if (option && typeof option === "object") {
             myChart1.setOption(option, true);
-
         }
     }
 
     function show_echarts2() {              <!--图2的echarts展示-->
-
         dom2 = document.getElementById("container2");
         myChart2 = echarts.init(dom2);
         option = {
@@ -711,6 +712,15 @@ $("#container2").resize(function () {
                     success_ratio.innerHTML = data[i].success_ratio;
                     data1.categories.push(new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss"));
                     data1.data.push(data[i].success_ratio);
+                    document.getElementById("realname").innerHTML=data[i].patient.realname;
+                    document.getElementById("age").innerHTML=data[i].patient.age;
+                    document.getElementById("disease").innerHTML=data[i].patient.disease;
+                    if(data[i].patient.gender==1){
+                        document.getElementById("gender").innerHTML="男";
+                    }
+                    if(data[i].patient.gender==2){
+                        document.getElementById("gender").innerHTML="女";
+                    }
                 }
                 setdata();
             }
@@ -734,14 +744,16 @@ $("#container2").resize(function () {
         $.ajax({
            type: "POST",            //请求方式
            url: "patient/getRowData",        //请求地址
-           data: "evaluation_id="+evaid,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
-           dataType: "json",    //返回数据类型
+            data: "evaluation_id="+evaid,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            dataType: "json",    //返回数据类型
             success: function (data) {  //data为成功后返回数据
                 var newLinerData = new Array();
                 for(var i=0;i<data.length;i++){
                     newLinerData.push(data[i].score);
                 }
                 linerData = newLinerData;
+                controlChart.clearInterval();
+                show_echarts1();
             }
        });
     }
@@ -751,10 +763,6 @@ $("#container2").resize(function () {
 <script>
     var number = 0;
     var linerData = new Array();
-    for(var i=0;i<5000;i++)
-    {
-        linerData.push(100);
-    }
 </script>
 
 </body>

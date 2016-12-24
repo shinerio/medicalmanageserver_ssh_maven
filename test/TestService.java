@@ -1,3 +1,4 @@
+import com.shinerio.domain.Evaluation_info;
 import com.shinerio.domain.Patient;
 import com.shinerio.service.DoctorService;
 import com.shinerio.service.PatientService;
@@ -70,6 +71,16 @@ public class TestService {
         List list = patientService.getRawDataByEvaid(1);
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.setExcludes(new String[]{"id","evaluation_info","time_stamp","json_string"});
+        JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
+        System.out.print(jsonArray);
+    }
+@Test
+    public void listHistoryData(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
+        List<Evaluation_info>  list = patientService.getEvaluation_infoById(1);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"doctor","password","rawdataList","evaluation_infoList"});
         JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
         System.out.print(jsonArray);
     }

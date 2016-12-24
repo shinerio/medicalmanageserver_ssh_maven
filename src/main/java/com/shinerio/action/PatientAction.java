@@ -110,9 +110,11 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
             result = list;
         }
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"patient","rawdataList"});
+        jsonConfig.setExcludes(new String[]{"doctor","password","rawdataList","evaluation_infoList"});
         JSONArray jsonArray = JSONArray.fromObject(result,jsonConfig);
         try {
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
             PrintWriter writer = response.getWriter();
             writer.write(jsonArray.toString());
             writer.flush();
