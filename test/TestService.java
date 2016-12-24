@@ -63,4 +63,14 @@ public class TestService {
         JSONArray jsonArray = JSONArray.fromObject(administratorService.doctorList(0,1,new HashMap<>()),jsonConfig);
         System.out.print(jsonArray);
     }
+    @Test
+    public void getRawData(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
+        List list = patientService.getRawDataByEvaid(1);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"id","evaluation_info","time_stamp","json_string"});
+        JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
+        System.out.print(jsonArray);
+    }
 }

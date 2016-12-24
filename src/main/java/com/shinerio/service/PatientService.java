@@ -2,6 +2,7 @@ package com.shinerio.service;
 
 import com.shinerio.domain.Evaluation_info;
 import com.shinerio.domain.Patient;
+import com.shinerio.domain.Rawdata;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface PatientService {
     public boolean deletePatient(Patient patient);
     public Patient login(String username,String password);
     public List<Evaluation_info> getEvaluation_infoById(int id);
+    public List<Rawdata> getRawDataByEvaid(int id);
 }

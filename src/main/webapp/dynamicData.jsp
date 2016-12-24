@@ -551,7 +551,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
 </script>
 <script>
     "use strict";
-    var number;
+    var number = 0;
     var websocketData = "";
     var flag = true;
     var GloveDataWS = {};

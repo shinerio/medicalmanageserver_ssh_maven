@@ -12,7 +12,7 @@ public class Rawdata {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
-    @JoinColumn(name="evaluation_info")
+    @JoinColumn(name="evaluation_id")
     private Evaluation_info evaluation_info;
     @Column(name="time_stamp")
     private long time_stamp;

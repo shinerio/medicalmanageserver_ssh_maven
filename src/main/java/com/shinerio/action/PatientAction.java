@@ -122,4 +122,19 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
         }
     }
 
+    public void getRowData(){
+        int evaluation_id = Integer.parseInt(request.getParameter("evaluation_id"));
+        List list = patientService.getRawDataByEvaid(evaluation_id);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"id","evaluation_info","time_stamp","json_string"});
+        JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
+        try {
+            PrintWriter writer = response.getWriter();
+            writer.write(jsonArray.toString());
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
