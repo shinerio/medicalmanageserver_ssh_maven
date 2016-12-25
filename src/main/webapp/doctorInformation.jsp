@@ -13,16 +13,16 @@
     <title>doctorInformation</title>
     <link rel="stylesheet" type="text/css" href="css/table.css">
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
-    <link href="../css/plugins/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">
-    <link href="../css/plugins/ionRangeSlider/normalize.css" rel="stylesheet">
-    <link href="../css/plugins/toastr/toastr.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style_time.css" media="screen" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinHTML5.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/normalize.css" rel="stylesheet">
+    <link href="css/plugins/toastr/toastr.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style_time.css" media="screen" type="text/css" />
     <style type="text/css">
         .mess[readonly]{        /*只读时的颜色控制*/
             background-color: #ffffff;
@@ -43,7 +43,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-<img alt="image" class="img-circle" src="../img/profile_small.jpg">
+<img alt="image" class="img-circle" src="img/profile_small.jpg">
 </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)">
 <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${sessionScope.doctor.realname}</strong>
@@ -52,7 +52,7 @@
                             <li><a href="javascript:void(0)">个人信息</a></li>
                             <li><a href="javascript:void(0)">联系方式</a></li>
                             <li class="divider"></li>
-                            <li><a href="login.jsp">退出登录</a></li>
+                            <li><a href="doctorLogin.jsp">退出登录</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -63,7 +63,7 @@
                     <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">病人列表</span>
                         <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="../dynamicData.jsp">李华</a></li>
+                        <li><a href="dynamicData.jsp">李华</a></li>
                     </ul>
                 </li>
                 <li class="active">
@@ -73,7 +73,7 @@
                     </ul>-->
                 </li>
                 <li >
-                    <a href="../historyQuery.jsp"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span></a>
+                    <a href="./HistoryQuery.jsp"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span></a>
                     <!--<ul class="nav nav-second-level collapse">-->
                     <!--<li><a href="javascript:void(0)">Basic form</a></li>-->
                     <!--<li><a href="javascript:void(0)">Advanced Plugins</a></li>-->
@@ -100,7 +100,7 @@
 
 
                     <li>
-                        <a href="login.jsp">
+                        <a href="doctorLogin.jsp">
                             <i class="fa fa-sign-out"></i> 注销
                         </a>
                     </li>
@@ -271,34 +271,32 @@
     </div>
 
 </div>
-<script src='../js/jquery.js'></script>
-<script src="../js/jquery-2.0.3.js"></script>
-<script src="../js/jquery-2.0.3.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="../js/plugins/flot/jquery.flot.js"></script>
-<script src="../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="../js/plugins/flot/jquery.flot.spline.js"></script>
-<script src="../js/plugins/flot/jquery.flot.resize.js"></script>
-<script src="../js/plugins/flot/jquery.flot.pie.js"></script>
-<script src="../js/plugins/flot/jquery.flot.symbol.js"></script>
-<script src="../js/plugins/flot/curvedLines.js"></script>
-<script src="../js/plugins/peity/jquery.peity.min.js"></script>
-<script src="../js/demo/peity-demo.js"></script>
-<script src="../js/inspinia.js"></script>
-<script src="../js/plugins/pace/pace.min.js"></script>
-<script src="../js/plugins/jquery-ui/jquery-ui.min.js"></script>
-<script src="../js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-<script src="../js/plugins/sparkline/jquery.sparkline.min.js"></script>
-<script src="../js/plugins/chartJs/Chart.min.js"></script>
-<script src="../js/ion.rangeSlider.js"></script>
-<script src="../js/ion.rangeSlider.min.js"></script>
-<script src="../js/index.js"></script>
-<script src="../js/toastr.min.js"></script>
-<script type="text/javascript" src="../echarts/echarts.min.js"></script>
-
-<script src="../css/plugins/ionRangeSlider/toastr.js"></script>
+<script src='js/jquery.js'></script>
+<script src="js/jquery-2.0.3.js"></script>
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="js/plugins/flot/jquery.flot.js"></script>
+<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="js/plugins/flot/jquery.flot.spline.js"></script>
+<script src="js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="js/plugins/flot/jquery.flot.symbol.js"></script>
+<script src="js/plugins/flot/curvedLines.js"></script>
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+<script src="js/demo/peity-demo.js"></script>
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
+<script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script src="js/plugins/chartJs/Chart.min.js"></script>
+<script src="js/ion.rangeSlider.js"></script>
+<script src="js/ion.rangeSlider.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/toastr.min.js"></script>
+<script type="text/javascript" src="echarts/echarts.min.js"></script>
 
 <script>
     $(document).ready(function(){

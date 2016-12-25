@@ -305,11 +305,7 @@
                                         <table class="table table-bordered table-striped table-hover table">
                                             <thead>
                                             <tr class="success">
-<<<<<<< HEAD
-                                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">编号</th>
-=======
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估编号</th>
->>>>>>> d5351a7295072f4fe148d71c15cbb801c2d095e2
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时间</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时长</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">成功率</th>
@@ -437,19 +433,19 @@
                         }, {
                             opacity: 1
                         }]
-                    },
+                    }
                 },
                 points: {
                     width: 0.1,
                     show: false
-                },
+                }
             },
             grid: {
                 show: false,
                 borderWidth: 0
             },
             legend: {
-                show: false,
+                show: false
             }
         });
 
@@ -604,7 +600,7 @@
                 name: '模拟数据',
                 type: 'line',
                 showSymbol: false,
-                hoverAnimation: false,
+                hoverAnimation: false
                 /*data: data,*/
                 /*itemStyle: {
                     normal: {
@@ -723,7 +719,7 @@
         for (var k in o)
             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
-    }
+    };
     function show_table(var1,var2) {
         $.ajax({
             type : "POST",            //请求方式
@@ -738,17 +734,6 @@
                 for(var i =0;i<data.length;i++){
 
                     var row = mybody.insertRow();
-<<<<<<< HEAD
-                    var  num = row.insertCell();
-                    var startTime = row.insertCell();
-                    var length = row.insertCell();
-                    var success_ratio = row.insertCell();
-                    num.className = "cellNormal";
-                    startTime.className="cellNormal";
-                    length.className="cellNormal";
-                    success_ratio.className="cellNormal";
-                    num.innerHTML=data[i].id;
-=======
                     var evaluate_id = row.insertCell();
                     var startTime = row.insertCell();
                     var length = row.insertCell();
@@ -759,8 +744,7 @@
                     length.className="cellNormal";
                     success_ratio.className="cellNormal";
 
-                    evaluate_id.innerHTML='<button type="button" class="btn btn-link"><a id="button_evaluate_playback">2</a></button>';
->>>>>>> d5351a7295072f4fe148d71c15cbb801c2d095e2
+                    evaluate_id.innerHTML='<button type="button" class="btn btn-link"><a id="button_evaluate_playback">'+data[i].id+'</a></button>';
                     startTime.innerHTML=new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
                     length.innerHTML=((data[i].end_time-data[i].start_time)/1000/60).toFixed(2)+"分钟";
                     success_ratio.innerHTML=data[i].success_ratio;
@@ -786,7 +770,7 @@
     }
 </script>
 
-<script src="css/plugins/ionRangeSlider/toastr.js"></script>
+<script src="js/toastr.js"></script>
 <script>
     "use strict";
     var number;
@@ -835,7 +819,7 @@
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        GloveDataWS.connect('ws://10.103.26.221/GloveData');
+        GloveDataWS.connect('ws://localhost/GloveData');
     };
 
     GloveDataWS.sendMessage = (function () {
@@ -858,7 +842,7 @@
             clearTimeout(t2);
 
             $("#button_evaluate_playback").click(function () {
-                evaluate_id = $("#button_evaluate_playback").val();  //取得评估再现的id编号
+                evaluate_id = $("#button_evaluate_playback").text();  //取得评估再现的id编号
 
                 toastr.success('正在开始评估再现......');
                 message_send = "evaluate_playback";
@@ -890,7 +874,7 @@
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        EvaluateReappear.connect('ws://10.103.26.221/CommandData');
+        EvaluateReappear.connect('ws://localhost/CommandData');
     };
 
     EvaluateReappear.sendMessage = (function () {

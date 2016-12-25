@@ -118,7 +118,7 @@
 
 
                     <li style="height: 60px;width:72px;display: inline-block">
-                        <a id="loginLink" href="../doctorLogin.jsp"><i class="fa fa-sign-out"></i> <span id="login">登录</span></a>
+                        <a id="loginLink" href="doctorLogin.jsp"><i class="fa fa-sign-out"></i> <span id="login">登录</span></a>
                     </li>
 
                 </ul>
@@ -346,9 +346,9 @@
         }else {
             // alert("已认证");
             $(".lock").attr('src','/img/unlock.png');
-            $("#hisquery").attr('href','historyQuery.jsp');
+            $("#hisquery").attr('href','HistoryQuery.jsp');
             $("#doctorinformation").attr('href','doctorInformation.jsp');
-            $("#login").html("注销")
+            $("#login").html("注销");
             $("#loginLink").attr('href','doctor/logOut');
         }
     }
@@ -452,7 +452,7 @@
                 name: '模拟数据',
                 type: 'line',
                 showSymbol: false,
-                hoverAnimation: false,
+                hoverAnimation: false
                 /*data: data,*/
                 /*itemStyle: {
                     normal: {
@@ -551,7 +551,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
 </script>
 <script>
     "use strict";
-    var number;
+    var number = 0;
     var websocketData = "";
     var flag = true;
     var GloveDataWS = {};
@@ -607,7 +607,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        GloveDataWS.connect('ws://10.103.26.221/GloveData');
+        GloveDataWS.connect('ws://localhost/GloveData');
     };
 
     GloveDataWS.sendMessage = (function () {
@@ -677,7 +677,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
         // } else {
         //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
         // }
-        CommandDataWS.connect('ws://10.103.26.221/CommandData');
+        CommandDataWS.connect('ws://localhost/CommandData');
     };
 
     CommandDataWS.sendMessage = (function () {
