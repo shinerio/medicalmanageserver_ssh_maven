@@ -2,6 +2,7 @@ package com.shinerio.dao;
 
 import com.shinerio.domain.Evaluation_info;
 import com.shinerio.domain.Patient;
+import com.shinerio.domain.Rawdata;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -76,4 +77,19 @@ public class PatientDao {
             throw re;
         }
     }
+
+    public List<Rawdata> getRowDataByEvaid(int id){
+        Session session = getCurrentSession();
+        try {
+            Evaluation_info instance = (Evaluation_info) session.get(
+                    "com.shinerio.domain.Evaluation_info", id);
+            if (instance != null){
+                Hibernate.initialize(instance.getRawdataList());  //这句很重要，否则会出现延迟加载异常
+                return instance.getRawdataList();}
+            return null;
+        } catch (Exception re) {
+            throw re;
+        }
+    }
+
 }

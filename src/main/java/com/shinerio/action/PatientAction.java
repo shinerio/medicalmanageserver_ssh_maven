@@ -80,7 +80,7 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
         Patient patient = patientService.login(username,password);
         if(patient!=null){
             JsonConfig jsonConfig = new JsonConfig();
-            jsonConfig.setExcludes(new String[]{"patientSet","doctor_info","password","username","evaluation_info"});  //配置过滤字段防止死循环
+            jsonConfig.setExcludes(new String[]{"doctor","department","password","username","evaluation_infoList"});  //配置过滤字段防止死循环
             JSONObject jsonDoctor = JSONObject.fromObject(patient,jsonConfig);
             try {
                 PrintWriter writer = response.getWriter();
@@ -110,9 +110,11 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
             result = list;
         }
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"patient","rawdataList"});
+        jsonConfig.setExcludes(new String[]{"doctor","password","rawdataList","evaluation_infoList"});
         JSONArray jsonArray = JSONArray.fromObject(result,jsonConfig);
         try {
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
             PrintWriter writer = response.getWriter();
             writer.write(jsonArray.toString());
             writer.flush();
@@ -122,4 +124,19 @@ public class PatientAction extends ActionSupport implements ServletRequestAware,
         }
     }
 
+    public void getRowData(){
+        int evaluation_id = Integer.parseInt(request.getParameter("evaluation_id"));
+        List list = patientService.getRawDataByEvaid(evaluation_id);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"id","evaluation_info","time_stamp","json_string"});
+        JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
+        try {
+            PrintWriter writer = response.getWriter();
+            writer.write(jsonArray.toString());
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,3 +1,4 @@
+import com.shinerio.domain.Evaluation_info;
 import com.shinerio.domain.Patient;
 import com.shinerio.service.DoctorService;
 import com.shinerio.service.PatientService;
@@ -32,7 +33,7 @@ public class TestService {
         PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
         Patient patient = patientService.login(username,password);
         JsonConfig jsonConfig = new JsonConfig();
-        jsonConfig.setExcludes(new String[]{"doctor","password","username","evaluation_infoList"});
+        jsonConfig.setExcludes(new String[]{"doctor","department","password","username","evaluation_infoList"});
         JSONObject jsonDoctor = JSONObject.fromObject(patient,jsonConfig);
         System.out.print(jsonDoctor);
     }
@@ -61,6 +62,26 @@ public class TestService {
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.setExcludes(new String[]{"patientList","doctorList"});
         JSONArray jsonArray = JSONArray.fromObject(administratorService.doctorList(0,1,new HashMap<>()),jsonConfig);
+        System.out.print(jsonArray);
+    }
+    @Test
+    public void getRawData(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
+        List list = patientService.getRawDataByEvaid(1);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"id","evaluation_info","time_stamp","json_string"});
+        JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
+        System.out.print(jsonArray);
+    }
+@Test
+    public void listHistoryData(){
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        PatientService patientService =  beanFactory.getBean("patientService",PatientService.class);
+        List<Evaluation_info>  list = patientService.getEvaluation_infoById(1);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.setExcludes(new String[]{"doctor","password","rawdataList","evaluation_infoList"});
+        JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
         System.out.print(jsonArray);
     }
 }

@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="css/style_time.css" media="screen" type="text/css"/>
 
     <!--日历-->
-    <link type="text/css" rel="stylesheet" href="css/admin.css" />
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+    <link type="text/css" rel="stylesheet" href="css/admin.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
     <style>
-        #date ul li{
+        #date ul li {
             display: inline-block;
         }
     </style>
@@ -129,7 +129,7 @@
                                                                 <span class="label label-success">姓名</span>
                                                             </div>
                                                             <div class="ibox-content">
-                                                                <h1 class="no-margins">张三</h1>
+                                                                <h1 id="realname" class="no-margins"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -139,7 +139,7 @@
                                                                 <span class="label label-info ">年龄</span>
                                                             </div>
                                                             <div class="ibox-content">
-                                                                <h1 class="no-margins">59</h1>
+                                                                <h1 id="age" class="no-margins"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -149,7 +149,7 @@
                                                                 <span class="label label-primary ">性别</span>
                                                             </div>
                                                             <div class="ibox-content">
-                                                                <h1 class="no-margins">男</h1>
+                                                                <h1 id="gender" class="no-margins"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -161,7 +161,7 @@
                                                                 <span class="label label-success">病症</span>
                                                             </div>
                                                             <div class="ibox-content" style="height: 30%">
-                                                                <h1 class="no-margins">中风后上肢功能障碍</h1>
+                                                                <h1 id="disease" class="no-margins"></h1>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -186,54 +186,6 @@
 
 
                                 <div class="ibox-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <!--<div style="padding:0;margin:0;">
-                                        <form class="bs-example bs-example-form" role="form" id="date">
-                                            <ul>
-                                            <li><div >
-                                                <div class="input-group input-group-sm">
-                                                        <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-group-lg btn-group-sm btn-group-xs" type="button">开始时间:</button>
-                                                        </span>
-                                                    <input type="datetime-local" class="form-control" id="time_start" />
-                                                </div>&lt;!&ndash; /input-group &ndash;&gt;
-                                            </div>
-                                            </li>
-                                            &lt;!&ndash;<li><div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                            </div>
-                                            </li>&ndash;&gt;
-                                            <li><div >
-                                                <div class="input-group input-group-sm">
-                                                    <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-group-lg btn-group-sm btn-group-xs" type="button">截止时间:</button>
-                                                    </span>
-                                                    <input type="datetime-local" class="form-control" id="time_last">
-                                                        <span class="input-group-btn">
-                                                               <button class="btn btn-default btn-group-lg btn-group-sm btn-group-xs" type="button" onclick="getAllTime()">确认</button>
-                                                        </span>
-                                                </div>&lt;!&ndash; /input-group &ndash;&gt;
-                                            </div>&lt;!&ndash; /.col-lg-3 &ndash;&gt;
-                                            </li>
-                                            </ul>
-                                        </form>
-                                        &lt;!&ndash;<div class="col-lg-10">
-                                            <form>
-                                                <select class='custom-date' name='select'>
-                                                    <option value='7'>7 天</option>
-                                                    <option value='30'>30 天</option>
-                                                    <option selected='selected' value='90'>90 天</option>
-                                                    <option value='180'>180 天</option>
-                                                    <option value='365'>365 天</option>
-                                                    <option value='custom'>Custom</option>
-                                                </select>
-                                                <div class="input-group input-group-sm">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button" onclick="close_time()">Go!</button>
-                                                </span>
-                                                </div>
-                                            </form>
-
-                                        </div>&ndash;&gt;
-                                    </div>-->
                                     <div>
                                         <form class="bs-example bs-example-form" role="form">
                                             <div class="row">
@@ -243,7 +195,9 @@
                                                         <button class="btn btn-default" type="button">开始:</button>
                                                     </span>
                                                         <%--<input name="act_start_time" type="text" class="form-control" id="start_time" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>--%>
-                                                        <input class="datainp form-control" id="start_time" onClick="jeDate({dateCell:'#start_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" type="text" placeholder="开始时间"  readonly>
+                                                        <input class="datainp form-control" id="start_time"
+                                                               onClick="jeDate({dateCell:'#start_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})"
+                                                               type="text" placeholder="开始时间" readonly>
                                                     </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 -->
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -251,29 +205,32 @@
 
                                                         <%--<input name="act_stop_time" type="text" class="form-control" id="stop_time" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>--%>
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button" >截止:</button>
+                                                        <button class="btn btn-default" type="button">截止:</button>
                                                     </span>
-                                                    <input class="datainp form-control" id="stop_time" onClick="jeDate({dateCell:'#stop_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" type="text" placeholder="截止时间"  readonly>
+                                                        <input class="datainp form-control" id="stop_time"
+                                                               onClick="jeDate({dateCell:'#stop_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})"
+                                                               type="text" placeholder="截止时间" readonly>
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button" onclick="getTime()">确认</button>
+                                                        <button class="btn btn-default" type="button"
+                                                                onclick="getTime()">确认</button>
                                                     </span>
-                                                     </div><!-- /input-group -->
+                                                    </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 --><br>
                                             </div><!-- /.row -->
                                         </form>
 
 
-                                    <!--<ul class="doc-set">
-                                        <li>
-                                            <div class="doc-dt">
-                                                <p>活动时间</p>
-                                            </div>
-                                            <div class="doc-dd">
-                                                <input name="act_start_time" type="text" class="text-box" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>
-                                                <input name="act_stop_time" type="text" class="text-box" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>
-                                            </div>
-                                        </li>
-                                    </ul>-->
+                                        <!--<ul class="doc-set">
+                                            <li>
+                                                <div class="doc-dt">
+                                                    <p>活动时间</p>
+                                                </div>
+                                                <div class="doc-dd">
+                                                    <input name="act_start_time" type="text" class="text-box" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>
+                                                    <input name="act_stop_time" type="text" class="text-box" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>
+                                                </div>
+                                            </li>
+                                        </ul>-->
                                     </div>
                                     <div id="container2" style="margin: 10px 10px;height: 76%"></div>
                                 </div>
@@ -372,35 +329,37 @@
 <script type="text/javascript">
     //jeDate.skin('gray');
     jeDate({
-        dateCell:"#indate",//isinitVal:true,
-        format:"YYYY-MM",
-        isTime:false, //isClear:false,
-        minDate:"2015-10-19 00:00:00",
-        maxDate:"2016-11-8 00:00:00"
+        dateCell: "#indate",//isinitVal:true,
+        format: "YYYY-MM",
+        isTime: false, //isClear:false,
+        minDate: "2015-10-19 00:00:00",
+        maxDate: "2016-11-8 00:00:00"
     });
     jeDate({
-        dateCell:"#dateinfo",
-        format:"YYYY年MM月DD日 hh:mm:ss",
-        isinitVal:true,
-        isTime:true, //isClear:false,
-        minDate:"2014-09-19 00:00:00",
-        okfun:function(val){alert(val)}
+        dateCell: "#dateinfo",
+        format: "YYYY年MM月DD日 hh:mm:ss",
+        isinitVal: true,
+        isTime: true, //isClear:false,
+        minDate: "2014-09-19 00:00:00",
+        okfun: function (val) {
+            alert(val)
+        }
     })
 </script>
 
 <%--日历选择触发动作--%>
 <script type="text/javascript">
-    $( "input[name='act_start_time'],input[name='act_stop_time']" ).datetimepicker();
+    $("input[name='act_start_time'],input[name='act_stop_time']").datetimepicker();
     function getTime() {
         var start_time = $("#start_time").val();
         var stop_time = $("#stop_time").val();
-        if(start_time!=""&&stop_time!=""&&(new Date(start_time)<new Date(stop_time))){
-            show_table(new Date(start_time).getTime(),new Date(stop_time).getTime());  //new Date().getTime()得到毫秒数
+        if (start_time != "" && stop_time != "" && (new Date(start_time) < new Date(stop_time))) {
+            show_table(new Date(start_time).getTime(), new Date(stop_time).getTime());  //new Date().getTime()得到毫秒数
         }
-        else if(new Date(start_time)>=new Date(stop_time)){
+        else if (new Date(start_time) >= new Date(stop_time)) {
             toastr.warning('结束时间应该大于开始时间！');
         }
-        else{
+        else {
             toastr.warning('请选择时间！');
         }
 
@@ -515,29 +474,32 @@
             step: 1,
             postfix: "分钟"
         });
-        show_table("","");
-        show_echarts1();
+        show_table("", "");
         show_echarts2();
+        show_echarts1();
     }
 
     function getEvaluateTime(s) {    //取得评估时间，用于搜索重演
         //alert(s.innerHTML)
     }
 
-
+    var controlChart; //控制折线图显示
     function show_echarts1() {        <!--图1的echarts展示-->
         dom1 = document.getElementById("container1");
         myChart1 = echarts.init(dom1);
         var app = {};
         option = null;
-        function randomData() {
+        function pushData() {
             now = new Date();
-            var value = Math.random() * 100;
+            var value = linerData.pop();
+            if(value==null){
+                value = 0;
+            }
             return {
                 name: now.toString(),    //鼠标指上去显示当前时间
                 value: [
                     now,
-                    number        //websocket接受的值
+                    value
                 ]
             }
         }
@@ -548,7 +510,7 @@
         var oneDay = 24 * 3600 * 1000;
 
         for (var i = 0; i < 60; i++) {   //横坐标长度
-            data.push(randomData());
+            data.push(pushData());
         }
 
         option = {
@@ -603,20 +565,19 @@
                 hoverAnimation: false
                 /*data: data,*/
                 /*itemStyle: {
-                    normal: {
-                        color: '#1AB394',
-                        lineStyle: {
-                            color: '#1AB394'
-                        }
-                    }
-                }*/
+                 normal: {
+                 color: '#1AB394',
+                 lineStyle: {
+                 color: '#1AB394'
+                 }
+                 }
+                 }*/
             }]
         };
         app.timeTicket = setInterval(function () {
-
             for (var i = 0; i < 1; i++) {
                 data.shift();
-                data.push(randomData());
+                data.push(pushData());
             }
 
             myChart1.setOption({
@@ -625,14 +586,13 @@
                 }]
             });
         }, 100);
+        controlChart = app.timeTicket;
         if (option && typeof option === "object") {
             myChart1.setOption(option, true);
-
         }
     }
 
     function show_echarts2() {              <!--图2的echarts展示-->
-
         dom2 = document.getElementById("container2");
         myChart2 = echarts.init(dom2);
         option = {
@@ -672,7 +632,8 @@
                     type: 'bar',
                     barWidth: '60%',
                     data: [],
-                    label: {                 /*柱状图显示值标签*/
+                    label: {
+                        /*柱状图显示值标签*/
                         normal: {
                             show: true,
                             position: 'top'
@@ -694,8 +655,12 @@
 <script>    /*echarts自适应屏幕*/
 
 
-    $("#container1").resize(function(){ $(myChart1).resize(); });
-    $("#container2").resize(function(){ $(myChart2).resize(); })
+$("#container1").resize(function () {
+    $(myChart1).resize();
+});
+$("#container2").resize(function () {
+    $(myChart2).resize();
+})
 
 
 </script>
@@ -719,37 +684,45 @@
         for (var k in o)
             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
-    };
-    function show_table(var1,var2) {
-        $.ajax({
-            type : "POST",            //请求方式
-            url : "patient/listHistoryData",        //请求地址
-            data:  "patient_id=1&&start_time="+var1+"&&end_time="+var2,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
-            dataType : "json",    //返回数据类型
-            success : function(data) {  //data为成功后返回数据
-                var mybody = document.getElementById("mydatabody");
-                mybody.innerHTML="";
-                data1.categories.splice(0,data1.categories.length);
-                data1.data.splice(0,data1.data.length);
-                for(var i =0;i<data.length;i++){
 
+    };
+    function show_table(var1, var2) {
+        $.ajax({
+            type: "POST",            //请求方式
+            url: "patient/listHistoryData",        //请求地址
+            data: "patient_id=1&&start_time=" + var1 + "&&end_time=" + var2,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            dataType: "json",    //返回数据类型
+            success: function (data) {  //data为成功后返回数据
+                var mybody = document.getElementById("mydatabody");
+
+                mybody.innerHTML = "";
+                data1.categories.splice(0, data1.categories.length);
+                data1.data.splice(0, data1.data.length);
+                for (var i = 0; i < data.length; i++) {
                     var row = mybody.insertRow();
-                    var evaluate_id = row.insertCell();
+                    var num = row.insertCell();
                     var startTime = row.insertCell();
                     var length = row.insertCell();
                     var success_ratio = row.insertCell();
-
-                    evaluate_id.className="cellNormal";
-                    startTime.className="cellNormal";
-                    length.className="cellNormal";
-                    success_ratio.className="cellNormal";
-
-                    evaluate_id.innerHTML='<button type="button" class="btn btn-link"><a id="button_evaluate_playback">'+data[i].id+'</a></button>';
-                    startTime.innerHTML=new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
-                    length.innerHTML=((data[i].end_time-data[i].start_time)/1000/60).toFixed(2)+"分钟";
-                    success_ratio.innerHTML=data[i].success_ratio;
+                    num.className = "cellNormal";
+                    startTime.className = "cellNormal";
+                    length.className = "cellNormal";
+                    success_ratio.className = "cellNormal";
+                    num.innerHTML = "<a onclick='refreshLinerChart("+data[i].id+")'>" + data[i].id + "</a>";
+                    startTime.innerHTML = new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
+                    length.innerHTML = ((data[i].end_time - data[i].start_time) / 1000 / 60).toFixed(2) + "分钟";
+                    success_ratio.innerHTML = data[i].success_ratio;
                     data1.categories.push(new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss"));
                     data1.data.push(data[i].success_ratio);
+                    document.getElementById("realname").innerHTML=data[i].patient.realname;
+                    document.getElementById("age").innerHTML=data[i].patient.age;
+                    document.getElementById("disease").innerHTML=data[i].patient.disease;
+                    if(data[i].patient.gender==1){
+                        document.getElementById("gender").innerHTML="男";
+                    }
+                    if(data[i].patient.gender==2){
+                        document.getElementById("gender").innerHTML="女";
+                    }
                 }
                 setdata();
             }
@@ -767,6 +740,24 @@
                 data: data1.data
             }]
         });
+    }
+
+    function refreshLinerChart(evaid){
+        $.ajax({
+           type: "POST",            //请求方式
+           url: "patient/getRowData",        //请求地址
+            data: "evaluation_id="+evaid,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            dataType: "json",    //返回数据类型
+            success: function (data) {  //data为成功后返回数据
+                var newLinerData = new Array();
+                for(var i=0;i<data.length;i++){
+                    newLinerData.push(data[i].score);
+                }
+                linerData = newLinerData;
+                controlChart.clearInterval();
+                show_echarts1();
+            }
+       });
     }
 </script>
 
@@ -888,24 +879,7 @@
     GloveDataWS.initialize();
     EvaluateReappear.initialize();
 
-    /*function evaluate() {
-     var evaluate_id = $("#range_01").val();
-     EvaluateReappear.sendMessage();
-     }*/
 
-    /*var ws = new WebSocket("ws://localhost:8181/test");
-     ws.onopen = function (e) {
-     console.log('Connection to server opened');
-     };
-
-     ws.onmessage = function (message) {
-     number = parseInt(message.data.split("+")[1]);
-     myChart2.setOption({
-     series: [{
-     data: [{value: number, name: '手套标量'}]
-     }]
-     });
-     };*/
 </script>
 
 </body>

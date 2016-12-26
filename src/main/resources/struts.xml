@@ -24,6 +24,8 @@
         </action>
         <action name="listHistoryData" class="com.shinerio.action.PatientAction" method="listHistoryData">
         </action>
+        <action name="getRowData" class="com.shinerio.action.PatientAction" method="getRowData">
+        </action>
     </package>
 
     <package name="admin" namespace="/admin" extends="struts-default">
