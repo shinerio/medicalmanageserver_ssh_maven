@@ -69,7 +69,7 @@
                     </ul>
                 </li>
                 <li class>
-                    <a href="doctor/checkDoctorInfo"><i class="fa fa-files-o"></i> <span
+                    <a href="doctorInformation.jsp"><i class="fa fa-files-o"></i> <span
                             class="nav-label">信息查询</span></a>
                     <!--<ul class="nav nav-second-level collapse">
 
@@ -708,7 +708,7 @@ $("#container2").resize(function () {
                     startTime.className = "cellNormal";
                     length.className = "cellNormal";
                     success_ratio.className = "cellNormal";
-                    num.innerHTML = "<a onclick='refreshLinerChart("+data[i].id+")'>" + data[i].id + "</a>";
+                    num.innerHTML = "<a onclick='refreshLinerChart(this)' class='evaluation_id' id='"+data[i].id+"'>" + data[i].id + "</a>";
                     startTime.innerHTML = new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
                     length.innerHTML = ((data[i].end_time - data[i].start_time) / 1000 / 60).toFixed(2) + "分钟";
                     success_ratio.innerHTML = data[i].success_ratio;
@@ -743,10 +743,11 @@ $("#container2").resize(function () {
     }
 
     function refreshLinerChart(evaid){
+        evaluate_id = evaid.id;  //取得评估再现的id编号
         $.ajax({
            type: "POST",            //请求方式
            url: "patient/getRowData",        //请求地址
-            data: "evaluation_id="+evaid,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            data: "evaluation_id="+evaid.id,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
             dataType: "json",    //返回数据类型
             success: function (data) {  //data为成功后返回数据
                 var newLinerData = new Array();
@@ -766,57 +767,13 @@ $("#container2").resize(function () {
     "use strict";
     var number;
 
-    var GloveDataWS = {};
+
     var EvaluateReappear = {};  //评估再现websocket
     var message_send = "";
-    var t1;
+
     var t2;
     var evaluate_id;
 
-    GloveDataWS.socket = null;
-    GloveDataWS.connect = (function (host) {
-        if ('WebSocket' in window) {
-            GloveDataWS.socket = new WebSocket(host);
-        } else if ('MozWebSocket' in window) {
-            GloveDataWS.socket = new MozWebSocket(host);
-        } else {
-            Console.log('Error: WebSocket is not supported by this browser.');
-            return;
-        }
-
-        GloveDataWS.socket.onopen = function () {
-            clearTimeout(t1);
-            GloveDataWS.sendMessage();
-        };
-
-        GloveDataWS.socket.onclose = function () {
-            /* alert('Info: WebSocket closed.点击确定重新连接！');*/
-            t1 = window.setTimeout(GloveDataWS.initialize(), 1000);
-        };
-
-        GloveDataWS.socket.onmessage = function (message) {
-            number = parseInt(message.data);
-            myChart2.setOption({
-                series: [{
-                    data: [{value: number, name: '手套标量'}]
-                }]
-            });
-        };
-    });
-
-    GloveDataWS.initialize = function () {
-        // if (window.location.protocol == 'http:') {
-        //     GloveDataWS.connect('ws://' + window.location.host + '/examples/websocket/chat');
-        // } else {
-        //     GloveDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
-        // }
-        GloveDataWS.connect('ws://localhost/GloveData');
-    };
-
-    GloveDataWS.sendMessage = (function () {
-
-        GloveDataWS.socket.send("start");
-    });
 
     EvaluateReappear.socket = null;
     EvaluateReappear.connect = (function (host) {
@@ -831,15 +788,13 @@ $("#container2").resize(function () {
 
         EvaluateReappear.socket.onopen = function () {
             clearTimeout(t2);
-
-            $("#button_evaluate_playback").click(function () {
-                evaluate_id = $("#button_evaluate_playback").text();  //取得评估再现的id编号
+            console.log("onopen");
+            $('.evaluation_id').on('click',function() {
 
                 toastr.success('正在开始评估再现......');
                 message_send = "evaluate_playback";
                 EvaluateReappear.sendMessage();      //发送确认字符
             });
-
         };
 
         EvaluateReappear.socket.onclose = function () {
@@ -875,8 +830,6 @@ $("#container2").resize(function () {
         }
     });
 
-
-    GloveDataWS.initialize();
     EvaluateReappear.initialize();
 
 
