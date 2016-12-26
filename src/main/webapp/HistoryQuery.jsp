@@ -789,12 +789,6 @@ $("#container2").resize(function () {
         EvaluateReappear.socket.onopen = function () {
             clearTimeout(t2);
             console.log("onopen");
-            $('.evaluation_id').on('click',function() {
-
-                toastr.success('正在开始评估再现......');
-                message_send = "evaluate_playback";
-                EvaluateReappear.sendMessage();      //发送确认字符
-            });
         };
 
         EvaluateReappear.socket.onclose = function () {
@@ -831,6 +825,18 @@ $("#container2").resize(function () {
     });
 
     EvaluateReappear.initialize();
+
+    $('.evaluation_id').on('click',function() {
+        this.id;
+        if (EvaluateReappear.socket.readyState != EvaluateReappear.OPEN){
+            toastr.error('未连接到服务器......');
+        }else {
+            toastr.success('正在开始评估再现......');
+            message_send = "evaluate_playback";
+            EvaluateReappear.sendMessage();      //发送确认字符
+        }
+
+    });
 
 
 </script>
