@@ -266,6 +266,7 @@
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时间</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估时长</th>
                                                 <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">成功率</th>
+                                                <th class="col-lg-1 col-md-1 col-sm-1 col-xs-1">评估再现</th>
                                             </tr>
                                             </thead>
                                             <tbody id="mydatabody">
@@ -704,14 +705,16 @@ $("#container2").resize(function () {
                     var startTime = row.insertCell();
                     var length = row.insertCell();
                     var success_ratio = row.insertCell();
+                    var evaluation_play = row.insertCell();
                     num.className = "cellNormal";
                     startTime.className = "cellNormal";
                     length.className = "cellNormal";
                     success_ratio.className = "cellNormal";
-                    num.innerHTML = "<a onclick='refreshLinerChart(this)' class='evaluation_id' id='"+data[i].id+"'>" + data[i].id + "</a>";
+                    num.innerHTML =  data[i].id;
                     startTime.innerHTML = new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
                     length.innerHTML = ((data[i].end_time - data[i].start_time) / 1000 / 60).toFixed(2) + "分钟";
                     success_ratio.innerHTML = data[i].success_ratio;
+                    evaluation_play.innerHTML = "<a onclick='refreshLinerChart(this)' class='evaluation_id' id='"+data[i].id+"'>点击再现</a>";
                     data1.categories.push(new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss"));
                     data1.data.push(data[i].success_ratio);
                     document.getElementById("realname").innerHTML=data[i].patient.realname;
@@ -760,6 +763,7 @@ $("#container2").resize(function () {
             }
        });
     }
+
 </script>
 
 <script src="js/toastr.js"></script>
