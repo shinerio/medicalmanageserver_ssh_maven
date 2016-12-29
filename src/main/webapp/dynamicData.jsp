@@ -76,14 +76,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="doctorinformation"><i class="fa fa-files-o"></i> <span class="nav-label">信息查询</span><img src="img/lock.png" width="20px" height="20px" class="lock">
+                    <a href="javascript:void(0)" id="doctorinformation"><i class="fa fa-files-o"></i> <span class="nav-label">信息查询</span><span style="float: right"><img src="img/lock.png" width="20px" height="20px" class="lock"></span>
                     </a>
                     <%--<ul class="nav nav-second-level collapse">
 
                     </ul>--%>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="hisquery"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span><img src="img/lock.png" width="20px" height="20px" class="lock">
+                    <a href="javascript:void(0)" id="hisquery"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span><span style="float: right"><img src="img/lock.png" width="20px" height="20px" class="lock"></span>
                     </a>
                     <!-- <ul class="nav nav-second-level collapse ">
                          <li><a href="javascript:void(0)">Contacts</a></li>
@@ -341,11 +341,12 @@
     function isAuthorized() {
         if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
             //alert("未认证");
-            $(".lock").attr('src','/img/lock.png');
+            $(".lock").show();
             $("#hisquery").attr('href','javascript:void(0)');
         }else {
             // alert("已认证");
-            $(".lock").attr('src','/img/unlock.png');
+            // $(".lock").attr('src','/img/unlock.png');
+            $(".lock").hide();
             $("#hisquery").attr('href','HistoryQuery.jsp');
             $("#doctorinformation").attr('href','doctorInformation.jsp');
             $("#login").html("注销");
