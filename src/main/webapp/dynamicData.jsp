@@ -368,10 +368,10 @@
             ctd.className = "cellNormal";
             node.innerHTML = i + 1;
            if(websocketData.toString() != ""){
-               atd.innerHTML = websocketData.node[i].W;
-               btd.innerHTML = websocketData.node[i].X;
-               ctd.innerHTML = websocketData.node[i].Y;
-               dtd.innerHTML = websocketData.node[i].Z;
+               atd.innerHTML = websocketData.nodes[i].W;
+               btd.innerHTML = websocketData.nodes[i].X;
+               ctd.innerHTML = websocketData.nodes[i].Y;
+               dtd.innerHTML = websocketData.nodes[i].Z;
             }
         }
     }
