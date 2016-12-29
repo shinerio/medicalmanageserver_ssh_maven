@@ -26,7 +26,7 @@
             <div id="login_false">${requestScope.error_message}</div>
             <button type="submit" class="btn btn-primary block full-width m-b btn-lg" id="logining">登录</button>
         </form>
-        <span class="m-t"> <small>写上版权相关内容</small><button type="button" class="btn btn-link"><a href="adminLogin.jsp">后台管理员登录</a></button></span>
+        <span class="m-t"> <small>写上版权相关内容</small><button type="button" class="btn btn-link"><a href="adminLogin.jsp" id="adminLogin">后台管理员登录</a></button></span>
     </div>
 </div>
 <script src="../js/jquery-2.0.3.js"></script>
@@ -43,6 +43,8 @@
             $("#login_false").addClass("alert-danger");
 
             $("#login_false").html("用户名或密码错误！");
+
+            $("#adminLogin").attr("href","../adminLogin.jsp")
         }
     }
 </script>

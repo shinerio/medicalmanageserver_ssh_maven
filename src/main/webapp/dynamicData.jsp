@@ -733,6 +733,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
 
     GloveDataWS.initialize();
     CommandDataWS.initialize();
+    ScoreDataWS.initialize();
 
     /*function evaluate() {
      var duration = $("#range_01").val();
