@@ -747,13 +747,20 @@ $("#container2").resize(function () {
 
     function refreshLinerChart(evaid){
         evaluate_id = evaid.id;  //取得评估再现的id编号
+        if (EvaluateReappear.socket.readyState == EvaluateReappear.CLOSED){
+            toastr.error('未连接到服务器......');
+        }else {
+            toastr.success('正在开始评估再现......');
+            message_send = "evaluate_playback";
+            EvaluateReappear.sendMessage();      //发送确认字符
+        }
         $.ajax({
            type: "POST",            //请求方式
            url: "patient/getRowData",        //请求地址
             data: "evaluation_id="+evaid.id,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
             dataType: "json",    //返回数据类型
             success: function (data) {  //data为成功后返回数据
-                var newLinerData = new Array();
+                var newLinerData = [];
                 for(var i=0;i<data.length;i++){
                     newLinerData.push(data[i].score);
                 }
@@ -770,7 +777,7 @@ $("#container2").resize(function () {
 <script>
     "use strict";
     var number;
-
+    var linerData = [];
 
     var EvaluateReappear = {};  //评估再现websocket
     var message_send = "";
@@ -793,12 +800,6 @@ $("#container2").resize(function () {
         EvaluateReappear.socket.onopen = function () {
             clearTimeout(t2);
             console.log("onopen");
-            $('.evaluation_id').on('click',function() {
-
-                toastr.success('正在开始评估再现......');
-                message_send = "evaluate_playback";
-                EvaluateReappear.sendMessage();      //发送确认字符
-            });
         };
 
         EvaluateReappear.socket.onclose = function () {
@@ -835,6 +836,16 @@ $("#container2").resize(function () {
     });
 
     EvaluateReappear.initialize();
+
+    $('.evaluation_id').on('click',function() {
+        if (EvaluateReappear.socket.readyState != EvaluateReappear.OPEN){
+            toastr.error('未连接到服务器......');
+        }else {
+            toastr.success('正在开始评估再现......');
+            message_send = "evaluate_playback";
+            EvaluateReappear.sendMessage();      //发送确认字符
+        }
+    });
 
 
 </script>
