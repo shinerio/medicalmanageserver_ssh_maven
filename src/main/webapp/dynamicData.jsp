@@ -368,12 +368,12 @@
             btd.className = "cellNormal";
             ctd.className = "cellNormal";
             node.innerHTML = i + 1;
-//            if(websocketData.toString() != ""){
-//                atd.innerHTML = websocketData.node[i].W;
-//                btd.innerHTML = websocketData.node[i].X;
-//                ctd.innerHTML = websocketData.node[i].Y;
-//                dtd.innerHTML = websocketData.node[i].Z;
-//            }
+           if(websocketData.toString() != ""){
+               atd.innerHTML = websocketData.nodes[i].W;
+               btd.innerHTML = websocketData.nodes[i].X;
+               ctd.innerHTML = websocketData.nodes[i].Y;
+               dtd.innerHTML = websocketData.nodes[i].Z;
+            }
         }
     }
 
@@ -545,10 +545,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
 </script>
 <script src="js/toastr.js"></script>
 <script>
-    function new_table()
-    {   show_table();
-        t3=window.setTimeout("new_table()",1000);
-    }
+
 </script>
 <script>
     "use strict";
@@ -557,6 +554,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
     var flag = true;
     var GloveDataWS = {};
     var CommandDataWS = {};
+    var ScoreDataWS = {};  //用来接收手套标量
     var message_send = "";
     var t1;
     var t2;
@@ -564,7 +562,8 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
 
     var t3;
 
-    new_table();
+
+    show_table();
 
     GloveDataWS.socket = null;
     GloveDataWS.connect = (function (host) {
@@ -589,16 +588,12 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
 
         GloveDataWS.socket.onmessage = function (message) {
             websocketData = JSON.parse(message.data);
+            show_table();
             if (flag){
                 console.log(message.data);
                 flag = false;
             }
-            number = websocketData.score;
-            myChart2.setOption({
-                series: [{
-                    data: [{value: number, name: '手套标量'}]
-                }]
-            });
+
         };
     });
 
@@ -616,6 +611,54 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
         GloveDataWS.socket.send("start");
     });
 
+    /*接收手套标量的websocket*/
+    ScoreDataWS.socket = null;
+    ScoreDataWS.connect = (function (host) {
+        if ('WebSocket' in window) {
+            ScoreDataWS.socket = new WebSocket(host);
+        } else if ('MozWebSocket' in window) {
+            ScoreDataWS.socket = new MozWebSocket(host);
+        } else {
+            Console.log('Error: WebSocket is not supported by this browser.');
+            return;
+        }
+
+        ScoreDataWS.socket.onopen = function () {
+            clearTimeout(t3);
+            ScoreDataWS.sendMessage();
+        };
+
+        ScoreDataWS.socket.onclose = function () {
+            /* alert('Info: WebSocket closed.点击确定重新连接！');*/
+            t3 = window.setTimeout(ScoreDataWS.initialize(), 1000);
+        };
+
+        ScoreDataWS.socket.onmessage = function (message) {
+
+            number = parseInt(message.data);
+            myChart2.setOption({
+                series: [{
+                    data: [{value: number, name: '手套标量'}]
+                }]
+            });
+        };
+    });
+
+    ScoreDataWS.initialize = function () {
+        // if (window.location.protocol == 'http:') {
+        //     ScoreDataWS.connect('ws://' + window.location.host + '/examples/websocket/chat');
+        // } else {
+        //     ScoreDataWS.connect('wss://' + window.location.host + '/examples/websocket/chat');
+        // }
+        ScoreDataWS.connect('ws://localhost/ScoreData');
+    };
+
+    ScoreDataWS.sendMessage = (function () {
+
+        ScoreDataWS.socket.send("start");
+    });
+
+    /*传信令的websocket*/
     CommandDataWS.socket = null;
     CommandDataWS.connect = (function (host) {
         if ('WebSocket' in window) {
