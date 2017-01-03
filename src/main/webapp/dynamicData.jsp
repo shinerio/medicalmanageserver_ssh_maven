@@ -104,13 +104,24 @@
 
 
                 <!--<div class="col-lg-2"><h3>请滑动选择评估时长</h3></div>-->
-                <div class="col-lg-1 col-sm-1 col-xs-1"></div>
+                <div class="col-lg-1 col-sm-1 col-xs-1">
+                </div>
                 <div class="col-lg-3 col-sm-3 col-xs-3" style="margin-top: 8px;height: 55px !important;">
                     <input type="text" id="range_01" name="example_name" value="" />
+
                 </div>
-                <form role="form" class="form-inline col-lg-2 col-sm-2 col-xs-2" style="margin-top: 16px !important;">
-                    <button class="btn btn-primary dim" type="button" id="button_evaluate">开始评估！</button>
-                </form>
+                <div class="col-lg-1 col-sm-1 col-xs-1" style="padding: 0 !important;">
+                    <div class="input-group input-group-sm" style="margin-top: 25px !important;">
+                        <input type="text" id="times" class="form-control" style="padding: 1px !important;">
+                        <span class="input-group-addon" style="padding: 1px !important;">次/分钟</span>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-2 col-xs-2">
+                    <form role="form" class="form-inline" style="margin-top: 16px !important;">
+                        <button class="btn btn-primary dim" type="button" id="button_evaluate">开始评估！</button>
+                    </form>
+                </div>
+
                 <p id="status"></p>
 
 
@@ -559,6 +570,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
     var t1;
     var t2;
     var duration;
+    var times;
 
     var t3;
 
@@ -676,11 +688,16 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
                     if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
                          toastr.warning('请登录后再进行评估！');
                     }else {
-                        duration = $("#range_01").val();
+                        duration = parseInt($("#range_01").val());
+                        times = parseInt($("#times").val());
                         // $("#status").html("等待确认!");
+                        if(times==null||times==""){
+                            toastr.warning('请输入手掌捏合次数！');
+                        }{
                         toastr.success('等待病人确认......');
                         message_send = "evaluate_request";
                         CommandDataWS.sendMessage();      //发送确认字符
+                        }
                     }
                 });
 
@@ -698,7 +715,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
                     toastr.warning('病人拒绝评估！');
                     break;
                 case "evaluate_request_accepted":
-                    message_send = duration;
+                    message_send = duration*100+times;  //传评估时长和捏合次数
                     CommandDataWS.sendMessage();      //发送时长
                     message_send = "evaluate_start";
                     CommandDataWS.sendMessage();      //发送aceept字符
@@ -734,6 +751,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
     GloveDataWS.initialize();
     ScoreDataWS.initialize();
     CommandDataWS.initialize();
+    ScoreDataWS.initialize();
 
     /*function evaluate() {
      var duration = $("#range_01").val();
