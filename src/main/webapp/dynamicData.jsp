@@ -140,10 +140,10 @@
                             </div>
                             <div class="ibox-content col-lg-12 col-sm-12 col-xs-12">
                                 <div class="col-lg-6 col-sm-6 col-xs-6">     <!--图1-->
-                                    <div id="container1" style="margin: 10px 10px;height: 100%"></div>
+                                    <div id="container1" style="margin: 10px 10px;height: 320px"></div>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-xs-6">  <!--图2-->
-                                    <div id="container2" style="margin: 10px 10px;height: 100%"></div>
+                                    <div id="container2" style="margin: 10px 10px;height: 320px"></div>
                                 </div>
                             </div>
 
@@ -242,19 +242,19 @@
                         }, {
                             opacity: 1
                         }]
-                    },
+                    }
                 },
                 points: {
                     width: 0.1,
                     show: false
-                },
+                }
             },
             grid: {
                 show: false,
                 borderWidth: 0
             },
             legend: {
-                show: false,
+                show: false
             }
         });
 
@@ -512,10 +512,10 @@
             },
             series: [
                 {
-                    name: '业务指标',
+                    name: '标量显示',
                     type: 'gauge',
-                    detail: {formatter: '{value}'}
-                    /*data: [{value: 50, name: '手套标量'}]*/
+                    detail: {formatter: '{value}'},
+                    data: [{value: 50, name: '手套标量'}]
                 }
             ]
         };
@@ -634,7 +634,6 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
         };
 
         ScoreDataWS.socket.onmessage = function (message) {
-
             number = parseInt(message.data);
             myChart2.setOption({
                 series: [{
@@ -733,6 +732,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
 
 
     GloveDataWS.initialize();
+    ScoreDataWS.initialize();
     CommandDataWS.initialize();
 
     /*function evaluate() {
