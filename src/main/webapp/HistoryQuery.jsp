@@ -735,13 +735,13 @@ $("#container2").resize(function () {
 
     function refreshLinerChart(evaid){
         evaluate_id = evaid.id;  //取得评估再现的id编号
-       /* if (EvaluateReappear.socket.readyState == EvaluateReappear.CLOSED){
+        if (websocket_flag==0){
             toastr.error('未连接到服务器......');
         }else {
             toastr.success('正在开始评估再现......');
             message_send = "evaluate_playback";
             EvaluateReappear.sendMessage();      //发送确认字符
-        }*/
+        }
         $.ajax({
            type: "POST",            //请求方式
            url: "patient/getRowData",        //请求地址
@@ -772,6 +772,7 @@ $("#container2").resize(function () {
 
     var t2;
     var evaluate_id;
+    var websocket_flag=0;   //标志位，判断是否连接上服务器
 
 
     EvaluateReappear.socket = null;
@@ -786,6 +787,7 @@ $("#container2").resize(function () {
         }
 
         EvaluateReappear.socket.onopen = function () {
+            websocket_flag=1;   //标志位为1，表示连接上服务器
             clearTimeout(t2);
             console.log("onopen");
         };
@@ -825,15 +827,7 @@ $("#container2").resize(function () {
 
     EvaluateReappear.initialize();
 
-    $('.evaluation_id').on('click',function() {
-        if (EvaluateReappear.socket.readyState != EvaluateReappear.OPEN){
-            toastr.error('未连接到服务器......');
-        }else {
-            toastr.success('正在开始评估再现......');
-            message_send = "evaluate_playback";
-            EvaluateReappear.sendMessage();      //发送确认字符
-        }
-    });
+
 
 
 </script>
