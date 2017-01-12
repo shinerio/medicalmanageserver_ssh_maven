@@ -315,7 +315,7 @@
 
 <%--日期选择插件(好看的那个版本)--%>
 <script type="text/javascript" src="jedate/jedate.js"></script>
-<script type="text/javascript">
+<%--<script type="text/javascript">  //暂时没用到
     //jeDate.skin('gray');
     jeDate({
         dateCell: "#indate",//isinitVal:true,
@@ -334,7 +334,7 @@
             alert(val)
         }
     })
-</script>
+</script>--%>
 
 <%--日历选择触发动作--%>
 <script type="text/javascript">
@@ -472,7 +472,7 @@
         //alert(s.innerHTML)
     }
 
-    var controlChart; //控制折线图显示
+   /* var controlChart;*/ //控制折线图显示
     function show_echarts1() {        <!--图1的echarts展示-->
         dom1 = document.getElementById("container1");
         myChart1 = echarts.init(dom1);
@@ -575,7 +575,7 @@
                 }]
             });
         }, 10);   //刷新数据频率10ms
-        controlChart = app.timeTicket;
+        /*controlChart = app.timeTicket;*/
         if (option && typeof option === "object") {
             myChart1.setOption(option, true);
         }
@@ -753,7 +753,7 @@ $("#container2").resize(function () {
                     newLinerData.push(data[i].score);
                 }
                 linerData = newLinerData; //得分的数组
-                controlChart.clearInterval();
+                /*controlChart.clearInterval();*/
                 show_echarts1();
             }
        });
@@ -793,6 +793,7 @@ $("#container2").resize(function () {
         };
 
         EvaluateReappear.socket.onclose = function () {
+            websocket_flag=0; //标志位为0，表示没有连接上服务器
             t2 = window.setTimeout(EvaluateReappear.initialize(), 1000);
         };
 
