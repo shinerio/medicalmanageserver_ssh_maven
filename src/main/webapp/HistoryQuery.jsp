@@ -168,7 +168,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                                                <img src="img/a1.jpg">
+                                                <img src="img/a1.jpg" width="95px" height="auto">
                                             </div>
                                         </div>
                                     </div>
@@ -219,20 +219,8 @@
                                             </div><!-- /.row -->
                                         </form>
 
-
-                                        <!--<ul class="doc-set">
-                                            <li>
-                                                <div class="doc-dt">
-                                                    <p>活动时间</p>
-                                                </div>
-                                                <div class="doc-dd">
-                                                    <input name="act_start_time" type="text" class="text-box" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>
-                                                    <input name="act_stop_time" type="text" class="text-box" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>
-                                                </div>
-                                            </li>
-                                        </ul>-->
                                     </div>
-                                    <div id="container2" style="margin: 10px 10px;height: 76%"></div>
+                                    <div id="container2" style="height: 70%"></div>
                                 </div>
                             </div>
 
@@ -327,7 +315,7 @@
 
 <%--日期选择插件(好看的那个版本)--%>
 <script type="text/javascript" src="jedate/jedate.js"></script>
-<script type="text/javascript">
+<%--<script type="text/javascript">  //暂时没用到
     //jeDate.skin('gray');
     jeDate({
         dateCell: "#indate",//isinitVal:true,
@@ -346,7 +334,7 @@
             alert(val)
         }
     })
-</script>
+</script>--%>
 
 <%--日历选择触发动作--%>
 <script type="text/javascript">
@@ -484,7 +472,7 @@
         //alert(s.innerHTML)
     }
 
-    var controlChart; //控制折线图显示
+   /* var controlChart;*/ //控制折线图显示
     function show_echarts1() {        <!--图1的echarts展示-->
         dom1 = document.getElementById("container1");
         myChart1 = echarts.init(dom1);
@@ -510,7 +498,7 @@
         //alert(now)
         var oneDay = 24 * 3600 * 1000;
 
-        for (var i = 0; i < 60; i++) {   //横坐标长度
+        for (var i = 0; i < 720; i++) {   //横坐标长度
             data.push(pushData());
         }
 
@@ -586,8 +574,8 @@
                     data: data
                 }]
             });
-        }, 100);
-        controlChart = app.timeTicket;
+        }, 10);   //刷新数据频率10ms
+        /*controlChart = app.timeTicket;*/
         if (option && typeof option === "object") {
             myChart1.setOption(option, true);
         }
@@ -747,14 +735,13 @@ $("#container2").resize(function () {
 
     function refreshLinerChart(evaid) {
         evaluate_id = evaid.id;  //取得评估再现的id编号
-        //TODO: 检测WebSocket连接状态无效
-//        if (EvaluateReappear.socket.readyState == EvaluateReappear.CLOSED) {
-//            toastr.error('未连接到服务器......');
-//        } else {
-//            toastr.success('正在开始评估再现......');
-//            message_send = "evaluate_playback";
-//            EvaluateReappear.sendMessage();      //发送确认字符
-//        }
+        if (websocket_flag==0){
+            toastr.error('未连接到服务器......');
+        }else {
+            toastr.success('正在开始评估再现......');
+            message_send = "evaluate_playback";
+            EvaluateReappear.sendMessage();      //发送确认字符
+        }
         $.ajax({
             type: "POST",            //请求方式
             url: "patient/getRowData",        //请求地址
@@ -765,8 +752,8 @@ $("#container2").resize(function () {
                 for (var i = 0; i < data.length; i++) {
                     newLinerData.push(data[i].score);
                 }
-                linerData = newLinerData;
-                controlChart.clearInterval();
+                linerData = newLinerData; //得分的数组
+                /*controlChart.clearInterval();*/
                 show_echarts1();
             }
         });
@@ -785,6 +772,7 @@ $("#container2").resize(function () {
 
     var t2;
     var evaluate_id;
+    var websocket_flag=0;   //标志位，判断是否连接上服务器
 
 
     EvaluateReappear.socket = null;
@@ -799,11 +787,13 @@ $("#container2").resize(function () {
         }
 
         EvaluateReappear.socket.onopen = function () {
+            websocket_flag=1;   //标志位为1，表示连接上服务器
             clearTimeout(t2);
             console.log("onopen");
         };
 
         EvaluateReappear.socket.onclose = function () {
+            websocket_flag=0; //标志位为0，表示没有连接上服务器
             t2 = window.setTimeout(EvaluateReappear.initialize(), 1000);
         };
 
@@ -837,17 +827,6 @@ $("#container2").resize(function () {
     });
 
     EvaluateReappear.initialize();
-
-    $('.evaluation_id').on('click', function () {
-        if (EvaluateReappear.socket.readyState != EvaluateReappear.OPEN) {
-            toastr.error('未连接到服务器......');
-        } else {
-            toastr.success('正在开始评估再现......');
-            message_send = "evaluate_playback";
-            EvaluateReappear.sendMessage();      //发送确认字符
-        }
-    });
-
 
 </script>
 
