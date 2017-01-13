@@ -245,8 +245,8 @@
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 
-                                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
-                                         style="margin-left: 2%;height: 100%;overflow-y: scroll">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                                         style="height: 100%;overflow-y: scroll;padding: 0 !important;">
                                         <table class="table table-bordered table-striped table-hover table">
                                             <thead>
                                             <tr class="success">
