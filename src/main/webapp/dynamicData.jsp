@@ -112,7 +112,7 @@
                 </div>
                 <div class="col-lg-1 col-sm-1 col-xs-1" style="padding: 0 !important;">
                     <div class="input-group input-group-sm" style="margin-top: 25px !important;">
-                        <input type="text" id="times" class="form-control" style="padding: 1px !important;">
+                        <input type="text" id="times" class="form-control" value="10" style="padding: 1px !important;">
                         <span class="input-group-addon" style="padding: 1px !important;">次/分钟</span>
                     </div>
                 </div>

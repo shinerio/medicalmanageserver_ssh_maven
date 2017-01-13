@@ -204,13 +204,13 @@
                                                     <div class="input-group input-group-sm">
 
                                                         <%--<input name="act_stop_time" type="text" class="form-control" id="stop_time" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>--%>
-                                                    <span class="input-group-btn">
+                                                        <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button">截止:</button>
                                                     </span>
                                                         <input class="datainp form-control" id="stop_time"
                                                                onClick="jeDate({dateCell:'#stop_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})"
                                                                type="text" placeholder="截止时间" readonly>
-                                                    <span class="input-group-btn">
+                                                        <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button"
                                                                 onclick="getTime()">确认</button>
                                                     </span>
@@ -493,7 +493,7 @@
         function pushData() {
             now = new Date();
             var value = linerData.pop();
-            if(value==null){
+            if (value == null) {
                 value = 0;
             }
             return {
@@ -710,21 +710,21 @@ $("#container2").resize(function () {
                     startTime.className = "cellNormal";
                     length.className = "cellNormal";
                     success_ratio.className = "cellNormal";
-                    num.innerHTML =  data[i].id;
+                    num.innerHTML = data[i].id;
                     startTime.innerHTML = new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss");
                     length.innerHTML = ((data[i].end_time - data[i].start_time) / 1000 / 60).toFixed(2) + "分钟";
                     success_ratio.innerHTML = data[i].success_ratio;
-                    evaluation_play.innerHTML = "<a onclick='refreshLinerChart(this)' class='evaluation_id' id='"+data[i].id+"'>点击再现</a>";
+                    evaluation_play.innerHTML = "<a onclick='refreshLinerChart(this)' class='evaluation_id' id='" + data[i].id + "'>点击再现</a>";
                     data1.categories.push(new Date(data[i].start_time).Format("yyyy-MM-dd HH:mm:ss"));
                     data1.data.push(data[i].success_ratio);
-                    document.getElementById("realname").innerHTML=data[i].patient.realname;
-                    document.getElementById("age").innerHTML=data[i].patient.age;
-                    document.getElementById("disease").innerHTML=data[i].patient.disease;
-                    if(data[i].patient.gender==1){
-                        document.getElementById("gender").innerHTML="男";
+                    document.getElementById("realname").innerHTML = data[i].patient.realname;
+                    document.getElementById("age").innerHTML = data[i].patient.age;
+                    document.getElementById("disease").innerHTML = data[i].patient.disease;
+                    if (data[i].patient.gender == 1) {
+                        document.getElementById("gender").innerHTML = "男";
                     }
-                    if(data[i].patient.gender==2){
-                        document.getElementById("gender").innerHTML="女";
+                    if (data[i].patient.gender == 2) {
+                        document.getElementById("gender").innerHTML = "女";
                     }
                 }
                 setdata();
@@ -745,30 +745,31 @@ $("#container2").resize(function () {
         });
     }
 
-    function refreshLinerChart(evaid){
+    function refreshLinerChart(evaid) {
         evaluate_id = evaid.id;  //取得评估再现的id编号
-        if (EvaluateReappear.socket.readyState == EvaluateReappear.CLOSED){
-            toastr.error('未连接到服务器......');
-        }else {
-            toastr.success('正在开始评估再现......');
-            message_send = "evaluate_playback";
-            EvaluateReappear.sendMessage();      //发送确认字符
-        }
+        //TODO: 检测WebSocket连接状态无效
+//        if (EvaluateReappear.socket.readyState == EvaluateReappear.CLOSED) {
+//            toastr.error('未连接到服务器......');
+//        } else {
+//            toastr.success('正在开始评估再现......');
+//            message_send = "evaluate_playback";
+//            EvaluateReappear.sendMessage();      //发送确认字符
+//        }
         $.ajax({
-           type: "POST",            //请求方式
-           url: "patient/getRowData",        //请求地址
-            data: "evaluation_id="+evaid.id,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
+            type: "POST",            //请求方式
+            url: "patient/getRowData",        //请求地址
+            data: "evaluation_id=" + evaid.id,  //发送到数据端的数据(数据发送得不同，最好加上时间戳，否则返回数据使用缓存，不会产生变化)
             dataType: "json",    //返回数据类型
             success: function (data) {  //data为成功后返回数据
                 var newLinerData = [];
-                for(var i=0;i<data.length;i++){
+                for (var i = 0; i < data.length; i++) {
                     newLinerData.push(data[i].score);
                 }
                 linerData = newLinerData;
                 controlChart.clearInterval();
                 show_echarts1();
             }
-       });
+        });
     }
 
 </script>
@@ -837,10 +838,10 @@ $("#container2").resize(function () {
 
     EvaluateReappear.initialize();
 
-    $('.evaluation_id').on('click',function() {
-        if (EvaluateReappear.socket.readyState != EvaluateReappear.OPEN){
+    $('.evaluation_id').on('click', function () {
+        if (EvaluateReappear.socket.readyState != EvaluateReappear.OPEN) {
             toastr.error('未连接到服务器......');
-        }else {
+        } else {
             toastr.success('正在开始评估再现......');
             message_send = "evaluate_playback";
             EvaluateReappear.sendMessage();      //发送确认字符
