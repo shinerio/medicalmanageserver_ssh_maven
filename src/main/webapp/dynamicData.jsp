@@ -366,6 +366,7 @@
     }
 
     function show_table() {
+        //console.log("show_table");
         mydatabody.innerHTML="";
         for (var i = 0; i < 13; i++) {
             var mytr = mydatabody.insertRow();

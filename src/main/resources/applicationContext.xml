@@ -16,36 +16,29 @@
 
     <!-- 数据源对象 -->
     <!-- 机房数据库 -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">-->
 
-        <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://10.103.238.28:3306/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">
-        </property>
-        <property name="username" value="root"></property>
-        <property name="password" value="bigdata"></property>
-    </bean>
-    <!-- 本机数据库 -->
- <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://10.103.238.28:3306/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">
-        </property>
-        <property name="username" value="root"></property>
-        <property name="password" value="bigdata"></property>
-    </bean>
-     <!-本机数据库 -->
-  <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">-->
-        <!--<property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />-->
-        <!--<property name="url" value="jdbc:mysql://localhost/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">-->
-        <!--</property>-->
-        <!--<property name="username" value="root"></property>-->
-        <!--<property name="password" value="admin"></property>-->
+    <!--<property name = "driverClassName" value = "com.mysql.cj.jdbc.Driver" />-->
+    <!--<property name="url" value="jdbc:mysql://10.103.238.28:3306/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8">-->
+    <!--</property>-->
+    <!--<property name="username" value="root"></property>-->
+    <!--<property name="password" value="bigdata"></property>-->
     <!--</bean>-->
+    <!--本机数据库 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=UTC">
+        </property>
+        <property name="username" value="root"></property>
+        <property name="password" value="admin"></property>
+    </bean>
 
     <!-- session工厂，维护会话对象 -->
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource">
-            <ref bean="dataSource" />
+            <ref bean="dataSource"/>
         </property>
         <property name="hibernateProperties">
             <props>
@@ -69,9 +62,9 @@
     <!-- 事务管理器 -->
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
     <!-- 注册注解的后台处理类 -->
     <context:annotation-config/>
     <!-- 指明使用注解的类的包 -->
