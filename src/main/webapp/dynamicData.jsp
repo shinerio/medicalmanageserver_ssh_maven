@@ -19,8 +19,8 @@
         position: absolute;
         left: 0px;
         top: 0px;
-        visibility: hidden;X
-        background: rgb(0, 0, 0) transparent;
+        visibility: hidden;
+        X background: rgb(0, 0, 0) transparent;
         background-color: rgba(0, 0, 0, 0.6);
         filter: progid:DXImagXeTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
@@ -56,7 +56,8 @@
 <img alt="image" class="img-circle" src="img/profile_small.jpg">
 </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0)">
-<span class="clear"> <span class="block m-t-xs"> <strong class="font-bold" id="doctorName">${sessionScope.doctor.realname}</strong>
+<span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"
+                                                         id="doctorName">${sessionScope.doctor.realname}</strong>
 </span> <span class="text-muted text-xs block">主治医生 <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="javascript:void(0)">个人信息</a></li>
@@ -76,14 +77,18 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="doctorinformation"><i class="fa fa-files-o"></i> <span class="nav-label">信息查询</span><span style="float: right"><img src="img/lock.png" width="20px" height="20px" class="lock"></span>
+                    <a href="javascript:void(0)" id="doctorinformation"><i class="fa fa-files-o"></i> <span
+                            class="nav-label">医生信息</span><span style="float: right"><img src="img/lock.png" width="20px"
+                                                                                         height="20px"
+                                                                                         class="lock"></span>
                     </a>
                     <%--<ul class="nav nav-second-level collapse">
 
                     </ul>--%>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" id="hisquery"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span><span style="float: right"><img src="img/lock.png" width="20px" height="20px" class="lock"></span>
+                    <a href="javascript:void(0)" id="hisquery"><i class="fa fa-desktop"></i> <span class="nav-label">历史信息查询</span><span
+                            style="float: right"><img src="img/lock.png" width="20px" height="20px" class="lock"></span>
                     </a>
                     <!-- <ul class="nav nav-second-level collapse ">
                          <li><a href="javascript:void(0)">Contacts</a></li>
@@ -95,7 +100,7 @@
         </div>
     </nav>
     <div id="page-wrapper" class="gray-bg" style="min-height: 949px;">
-        <div class="row border-bottom" >
+        <div class="row border-bottom">
             <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0;height: 79px">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:void(0)"><i
@@ -104,10 +109,10 @@
 
 
                 <!--<div class="col-lg-2"><h3>请滑动选择评估时长</h3></div>-->
-                <div class="col-lg-1 col-sm-1 col-xs-1">
-                </div>
+                <%--<div class="col-lg-1 col-sm-1 col-xs-1">--%>
+                <%--</div>--%>
                 <div class="col-lg-3 col-sm-3 col-xs-3" style="margin-top: 8px;height: 55px !important;">
-                    <input type="text" id="range_01" name="example_name" value="" />
+                    <input type="text" id="range_01" name="example_name" value=""/>
 
                 </div>
                 <div class="col-lg-1 col-sm-1 col-xs-1" style="padding: 0 !important;">
@@ -125,11 +130,12 @@
                 <p id="status"></p>
 
 
-                <ul class="nav navbar-top-links navbar-right col-lg-1 col-sm-1 col-xs-1" >
+                <ul class="nav navbar-top-links navbar-right col-lg-1 col-sm-1 col-xs-1">
 
 
                     <li style="height: 60px;width:72px;display: inline-block">
-                        <a id="loginLink" href="doctorLogin.jsp"><i class="fa fa-sign-out"></i> <span id="login">登录</span></a>
+                        <a id="loginLink" href="doctorLogin.jsp"><i class="fa fa-sign-out"></i> <span
+                                id="login">登录</span></a>
                     </li>
 
                 </ul>
@@ -195,14 +201,14 @@
                 </div>
             </div>
         </div>
-       <!-- <div class="footer">
-            <div class="pull-right">
-                &lt;!&ndash;10GB of <strong>250GB</strong> Free.&ndash;&gt;
-            </div>
-            <div>
-                <strong>Copyright</strong>
-            </div>
-        </div>-->
+        <!-- <div class="footer">
+             <div class="pull-right">
+                 &lt;!&ndash;10GB of <strong>250GB</strong> Free.&ndash;&gt;
+             </div>
+             <div>
+                 <strong>Copyright</strong>
+             </div>
+         </div>-->
     </div>
 
 </div>
@@ -339,35 +345,35 @@
         show_echarts2();
     }
 
-    $("#hisquery").click(function(){
-        if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
+    $("#hisquery").click(function () {
+        if ("${sessionScope.doctor.realname}" == "" || "${sessionScope.doctor.realname}" == null) {
             toastr.warning('登录后才可以查看，请登录！');
         }
     });
-    $("#doctorinformation").click(function(){
-        if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
+    $("#doctorinformation").click(function () {
+        if ("${sessionScope.doctor.realname}" == "" || "${sessionScope.doctor.realname}" == null) {
             toastr.warning('登录后才可以查看，请登录！');
         }
     });
     function isAuthorized() {
-        if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
+        if ("${sessionScope.doctor.realname}" == "" || "${sessionScope.doctor.realname}" == null) {
             //alert("未认证");
             $(".lock").show();
-            $("#hisquery").attr('href','javascript:void(0)');
-        }else {
+            $("#hisquery").attr('href', 'javascript:void(0)');
+        } else {
             // alert("已认证");
             // $(".lock").attr('src','/img/unlock.png');
             $(".lock").hide();
-            $("#hisquery").attr('href','HistoryQuery.jsp');
-            $("#doctorinformation").attr('href','doctorInformation.jsp');
+            $("#hisquery").attr('href', 'HistoryQuery.jsp');
+            $("#doctorinformation").attr('href', 'doctorInformation.jsp');
             $("#login").html("注销");
-            $("#loginLink").attr('href','doctor/logOut');
+            $("#loginLink").attr('href', 'doctor/logOut');
         }
     }
 
     function show_table() {
         //console.log("show_table");
-        mydatabody.innerHTML="";
+        mydatabody.innerHTML = "";
         for (var i = 0; i < 13; i++) {
             var mytr = mydatabody.insertRow();
             var node = mytr.insertCell();
@@ -380,11 +386,11 @@
             btd.className = "cellNormal";
             ctd.className = "cellNormal";
             node.innerHTML = i + 1;
-           if(websocketData.toString() != ""){
-               atd.innerHTML = websocketData.nodes[i].W;
-               btd.innerHTML = websocketData.nodes[i].X;
-               ctd.innerHTML = websocketData.nodes[i].Y;
-               dtd.innerHTML = websocketData.nodes[i].Z;
+            if (websocketData.toString() != "") {
+                atd.innerHTML = websocketData.nodes[i].W;
+                btd.innerHTML = websocketData.nodes[i].X;
+                ctd.innerHTML = websocketData.nodes[i].Y;
+                dtd.innerHTML = websocketData.nodes[i].Z;
             }
         }
     }
@@ -423,13 +429,13 @@
                     fontSize: 25
                 }
             },
-            grid:{
-                show:true
+            grid: {
+                show: true
             },
             visualMap: [{
                 pieces: [
-                    {gt: 80,color:'red'},            // (1500, Infinity]
-                    {gt: 0, lte: 80,color:'#1AB394'} // (900, 1500]
+                    {gt: 80, color: 'red'},            // (1500, Infinity]
+                    {gt: 0, lte: 80, color: '#1AB394'} // (900, 1500]
 
                 ]
             }],
@@ -459,7 +465,7 @@
                 splitLine: {
                     show: false
                 },
-                splitArea : {show : true}//保留网格区域
+                splitArea: {show: true}//保留网格区域
             },
             series: [{
                 name: '模拟数据',
@@ -468,13 +474,13 @@
                 hoverAnimation: false
                 /*data: data,*/
                 /*itemStyle: {
-                    normal: {
-                        color: '#1AB394',
-                        lineStyle: {
-                            color: '#1AB394'
-                        }
-                    }
-                }*/
+                 normal: {
+                 color: '#1AB394',
+                 lineStyle: {
+                 color: '#1AB394'
+                 }
+                 }
+                 }*/
 
             }]
         };
@@ -550,8 +556,12 @@
 <script> /*echarts自适应屏幕*/
 
 
-$("#container1").resize(function(){ $(myChart1).resize(); });
-$("#container2").resize(function(){ $(myChart2).resize(); })
+$("#container1").resize(function () {
+    $(myChart1).resize();
+});
+$("#container2").resize(function () {
+    $(myChart2).resize();
+})
 
 
 </script>
@@ -602,7 +612,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
         GloveDataWS.socket.onmessage = function (message) {
             websocketData = JSON.parse(message.data);
             show_table();
-            if (flag){
+            if (flag) {
                 console.log(message.data);
                 flag = false;
             }
@@ -685,22 +695,24 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
         CommandDataWS.socket.onopen = function () {
             clearTimeout(t2);
 
-                $("#button_evaluate").click(function () {
-                    if("${sessionScope.doctor.realname}"==""||"${sessionScope.doctor.realname}"==null){
-                         toastr.warning('请登录后再进行评估！');
-                    }else {
-                        duration = parseInt($("#range_01").val());
-                        times = parseInt($("#times").val());
-                        // $("#status").html("等待确认!");
-                        if(times==null||times==""){
-                            toastr.warning('请输入手掌捏合次数！');
-                        }{
+            $("#button_evaluate").click(function () {
+                if ("${sessionScope.doctor.realname}" == "" || "${sessionScope.doctor.realname}" == null) {
+                    toastr.warning('请登录后再进行评估！');
+                    console.log("点击评估");
+                } else {
+                    duration = parseInt($("#range_01").val());
+                    times = parseInt($("#times").val());
+                    // $("#status").html("等待确认!");
+                    if (times == null || times == "") {
+                        toastr.warning('请输入手掌捏合次数！');
+                    }
+                    {
                         toastr.success('等待病人确认......');
                         message_send = "evaluate_request";
                         CommandDataWS.sendMessage();      //发送确认字符
-                        }
                     }
-                });
+                }
+            });
 
 
         };
@@ -716,7 +728,7 @@ $("#container2").resize(function(){ $(myChart2).resize(); })
                     toastr.warning('病人拒绝评估！');
                     break;
                 case "evaluate_request_accepted":
-                    message_send = duration*100+times;  //传评估时长和捏合次数
+                    message_send = duration * 100 + times;  //传评估时长和捏合次数
                     CommandDataWS.sendMessage();      //发送时长
                     message_send = "evaluate_start";
                     CommandDataWS.sendMessage();      //发送aceept字符

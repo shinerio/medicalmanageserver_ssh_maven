@@ -70,7 +70,7 @@
                 </li>
                 <li class>
                     <a href="doctorInformation.jsp"><i class="fa fa-files-o"></i> <span
-                            class="nav-label">信息查询</span></a>
+                            class="nav-label">医生信息</span></a>
                     <!--<ul class="nav nav-second-level collapse">
 
                     </ul>-->
@@ -189,31 +189,31 @@
                                     <div>
                                         <form class="bs-example bs-example-form" role="form">
                                             <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                                                     <div class="input-group input-group-sm">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button">开始:</button>
-                                                    </span>
+                                                        <%--<span class="input-group-btn">
+                                                            <button class="btn btn-default" type="button">开始:</button>
+                                                        </span>--%>
                                                         <%--<input name="act_start_time" type="text" class="form-control" id="start_time" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间" readonly="readonly" style="cursor:pointer;"/>--%>
                                                         <input class="datainp form-control" id="start_time"
                                                                onClick="jeDate({dateCell:'#start_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})"
                                                                type="text" placeholder="开始时间" readonly>
                                                     </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 -->
-                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                     <div class="input-group input-group-sm">
 
                                                         <%--<input name="act_stop_time" type="text" class="form-control" id="stop_time" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间" readonly="readonly" style="cursor:pointer;"/>--%>
-                                                        <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button">截止:</button>
-                                                    </span>
+                                                        <%--<span class="input-group-btn">
+                                                            <button class="btn btn-default" type="button">截止:</button>
+                                                        </span>--%>
                                                         <input class="datainp form-control" id="stop_time"
                                                                onClick="jeDate({dateCell:'#stop_time',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})"
                                                                type="text" placeholder="截止时间" readonly>
                                                         <span class="input-group-btn">
-                                                        <button class="btn btn-default" type="button"
-                                                                onclick="getTime()">确认</button>
-                                                    </span>
+                                                            <button class="btn btn-default" type="button"
+                                                                    onclick="getTime()">确认</button>
+                                                        </span>
                                                     </div><!-- /input-group -->
                                                 </div><!-- /.col-lg-6 --><br>
                                             </div><!-- /.row -->
@@ -472,7 +472,7 @@
         //alert(s.innerHTML)
     }
 
-   /* var controlChart;*/ //控制折线图显示
+    /* var controlChart;*/ //控制折线图显示
     function show_echarts1() {        <!--图1的echarts展示-->
         dom1 = document.getElementById("container1");
         myChart1 = echarts.init(dom1);
@@ -708,10 +708,10 @@ $("#container2").resize(function () {
                     document.getElementById("realname").innerHTML = data[i].patient.realname;
                     document.getElementById("age").innerHTML = data[i].patient.age;
                     document.getElementById("disease").innerHTML = data[i].patient.disease;
-                    if (data[i].patient.gender == 1) {
+                    if (data[i].patient.gender == 2) {
                         document.getElementById("gender").innerHTML = "男";
                     }
-                    if (data[i].patient.gender == 2) {
+                    if (data[i].patient.gender == 1) {
                         document.getElementById("gender").innerHTML = "女";
                     }
                 }
@@ -735,9 +735,9 @@ $("#container2").resize(function () {
 
     function refreshLinerChart(evaid) {
         evaluate_id = evaid.id;  //取得评估再现的id编号
-        if (websocket_flag==0){
+        if (websocket_flag == 0) {
             toastr.error('未连接到服务器......');
-        }else {
+        } else {
             toastr.success('正在开始评估再现......');
             message_send = "evaluate_playback";
             EvaluateReappear.sendMessage();      //发送确认字符
@@ -772,7 +772,7 @@ $("#container2").resize(function () {
 
     var t2;
     var evaluate_id;
-    var websocket_flag=0;   //标志位，判断是否连接上服务器
+    var websocket_flag = 0;   //标志位，判断是否连接上服务器
 
 
     EvaluateReappear.socket = null;
@@ -787,13 +787,13 @@ $("#container2").resize(function () {
         }
 
         EvaluateReappear.socket.onopen = function () {
-            websocket_flag=1;   //标志位为1，表示连接上服务器
+            websocket_flag = 1;   //标志位为1，表示连接上服务器
             clearTimeout(t2);
             console.log("onopen");
         };
 
         EvaluateReappear.socket.onclose = function () {
-            websocket_flag=0; //标志位为0，表示没有连接上服务器
+            websocket_flag = 0; //标志位为0，表示没有连接上服务器
             t2 = window.setTimeout(EvaluateReappear.initialize(), 1000);
         };
 
