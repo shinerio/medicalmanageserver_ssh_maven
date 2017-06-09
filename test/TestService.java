@@ -1,8 +1,10 @@
 import com.shinerio.domain.Evaluation_info;
 import com.shinerio.domain.Patient;
 import com.shinerio.service.DoctorService;
+import com.shinerio.service.EvaluationService;
 import com.shinerio.service.PatientService;
 import com.shinerio.service.AdministratorService;
+import com.shinerio.service.impl.EvaluationServiceImpl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
@@ -84,4 +86,15 @@ public class TestService {
         JSONArray jsonArray = JSONArray.fromObject(list,jsonConfig);
         System.out.print(jsonArray);
     }
+
+    @Test
+    public void addEvaluation_info(){
+        Evaluation_info evaluation_info = new Evaluation_info();
+        evaluation_info.setStart_time(1000);
+        evaluation_info.setEnd_time(2000);
+        BeanFactory beanFactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+        EvaluationService evaluationService =  beanFactory.getBean("evaluationService",EvaluationService.class);
+        evaluationService.saveEvaluation_info(evaluation_info);
+    }
+
 }
