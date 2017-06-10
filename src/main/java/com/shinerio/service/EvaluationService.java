@@ -12,5 +12,6 @@ public interface EvaluationService {
     public void saveEvaluation_info(Evaluation_info evaluation_info);
     public void saveRawdata(Rawdata rawdata);
     public void saveRawdata(ArrayList<Rawdata> rawdata);
+    public Evaluation_info getEvaluation_info(int id);
 }
 

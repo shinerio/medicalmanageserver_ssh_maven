@@ -39,6 +39,12 @@ public class PatientServiceImpl implements PatientService {
       return   patientDao.getRowDataByEvaid(id);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)   //设置只读
+    @Override
+    public Patient getPatient(int id) {
+        return patientDao.getPatientByID(id);
+    }
+
     @Override
     public boolean regist(Patient patient) {
         return false;

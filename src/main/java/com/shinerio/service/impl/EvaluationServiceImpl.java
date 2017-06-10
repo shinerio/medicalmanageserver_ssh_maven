@@ -42,9 +42,14 @@ public class EvaluationServiceImpl implements EvaluationService{
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
     @Override
     public void saveRawdata(ArrayList<Rawdata> rawdatas) {
-        for (Rawdata rawdata:
-             rawdatas) {
+        for (Rawdata rawdata: rawdatas) {
             evaluationDao.saveRawdata(rawdata);
         }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    @Override
+    public Evaluation_info getEvaluation_info(int id) {
+      return evaluationDao.getEvaluation_info(id);
     }
 }

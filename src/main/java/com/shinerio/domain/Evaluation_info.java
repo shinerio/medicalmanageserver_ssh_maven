@@ -72,4 +72,14 @@ public class Evaluation_info {
     public void setSuccess_ratio(float success_ratio) {
         this.success_ratio = success_ratio;
     }
+
+    public Evaluation_info(long start_time, long end_time, Patient patient, float success_ratio) {
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.patient = patient;
+        this.success_ratio = success_ratio;
+    }
+
+    public Evaluation_info() {
+    }
 }

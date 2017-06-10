@@ -36,4 +36,11 @@
         <action name="list" class="com.shinerio.action.AdministratorAction" method="listDoctor">
         </action>
     </package>
+
+    <package name="evaluation" namespace="/evaluation" extends="struts-default">
+        <action name="addEvaluation_info" class="com.shinerio.action.EvaluationAction" method="addEvaluation_info">
+    </action>
+        <action name="addRawdatas" class="com.shinerio.action.EvaluationAction" method="addRawdatas">
+        </action>
+    </package>
 </struts>

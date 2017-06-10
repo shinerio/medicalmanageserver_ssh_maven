@@ -15,4 +15,5 @@ public interface PatientService {
     public Patient login(String username,String password);
     public List<Evaluation_info> getEvaluation_infoById(int id);
     public List<Rawdata> getRawDataByEvaid(int id);
+    public Patient getPatient(int id);
 }

@@ -24,6 +24,13 @@ public class Rawdata {
     public Rawdata() {
     }
 
+    public Rawdata(Evaluation_info evaluation_info, long time_stamp, String json_string, int score) {
+        this.evaluation_info = evaluation_info;
+        this.time_stamp = time_stamp;
+        this.json_string = json_string;
+        this.score = score;
+    }
+
     public int getId() {
         return id;
     }

@@ -64,6 +64,21 @@ public class PatientDao {
         }
     }
 
+    public Patient getPatientById(int id){
+        Session session = getCurrentSession();
+        String hql = "select s from Patient s where s.id = :id";
+        Patient patient = new Patient();
+        patient.setId(id);
+        try {
+            List<Patient> list =
+                    session.createQuery(hql).setProperties(patient).list();
+            if(list.size()>0){return list.get(0);}
+            return null;
+        } catch (RuntimeException re) {
+            throw re;
+        }
+    }
+
     public List<Evaluation_info> getEvaluation_infoById(int id) {
         Session session = getCurrentSession();
         try {
