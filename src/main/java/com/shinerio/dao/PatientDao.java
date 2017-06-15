@@ -93,7 +93,7 @@ public class PatientDao {
         }
     }
 
-    public List<Rawdata> getRowDataByEvaid(int id){
+    public List<Rawdata> getRawDataByEvaid(int id){
         Session session = getCurrentSession();
         try {
             Evaluation_info instance = (Evaluation_info) session.get(

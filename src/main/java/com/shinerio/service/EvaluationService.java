@@ -13,5 +13,6 @@ public interface EvaluationService {
     public void saveRawdata(Rawdata rawdata);
     public void saveRawdata(ArrayList<Rawdata> rawdata);
     public Evaluation_info getEvaluation_info(int id);
+    public int getEvaluationId(int userId, long startTime);
 }
 

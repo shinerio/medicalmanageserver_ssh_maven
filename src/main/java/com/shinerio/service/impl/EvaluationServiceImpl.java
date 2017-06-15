@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by shinerio on 2017/6/9.
  */
 @Component("evaluationService")
-public class EvaluationServiceImpl implements EvaluationService{
+public class EvaluationServiceImpl implements EvaluationService {
     @Autowired
     public EvaluationDao evaluationDao;
 
@@ -27,22 +27,22 @@ public class EvaluationServiceImpl implements EvaluationService{
         this.evaluationDao = evaluationDao;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
     @Override
     public void saveEvaluation_info(Evaluation_info evaluation_info) {
         evaluationDao.saveEvaluation_info_dao(evaluation_info);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
     @Override
     public void saveRawdata(Rawdata rawdata) {
         evaluationDao.saveRawdata(rawdata);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = {Exception.class})
     @Override
     public void saveRawdata(ArrayList<Rawdata> rawdatas) {
-        for (Rawdata rawdata: rawdatas) {
+        for (Rawdata rawdata : rawdatas) {
             evaluationDao.saveRawdata(rawdata);
         }
     }
@@ -50,6 +50,11 @@ public class EvaluationServiceImpl implements EvaluationService{
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     @Override
     public Evaluation_info getEvaluation_info(int id) {
-      return evaluationDao.getEvaluation_info(id);
+        return evaluationDao.getEvaluation_info(id);
+    }
+
+    @Override
+    public int getEvaluationId(int userId, long startTime) {
+        return evaluationDao.getEvaluationId(userId, startTime);
     }
 }

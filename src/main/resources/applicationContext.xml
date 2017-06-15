@@ -31,7 +31,7 @@
                   value="jdbc:mysql://localhost/medical_manage?CharSet=utf8&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=UTC">
         </property>
         <property name="username" value="root"></property>
-        <property name="password" value="admin"></property>
+        <property name="password" value="ssfusionadmin"></property>
     </bean>
 
     <!-- session工厂，维护会话对象 -->

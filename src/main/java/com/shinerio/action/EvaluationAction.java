@@ -7,6 +7,7 @@ import com.shinerio.domain.Rawdata;
 import com.shinerio.service.EvaluationService;
 import com.shinerio.service.PatientService;
 import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
 import java.util.ArrayList;
@@ -25,10 +27,11 @@ import java.util.ArrayList;
 @Component("evaluationAction")
 @Scope("prototype")
 @MultipartConfig
-public class EvaluationAction extends ActionSupport implements ServletRequestAware {
-   @Autowired
+public class EvaluationAction extends ActionSupport implements ServletRequestAware, ServletResponseAware {
+    @Autowired
     public EvaluationService evaluationService;
     private HttpServletRequest request;
+    private HttpServletResponse response;
     @Autowired
     public PatientService patientService;
     public int patientID;
@@ -52,6 +55,11 @@ public class EvaluationAction extends ActionSupport implements ServletRequestAwa
 
     public void setEvaluation_info_id(int evaluation_info_id) {
         this.evaluation_info_id = evaluation_info_id;
+    }
+
+    @Override
+    public void setServletResponse(HttpServletResponse httpServletResponse) {
+        this.response = httpServletResponse;
     }
 
     public EvaluationService getEvaluationService() {
@@ -94,10 +102,11 @@ public class EvaluationAction extends ActionSupport implements ServletRequestAwa
         this.end_time = end_time;
     }
 
-    public void addEvaluation_info(){
+    public void addEvaluation_info() {
+        System.out.println("addEvaluation_info");
         Patient patient = patientService.getPatient(patientID);
-        if(patient!=null){
-            Evaluation_info evaluation_info = new Evaluation_info(start_time,end_time,patient,success_ratio);
+        if (patient != null) {
+            Evaluation_info evaluation_info = new Evaluation_info(start_time, end_time, patient, success_ratio);
             evaluationService.saveEvaluation_info(evaluation_info);
         }
     }
@@ -107,29 +116,54 @@ public class EvaluationAction extends ActionSupport implements ServletRequestAwa
         this.request = httpServletRequest;
     }
 
-    public void addRawdatas(){
+    public void addRawdatas() {
         Evaluation_info evaluation_info = evaluationService.getEvaluation_info(evaluation_info_id);
-        if(evaluation_info!=null) {
+        if (evaluation_info != null) {
             try {
-                if(upload!=null) {
+                if (upload != null) {
                     FileInputStream fis = new FileInputStream(upload);
                     BufferedReader bis = new BufferedReader(new InputStreamReader(fis));
+                    System.out.println("获取文件的大小:" + upload.length());
+                    System.out.println("evaluation_id" + evaluation_info_id);
                     String message;
                     ArrayList<Rawdata> rawdatas = new ArrayList<>();
                     while ((message = bis.readLine()) != null) {
                         String[] array = message.split("\t");
+                        if (array.length != 3)
+                            continue;
                         long time = Long.parseLong(array[0]);
-                        int score = Integer.parseInt(array[2]);
-                        Rawdata rawdata = new Rawdata(evaluation_info, time, array[1], score);
+                        int score = Integer.parseInt(array[1]);
+                        Rawdata rawdata = new Rawdata(evaluation_info, time, array[2], score);
                         rawdatas.add(rawdata);
                     }
+                    System.out.println(rawdatas.size());
                     evaluationService.saveRawdata(rawdatas);
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-            }catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void getEvaluationId() {
+        int evaluationId;
+        try {
+            int patient_id = Integer.parseInt(request.getParameter("patient_id"));
+            long start_time = Long.parseLong(request.getParameter("start_time"));
+            System.out.println(String.format("%d, %d", patient_id, start_time));
+            evaluationId = evaluationService.getEvaluationId(patient_id, start_time);
+        } catch (NumberFormatException e) {
+            evaluationId = -1;
+        }
+        try {
+            PrintWriter writer = response.getWriter();
+            writer.write(String.valueOf(evaluationId));
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

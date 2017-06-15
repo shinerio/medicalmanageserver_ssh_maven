@@ -36,7 +36,7 @@ public class PatientServiceImpl implements PatientService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)   //设置只读
     @Override
     public List<Rawdata> getRawDataByEvaid(int id) {
-      return   patientDao.getRowDataByEvaid(id);
+      return   patientDao.getRawDataByEvaid(id);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)   //设置只读

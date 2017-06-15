@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body class="gray-bg" onload="init()">
 <div class="middle-box text-center loginscreen animated fadeInDown" style="width: 30%">
@@ -29,8 +29,8 @@
         <span class="m-t"> <small>写上版权相关内容</small><button type="button" class="btn btn-link"><a href="adminLogin.jsp" id="adminLogin">后台管理员登录</a></button></span>
     </div>
 </div>
-<script src="../js/jquery-2.0.3.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/jquery-2.0.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
     function init() {
         if("${requestScope.error_message}"==null||"${requestScope.error_message}"==""){
